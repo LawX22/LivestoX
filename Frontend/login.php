@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +18,13 @@
                 <h1>Welcome back</h1>
                 <p>Please enter your details.</p>
             </div>
-            <form>
-                <input type="text" placeholder="Username" required>
-                <input type="password" placeholder="Password" required>
-                <input type="submit" value="Sign In">
+            <form action="../Backend/login/login.php" method="POST">
+                <input type="text" placeholder="Username" name="username" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <input type="submit" name="submit" value="Sign In">
             </form>
             <div class="signup">
-                <p>Don’t have an account? <a href="signup.html">Create Account</a></p>
+                <p>Don’t have an account? <a href="signup.php">Create Account</a></p>
             </div>            
         </div>
         <div class="right-side">

@@ -11,33 +11,33 @@
         <div class="left-side">
             <div class="welcome-text">
                 <h1>Sign Up</h1>
-                <form>
+                <form action="../Backend/login/signup.php" method="POST">
                     <p>How will you use LivstoX?</p>
                     <div class="radio-group">
                         <label>
-                            <input type="radio" name="userType" value="farmers" required>
+                            <input type="radio" value="farmer" name="role" required>
                             Livestock Farmers
                         </label>
                         <label>
-                            <input type="radio" name="userType" value="buyers" required>
+                            <input type="radio" value="buyer" name="role"required>
                             Livestock Buyers
                         </label>
                     </div>
                     <div class="input-group">
-                        <input type="text" placeholder="FirstName" required>
-                        <input type="text" placeholder="LastName" required>
+                        <input type="text" placeholder="FirstName" name="fname" required>
+                        <input type="text" placeholder="LastName" name="lname" required>
                     </div>
                     <div class="input-group">
-                        <input type="text" placeholder="Username" required>
-                        <input type="tel" placeholder="Phone Number 63+" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+                        <input type="text" placeholder="Username" name="username" value="" required>
+                        <input type="tel" placeholder="Phone Number 63+" name="phone" value="" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
                     </div>
-                    <input type="email" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
-                    <input type="password" placeholder="Confirm Password" required>
-                    <input type="submit" value="Sign Up">
+                    <input type="email" placeholder="Email" name="email" value="" required>
+                    <input type="password" placeholder="Password" name="password" value="" required>
+                    <input type="password" placeholder="Confirm Password" name="password2" value="" required>
+                    <input type="submit" name="submit" value="Sign Up">
                 </form>
                 <div class="login">
-                    <p>Already have an account? <a href="login.html">Log In</a></p>
+                    <p>Already have an account? <a href="login.php">Log In</a></p>
                 </div>                
             </div>
         </div>
