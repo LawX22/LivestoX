@@ -14,6 +14,20 @@ session_start();
 <body>
     <div class="container">
         <div class="left-side">
+         <?php
+            if (isset($_SESSION['status'])) {
+            ?>
+                <div class="text-center">
+                    <div class="alert">
+                            <?php echo $_SESSION['status']; ?>
+                        <button class="close-button" onclick="this.parentElement.style.display='none';">&times;</button>
+                    </div>
+                </div>
+                <?php
+                unset($_SESSION['status']);
+            }
+            ?>
+
             <div class="welcome-text">
                 <h1>Welcome back</h1>
                 <p>Please enter your details.</p>

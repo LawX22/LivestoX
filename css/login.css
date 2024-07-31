@@ -124,3 +124,35 @@ form input[type="submit"]:hover {
     position: absolute;
     top: 24vh;
 }
+
+.text-center {
+    text-align: center;
+}
+
+.alert {
+    display: inline-block;
+    background-color: #FA6868;
+    color: white; 
+    padding: 30px; 
+    border-radius: 5px; 
+    position: relative; 
+    top: -5vh;
+    width: auto; 
+    z-index: 999;
+}
+
+.close-button {
+    background-color: transparent; 
+    border: none;
+    color: white; 
+    font-size: 20px; 
+    position: absolute; 
+    top: 50%; 
+    right: 10px; 
+    transform: translateY(-50%);
+    cursor: pointer; 
+}
+
+.close-button:hover {
+    color: #bbb; 
+}

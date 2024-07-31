@@ -23,7 +23,8 @@ if(isset($_POST['submit'])){
         exit();
     } else {
       // die("Error: ".$con->error);
-        echo('<script>alert("Wrong username or password!");window.location = "../../frontend/login.php";</script>');
+        $_SESSION['status'] = "Incorrect Username or Password";
+        header('location: ../../frontend/login.php');
         exit();
         
     }
