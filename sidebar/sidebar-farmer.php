@@ -42,9 +42,9 @@
             </div>
 
             <div class="logout">
-                <button class="logout-button">
-                    LOG OUT
-                </button>
+                <a href="../Backend/login/logout.php">
+                    <button class="logout-button">LOG OUT</button>
+                </a>
             </div>
 
         </div>

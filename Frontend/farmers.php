@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
+    header("Location: ../Frontend/login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

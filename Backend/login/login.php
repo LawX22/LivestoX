@@ -14,17 +14,17 @@ if(isset($_POST['submit'])){
     if($query->num_rows != 0){
         $_SESSION['id'] = $row['id'];
         if($row['user_type'] == "farmer"){
-        @header("Location: ../../frontend/farmers.php");
+        @header("Location: ../../Frontend/farmers.php");
         }else if($row['user_type'] == "buyer") {
-        @header("Location: ../../frontend/buyers.php");
+        @header("Location: ../../Frontend/buyers.php");
         }else if($row['user_type'] == "admin"){
-        @header("Location: ../../frontend/admin.php");
+        @header("Location: ../../Frontend/admin.php");
         }
         exit();
     } else {
       // die("Error: ".$con->error);
         $_SESSION['status'] = "Incorrect Username or Password";
-        header('location: ../../frontend/login.php');
+        header('location: ../../Frontend/login.php');
         exit();
         
     }

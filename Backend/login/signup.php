@@ -20,11 +20,11 @@ if (isset($_POST['submit'])) {
 
     if ($row) {
         if ($row['username'] === $username) {
-            echo ('<script>alert("Username already taken");window.location = "../../frontend/signup.php";</script>');
+            echo ('<script>alert("Username already taken");window.location = "../../Frontend/signup.php";</script>');
             exit();
         }
         if ($row['email'] === $email) {
-            echo ('<script>alert("Email is already taken");window.location = "../../frontend/signup.php";</script>');
+            echo ('<script>alert("Email is already taken");window.location = "../../Frontend/signup.php";</script>');
             exit();
         }
     }
@@ -34,11 +34,11 @@ if (isset($_POST['submit'])) {
         $query = "INSERT INTO tbl_users (first_name,last_name,username,phone,email,password,user_type) VALUES ('$fname','$lname','$username','$phone','$email','$password','$role')";
 
         mysqli_query($con, $query);
-        header("Location: ../../frontend/login.php");
+        header("Location: ../../Frontend/login.php");
         die;
         }
     } else {
-        echo ('<script>alert("ehem");window.location = "../../frontend/signup.php";</script>');
+        echo ('<script>alert("ehem");window.location = "../../Frontend/signup.php";</script>');
     }
 }
 
