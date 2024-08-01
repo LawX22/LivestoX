@@ -14,13 +14,37 @@
             </nav>
             <button class="create-listing-button">Livestock Post</button>
             <div class="filters">
-                <h3>Filters</h3>
+                <h3>SEARCH FILTER</h3>
+                <h5>By Category</h5>
                 <div class="filter-categories">
-                    <button class="nav-button"> <i class="fa-solid fa-cow"></i> Cows </button>
-                    <button class="filter-button"> <i class="fa-solid fa-cow"></i> Pigs</button>
-                    <button class="filter-button"> <i class="fa-solid fa-cow"></i> Chickens</button>
-                    <button class="filter-button"> <i class="fa-solid fa-cow"></i> Goats</button>
-                    <button class="filter-button"> <i class="fa-solid fa-cow"></i> Turkey</button>
+                    <label>
+                        <input type="checkbox" name="category" value="cows">
+                        Cows
+                    </label>
+                    <label>
+                        <input type="checkbox" name="category" value="pigs">
+                        Pigs
+                    </label>
+                    <label>
+                        <input type="checkbox" name="category" value="chickens">
+                        Chickens
+                    </label>
+                    <label>
+                        <input type="checkbox" name="category" value="goats">
+                        Goats
+                    </label>
+                    <label>
+                        <input type="checkbox" name="category" value="turkey">
+                        Turkey
+                    </label>
+                    <button class="confirm-button">FILTER</button>
                 </div>
             </div>
+
+            <div class="logout">
+                <button class="logout-button">
+                    LOG OUT
+                </button>
+            </div>
+
         </div>

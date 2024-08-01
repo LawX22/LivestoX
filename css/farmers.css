@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -19,7 +19,7 @@ body {
 }
 
 .sidebar {
-    width: 300px;  /* Wider sidebar */
+    width: 300px;  
     background-color: #ffffff;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -28,7 +28,7 @@ body {
 .profile-section {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .profile-image {
@@ -78,24 +78,77 @@ nav ul li {
 }
 
 .filters {
-    margin-top: 20px;
+    font-family: "Poppins", sans-serif;
+    padding: 15px;
+    margin-top: 14px;
+    border-radius: 5px;
+    width: 260px;
+    background-color: #52b7885a;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .filters h3 {
-    margin-top: 0;
-    font-size: 18px;
+    margin: 0;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-.filter-categories button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border: none;
+.filters h5 {
+    margin: 0;
     margin-bottom: 10px;
-    text-align: left;
-    font-size: 16px;
+}
+
+.filter-categories {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 10px;
+}
+
+.filter-categories label {
+    display: flex;
+    align-items: center;
+    margin-bottom:4px;
     cursor: pointer;
+}
+
+.filter-categories input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.confirm-button {
+    background-color: #004d40;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 100%;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-top: 3px;
+}
+
+.confirm-button:hover {
+    background-color: #00332a;
+}
+
+.logout-button {
+    border: none;
+    padding: 12px 20px;
+    width: 80%;
+    border-radius: 10px;
+    color: white;
+    background-color: #52B788;
+    margin-top: 12px;
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+    cursor: pointer;
+}
+
+
+.logout-button:hover {
+    background-color: #00332a;
 }
 
 .main-content {
