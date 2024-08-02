@@ -29,7 +29,7 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
                     <input type="text" placeholder="Search Livestock">
                 </div>
             </header>
-                    <h1>SELL HISTORY PAGE</h1>
+                    <h1>OPEN FORUM PAGE</h1>
             </div>
         </div>
     </div>

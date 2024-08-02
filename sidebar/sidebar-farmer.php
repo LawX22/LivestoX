@@ -15,9 +15,21 @@
                             <button class="nav-button"><i class="fas fa-gavel"></i> Auction Livestock</button>
                         </a>
                     </li>
-                    <li><button class="nav-button"><i class="fas fa-inbox"></i> Inbox</button></li>
-                    <li><button class="nav-button"><i class="fas fa-history"></i> Sell History</button></li>
-                    <li><button class="nav-button"><i class="fas fa-comments"></i> Open Forum</button></li>
+                    <li>
+                        <a href="inbox.php" class="nav-button-link">
+                            <button class="nav-button"><i class="fas fa-inbox"></i> Inbox</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sellhistory.php" class="nav-button-link">
+                            <button class="nav-button"><i class="fas fa-history"></i> Sell History</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="openforum.php" class="nav-button-link">
+                            <button class="nav-button"><i class="fas fa-comments"></i> Open Forum</button>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <button class="create-listing-button">Livestock Post</button>

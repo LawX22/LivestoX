@@ -83,7 +83,7 @@ nav ul li {
     margin-top: 14px;
     border-radius: 5px;
     width: 260px;
-    background-color: #52b7885a;
+    background-color: #52b78831;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -117,7 +117,7 @@ nav ul li {
 }
 
 .confirm-button {
-    background-color: #004d40;
+    background-color: #52B788;
     color: white;
     border: none;
     border-radius: 5px;
