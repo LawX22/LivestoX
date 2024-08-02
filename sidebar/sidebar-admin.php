@@ -5,12 +5,31 @@
             </div>
             <nav>
                 <ul>
-                    <li><button class="nav-button" style="background-color: #FA6868;"> <i class="fas fa-exclamation-circle"></i>  Reports</button></li>
-                    <li><button class="nav-button" style="background-color: #52B788;"> <i class="fas fa-globe"></i>  Browse Livestock</button></li>
-                    <li><button class="nav-button"><i class="fas fa-gavel"></i> Auction Livestock</button></li>
-                    <li><button class="nav-button"><i class="fas fa-inbox"></i> Inbox</button></li>
-                    <li><button class="nav-button"><i class="fas fa-history"></i> Sell History</button></li>
-                    <li><button class="nav-button"><i class="fas fa-comments"></i> Open Forum</button></li>
+                    <li>
+                        <a href="reports.php" class="nav-button-link">
+                            <button class="nav-button" style="background-color: #FA6868; color:white;"> <i class="fas fa-globe"></i> Reports</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dashboard.php" class="nav-button-link">
+                            <button class="nav-button" style="background-color: #52B788; color:white;"> <i class="fas fa-globe"></i>  Browse Livestock</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="auction.php" class="nav-button-link">
+                            <button class="nav-button"><i class="fas fa-gavel"></i> Auction Livestock</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inbox.php" class="nav-button-link">
+                            <button class="nav-button"><i class="fas fa-inbox"></i> Inbox</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="openforum.php" class="nav-button-link">
+                            <button class="nav-button"><i class="fas fa-comments"></i> Open Forum</button>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
