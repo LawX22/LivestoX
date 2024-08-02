@@ -259,3 +259,7 @@ header {
     cursor: pointer;
     font-size: 12px;  
 }
+
+.nav-button-link {
+    text-decoration: none; 
+}
