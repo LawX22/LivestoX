@@ -1,18 +1,19 @@
 <div class="sidebar">
             <div class="profile-section">
                 <div class="profile-image"></div>
-                <div class="profile-name">Buyers FullName</div>
+                <div class="profile-name">Admin FullName</div>
             </div>
             <nav>
                 <ul>
+                    <li><button class="nav-button" style="background-color: #FA6868;"> <i class="fas fa-exclamation-circle"></i>  Reports</button></li>
                     <li><button class="nav-button" style="background-color: #52B788;"> <i class="fas fa-globe"></i>  Browse Livestock</button></li>
                     <li><button class="nav-button"><i class="fas fa-gavel"></i> Auction Livestock</button></li>
                     <li><button class="nav-button"><i class="fas fa-inbox"></i> Inbox</button></li>
-                    <li><button class="nav-button"><i class="fas fa-history"></i> Buy History</button></li>
+                    <li><button class="nav-button"><i class="fas fa-history"></i> Sell History</button></li>
                     <li><button class="nav-button"><i class="fas fa-comments"></i> Open Forum</button></li>
                 </ul>
             </nav>
-            
+
             <div class="filters">
                 <h3>SEARCH FILTER</h3>
                 <h5>By Category</h5>

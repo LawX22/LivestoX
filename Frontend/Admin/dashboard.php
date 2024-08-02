@@ -18,7 +18,7 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'admin') {
 </head>
 <body>
     <div class="container">
-        <?php include('../../sidebar/sidebar-farmer.php');?>
+        <?php include('../../sidebar/sidebar-admin.php');?>
         <div class="main-content">
             <header>
                 <div class="logo">LivestoX Logo Here</div>
