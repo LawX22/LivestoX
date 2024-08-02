@@ -23,8 +23,8 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'admin') {
 <body>
     <div class="container">
         <?php 
-        $page = 'auction';
-        include('../../sidebar/sidebar-admin.php');
+            $page = 'auction';
+            include('../../sidebar/sidebar-admin.php');
         ?>
         <div class="main-content">
             <header>
