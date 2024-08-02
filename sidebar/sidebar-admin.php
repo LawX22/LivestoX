@@ -7,17 +7,19 @@
                 <ul>
                     <li>
                         <a href="reports.php" class="nav-button-link">
-                            <button class="nav-button" style="background-color: #FA6868; color:white;"> <i class="fas fa-globe"></i> Reports</button>
+                            <button class="nav-button"> <i class="fas fa-globe"></i> Reports</button>
                         </a>
                     </li>
                     <li>
                         <a href="dashboard.php" class="nav-button-link">
-                            <button class="nav-button" style="background-color: #52B788; color:white;"> <i class="fas fa-globe"></i>  Browse Livestock</button>
+                            <button class="nav-button" > <i class="fas fa-globe"></i>  Browse Livestock</button>
                         </a>
                     </li>
                     <li>
                         <a href="auction.php" class="nav-button-link">
-                            <button class="nav-button"><i class="fas fa-gavel"></i> Auction Livestock</button>
+                            <button class="nav-button <?php if ($page == 'auction') {
+                                                echo 'active';
+                                            } ?>" href="../Frontend/Admin/auction.php"><i class="fas fa-gavel"></i> Auction Livestock</button>
                         </a>
                     </li>
                     <li>
