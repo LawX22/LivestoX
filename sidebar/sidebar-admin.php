@@ -7,7 +7,10 @@
                 <ul>
                     <li>
                         <a href="reports.php" class="nav-button-link">
-                            <button class="nav-button"> <i class="fas fa-globe"></i> Reports</button>
+                            <button class="nav-button
+                                <?php if ($page == 'reports') {echo 'active';} ?>" href="../Frontend/Admin/reports.php">
+                                <i class="fas fa-globe"></i> Reports
+                            </button>
                         </a>
                     </li>
                     <li>
@@ -28,12 +31,17 @@
                     </li>
                     <li>
                         <a href="inbox.php" class="nav-button-link">
-                            <button class="nav-button"><i class="fas fa-inbox"></i> Inbox</button>
+                            <button class="nav-button
+                            <?php if ($page == 'inbox') {echo 'active';} ?>" href="../Frontend/Admin/inbox.php">
+                            <i class="fas fa-inbox"></i> Inbox
+                        </button>
                         </a>
                     </li>
                     <li>
                         <a href="openforum.php" class="nav-button-link">
-                            <button class="nav-button"><i class="fas fa-comments"></i> Open Forum</button>
+                            <button class="nav-button
+                            <?php if ($page == 'openforum') {echo 'active';} ?>" href="../Frontend/Admin/openforum.php">
+                            <i class="fas fa-comments"></i> Open Forum</button>
                         </a>
                     </li>
                 </ul>

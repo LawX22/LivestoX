@@ -59,8 +59,10 @@ nav ul li {
 
 .active{
     background: #52B788;
+    color: white;
 }
 
-.active1 {
+.nav-button:hover{
     background: #52B788;
+    color: white;
 }
