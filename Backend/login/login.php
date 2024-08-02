@@ -18,9 +18,9 @@ if(isset($_POST['submit'])){
         if($row['user_type'] == "farmer"){
             header("Location: ../../Frontend/Farmer/dashboard.php");
         } else if($row['user_type'] == "buyer") {
-            header("Location: ../../Frontend/buyers.php");
+            header("Location: ../../Frontend/Buyer/dashboard.php");
         } else if($row['user_type'] == "admin"){
-            header("Location: ../../Frontend/admin.php");
+            header("Location: ../../Frontend/Admin/dashboard.php");
         }
         exit();
     } else {
