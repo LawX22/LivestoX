@@ -22,7 +22,10 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'buyer') {
 </head>
 <body>
     <div class="container">
-        <?php include('../../sidebar/sidebar-buyer.php');?>
+        <?php 
+            $page = 'buyhistory';
+            include('../../sidebar/sidebar-buyer.php');
+        ?>
         <div class="main-content">
             <header>
                 <div class="logo">LivestoX Logo Here</div>

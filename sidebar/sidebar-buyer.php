@@ -7,27 +7,36 @@
                 <ul>
                     <li>
                         <a href="dashboard.php" class="nav-button-link">
-                            <button class="nav-button" style="background-color: #52B788;"> <i class="fas fa-globe"></i>  Browse Livestock</button>
+                            <button class="nav-button
+                            <?php if ($page == 'dashboard') {echo 'active';} ?>" href="../Frontend/Admin/dashboard.php">
+                            <i class="fas fa-globe"></i>  Browse Livestock</button>
                         </a>
                     </li>
                     <li>
                         <a href="auction.php" class="nav-button-link">
-                            <button class="nav-button"><i class="fas fa-gavel"></i> Auction Livestock</button>
+                            <button class="nav-button
+                            <?php if ($page == 'auction') {echo 'active';} ?>" href="../Frontend/Admin/auction.php">
+                            <i class="fas fa-gavel"></i> Auction Livestock</button>
                         </a>
                     </li>
                     <li>
-                        <a href="inbox.php" class="nav-button-link">
+                        <a href="inbox.php" class="nav-button-link
+                            <?php if ($page == 'inbox') {echo 'active';} ?>" href="../Frontend/Admin/inbox.php">
                             <button class="nav-button"><i class="fas fa-inbox"></i> Inbox</button>
                         </a>
                     </li>
                     <li>
                         <a href="buyhistory.php" class="nav-button-link">
-                            <button class="nav-button"><i class="fas fa-history"></i> Buy History</button>
+                            <button class="nav-button
+                            <?php if ($page == 'buyhistory') {echo 'active';} ?>" href="../Frontend/Admin/buyhistory.php">
+                            <i class="fas fa-history"></i> Buy History</button>
                         </a>
                     </li>
                     <li>
                         <a href="openforum.php" class="nav-button-link">
-                            <button class="nav-button"><i class="fas fa-comments"></i> Open Forum</button>
+                            <button class="nav-button
+                            <?php if ($page == 'openforum') {echo 'active';} ?>" href="../Frontend/Admin/openforum.php">
+                            <i class="fas fa-comments"></i> Open Forum</button>
                         </a>
                     </li>
                 </ul>
