@@ -178,4 +178,6 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
         </div>
     </div>
 </body>
+
+<script src="../../JS/logout-confirmation.js"></script>
 </html>
