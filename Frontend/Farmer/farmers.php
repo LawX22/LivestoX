@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
-    header("Location: ../Frontend/login.php");
+    header("Location: ../../Frontend/login.php");
     exit();
 }
 ?>
@@ -12,7 +12,7 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LivestoX</title>
-    <link rel="stylesheet" href="../css/farmers.css">
+    <link rel="stylesheet" href="../../css/farmers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
 </head>
 <body>
     <div class="container">
-        <?php include('../sidebar/sidebar-farmer.php');?>
+        <?php include('../../sidebar/sidebar-farmer.php');?>
         <div class="main-content">
             <header>
                 <div class="logo">LivestoX Logo Here</div>

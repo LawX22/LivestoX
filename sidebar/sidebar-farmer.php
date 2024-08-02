@@ -42,7 +42,7 @@
             </div>
 
             <div class="logout">
-                <a href="../Backend/login/logout.php">
+                <a href="../../Backend/login/logout.php">
                     <button class="logout-button">LOG OUT</button>
                 </a>
             </div>

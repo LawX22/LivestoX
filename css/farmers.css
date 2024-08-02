@@ -146,6 +146,9 @@ nav ul li {
     cursor: pointer;
 }
 
+.logout a {
+    text-decoration: none; 
+}
 
 .logout-button:hover {
     background-color: #00332a;
