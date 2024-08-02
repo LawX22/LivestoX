@@ -174,5 +174,8 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'buyer') {
             </div>
         </div>
     </div>
+    
 </body>
+
+<script src="../../JS/logout-confirmation.js"></script>
 </html>
