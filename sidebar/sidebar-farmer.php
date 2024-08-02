@@ -7,7 +7,10 @@
                 <ul>
                     <li>
                         <a href="dashboard.php" class="nav-button-link">
-                            <button class="nav-button" style="background-color: #52B788;"> <i class="fas fa-globe"></i>  Browse Livestock</button>
+                            <button class="nav-button
+                            <?php if ($page == 'dashboard') {echo 'active';} ?>" href="../Frontend/Farmer/dashboard.php">
+                            <i class="fas fa-globe"></i>  Browse Livestock
+                            </button>
                         </a>
                     </li>
                     <li>

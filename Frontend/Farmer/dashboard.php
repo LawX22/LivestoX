@@ -22,7 +22,10 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
 </head>
 <body>
     <div class="container">
-        <?php include('../../sidebar/sidebar-farmer.php');?>
+        <?php 
+            $page = 'dashboard';
+            include('../../sidebar/sidebar-farmer.php');
+        ?>
         <div class="main-content">
             <header>
                 <div class="logo">LivestoX Logo Here</div>
