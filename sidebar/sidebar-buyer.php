@@ -20,9 +20,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="inbox.php" class="nav-button-link
+                        <a href="inbox.php" class="nav-button-link">
+                            <button class="nav-button
                             <?php if ($page == 'inbox') {echo 'active';} ?>" href="../Frontend/Admin/inbox.php">
-                            <button class="nav-button"><i class="fas fa-inbox"></i> Inbox</button>
+                            <i class="fas fa-gavel"></i> Auction Livestock</button>  
                         </a>
                     </li>
                     <li>
