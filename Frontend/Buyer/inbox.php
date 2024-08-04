@@ -45,7 +45,7 @@ mysqli_stmt_close($stmt);
                     <input type="text" placeholder="Search Livestock">
                 </div>
             </header>
-                    <h1>Inbox PAGE</h1>
+                    <h1>INBOX PAGE</h1>
             </div>
         </div>
     </div>

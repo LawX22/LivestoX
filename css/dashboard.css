@@ -13,20 +13,22 @@ body {
     background-color: #f5f5f5;
 }
 
+/* CONTAINER */
+
 .container {
     display: flex;
     width: 100%;
 }
 
-
-
-
+/* MAIN CONTENT*/
 
 .main-content {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
 }
+
+/* HEADER BAR */
 
 header {
     display: flex;
@@ -46,6 +48,8 @@ header {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+/* LIVESTOCK CARD POSTS */
 
 .listings {
     display: grid;
@@ -88,18 +92,18 @@ header {
 }
 
 .farmer-name {
-    font-size: 14px;  /* Smaller font size */
+    font-size: 14px; 
     font-weight: bold;
 }
 
 .post-date {
-    font-size: 10px;  /* Smaller font size */
+    font-size: 10px; 
     color: #888;
 }
 
 .description {
     margin-top: 10px;
-    font-size: 12px;  /* Smaller font size */
+    font-size: 12px;  
 }
 
 .actions {
@@ -132,8 +136,3 @@ header {
     text-decoration: none; 
 }
 
-.profile-image img {
-    width: 100px; /* or any appropriate size */
-    height: 100px; /* or any appropriate size */
-    border-radius: 50%; /* optional: for a circular profile picture */
-}
