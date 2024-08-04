@@ -26,11 +26,11 @@ mysqli_stmt_close($stmt);
     <title>LivestoX - Inbox Page</title>
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
+    <link rel="stylesheet" href="../../css/inbox.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -41,11 +41,54 @@ mysqli_stmt_close($stmt);
         <div class="main-content">
             <header>
                 <div class="logo">LivestoX Logo Here</div>
-                <div class="search">
-                    <input type="text" placeholder="Search Livestock">
-                </div>
             </header>
-                    <h1>INBOX PAGE</h1>
+            <div class="chat-container">
+                <div class="chat-list">
+                    <div class="chat-list-header">
+                        <h3>Livestock Users</h3>
+                    </div>
+                    <ul>
+                        <li><div class="profile-circle">B</div>Buyer 7 FullName</li>
+                        <li><div class="profile-circle">F</div>Farmer 6 FullName</li>
+                        <li><div class="profile-circle">F</div>Farmer 5 FullName</li>
+                        <li><div class="profile-circle">B</div>Buyer 4 FullName</li>
+                        <li><div class="profile-circle">B</div>Buyer 3 FullName</li>
+                        <li><div class="profile-circle">F</div>Farmer 2 FullName</li>
+                        <li><div class="profile-circle">B</div>Buyer 1 FullName</li>
+                    </ul>
+                </div>
+                <div class="chat-window">
+                <div class="chat-header">
+                        <div class="profile-info">
+                            <div class="main-profile-circle">F</div>
+                            <h3>Farmer 7 FullName</h3>
+                        </div>
+                        <div class="calendar-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                    </div>
+                    <div class="chat-message">
+                        <p>Chatting Interface Here</p>
+                    </div>
+                    <div class="chat-footer">
+                        <input type="text" placeholder="Type something...">
+                    </div>
+                </div>
+                <div class="online-users">
+                    <div class="chat-list-header">
+                        <h3>Online - 2</h3>
+                    </div>
+                    <ul>
+                        <li><div class="profile-circle">B</div>Buyer 8 FullName</li>
+                        <li><div class="profile-circle">B</div>Buyer 7 FullName</li>
+                        <li><div class="profile-circle">F</div>Farmer 6 FullName</li>
+                        <li><div class="profile-circle">F</div>Farmer 5 FullName</li>
+                        <li><div class="profile-circle">B</div>Buyer 4 FullName</li>
+                        <li><div class="profile-circle">F</div>Farmer 3 FullName</li>
+                        <li><div class="profile-circle">F</div>Farmer 2 FullName</li>
+                        <li><div class="profile-circle">B</div>Buyer 1 FullName</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
