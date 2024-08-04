@@ -14,6 +14,8 @@ body {
     background-color: #f0fff4;
 }
 
+/* CONTAINER */
+
 .container {
     display: flex;
     width: 80%;
@@ -22,6 +24,8 @@ body {
     border-radius: 8px;
     overflow: hidden;
 }
+
+/* LEFT DISPLAY */
 
 .left-side {
     width: 40%;
@@ -78,6 +82,8 @@ form input[type="submit"]:hover {
     text-decoration: underline;
 }
 
+/* RIGHT DISPLAY */
+
 .right-side {
     width: 60%;
     background-color: #52B788;
@@ -128,6 +134,8 @@ form input[type="submit"]:hover {
 .text-center {
     text-align: center;
 }
+
+/* ALERT DISPLAY */
 
 .alert {
     display: inline-block;
