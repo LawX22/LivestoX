@@ -15,22 +15,34 @@
                     </li>
                     <li>
                         <a href="auction.php" class="nav-button-link">
-                            <button class="nav-button"><i class="fas fa-gavel"></i> Auction Livestock</button>
+                            <button class="nav-button
+                            <?php if ($page == 'auction') {echo 'active';} ?>" href="../Frontend/Farmer/auction.php">
+                            <i class="fas fa-gavel"></i> Auction Livestock
+                            </button>
                         </a>
                     </li>
                     <li>
                         <a href="inbox.php" class="nav-button-link">
-                            <button class="nav-button"><i class="fas fa-inbox"></i> Inbox</button>
+                            <button class="nav-button
+                            <?php if ($page == 'inbox') {echo 'active';} ?>" href="../Frontend/Farmer/inbox.php">
+                            <i class="fas fa-inbox"></i> Inbox
+                            </button>
                         </a>
                     </li>
                     <li>
                         <a href="sellhistory.php" class="nav-button-link">
-                            <button class="nav-button"><i class="fas fa-history"></i> Sell History</button>
+                            <button class="nav-button
+                            <?php if ($page == 'sellhistory') {echo 'active';} ?>" href="../Frontend/Farmer/sellhistory.php">
+                            <i class="fas fa-history"></i> Sell History
+                            </button>
                         </a>
                     </li>
                     <li>
                         <a href="openforum.php" class="nav-button-link">
-                            <button class="nav-button"><i class="fas fa-comments"></i> Open Forum</button>
+                            <button class="nav-button
+                            <?php if ($page == 'openforum') {echo 'active';} ?>" href="../Frontend/Farmer/openforum.php">
+                            <i class="fas fa-comments"></i> Open Forum
+                            </button>
                         </a>
                     </li>
                 </ul>
