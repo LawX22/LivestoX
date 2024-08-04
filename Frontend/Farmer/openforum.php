@@ -36,7 +36,7 @@ mysqli_stmt_close($stmt);
 <body>
     <div class="container">
         <?php 
-            $page = 'inbox';
+            $page = 'openforum';
             include('../../sidebar/sidebar-farmer.php');
         ?>
         <div class="main-content">
