@@ -1,7 +1,6 @@
 <div class="sidebar">
             <div class="profile-section">
                 <div class="profile-image"></div>
-                
                 <div class="profile-name"><?php echo htmlspecialchars($first_name . ' ' . $last_name); ?></div>
             </div>
             <nav>
