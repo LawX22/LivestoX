@@ -196,5 +196,5 @@ mysqli_stmt_close($stmt);
     
 </body>
 
-<script src="../../JS/logout-confirmation.js"></script>
+<script src="../../js/logout-confirmation.js"></script>
 </html>

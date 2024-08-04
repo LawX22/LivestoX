@@ -42,9 +42,6 @@ mysqli_stmt_close($stmt);
         <div class="main-content">
             <header>
                 <div class="logo">LivestoX Logo Here</div>
-                <div class="search">
-                    <input type="text" placeholder="Search Livestock">
-                </div>
             </header>
             <div class="open-forum">
                 <h2>Q&A - Open Forum for Livestock Farmers and Buyers</h2>
@@ -145,4 +142,6 @@ mysqli_stmt_close($stmt);
         </div>
     </div>
 </body>
+
+<script src="../../js/logout-confirmation.js"></script>
 </html>

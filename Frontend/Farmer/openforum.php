@@ -142,4 +142,6 @@ mysqli_stmt_close($stmt);
         </div>
     </div>
 </body>
+
+<script src="../../js/logout-confirmation.js"></script>
 </html>
