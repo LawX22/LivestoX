@@ -48,13 +48,13 @@ mysqli_stmt_close($stmt);
                         <h3>Livestock Users</h3>
                     </div>
                     <ul>
-                        <li><div class="profile-circle">B</div>Buyer 7 FullName</li>
-                        <li><div class="profile-circle">F</div>Farmer 6 FullName</li>
-                        <li><div class="profile-circle">F</div>Farmer 5 FullName</li>
-                        <li><div class="profile-circle">B</div>Buyer 4 FullName</li>
-                        <li><div class="profile-circle">B</div>Buyer 3 FullName</li>
-                        <li><div class="profile-circle">F</div>Farmer 2 FullName</li>
-                        <li><div class="profile-circle">B</div>Buyer 1 FullName</li>
+                        <li><div class="profile-circle">B</div>Buyer 7 </li>
+                        <li><div class="profile-circle">F</div>Farmer 6 </li>
+                        <li><div class="profile-circle">F</div>Farmer 5 </li>
+                        <li><div class="profile-circle">B</div>Buyer 4 </li>
+                        <li><div class="profile-circle">B</div>Buyer 3 </li>
+                        <li><div class="profile-circle">F</div>Farmer 2 </li>
+                        <li><div class="profile-circle">B</div>Buyer 1 </li>
                     </ul>
                 </div>
                 <div class="chat-window">
@@ -79,14 +79,14 @@ mysqli_stmt_close($stmt);
                         <h3>Online - 2</h3>
                     </div>
                     <ul>
-                        <li><div class="profile-circle">B</div>Buyer 8 FullName</li>
-                        <li><div class="profile-circle">B</div>Buyer 7 FullName</li>
-                        <li><div class="profile-circle">F</div>Farmer 6 FullName</li>
-                        <li><div class="profile-circle">F</div>Farmer 5 FullName</li>
-                        <li><div class="profile-circle">B</div>Buyer 4 FullName</li>
-                        <li><div class="profile-circle">F</div>Farmer 3 FullName</li>
-                        <li><div class="profile-circle">F</div>Farmer 2 FullName</li>
-                        <li><div class="profile-circle">B</div>Buyer 1 FullName</li>
+                        <li><div class="profile-circle">B</div>Buyer 8 </li>
+                        <li><div class="profile-circle">B</div>Buyer 7 </li>
+                        <li><div class="profile-circle">F</div>Farmer 6 </li>
+                        <li><div class="profile-circle">F</div>Farmer 5 </li>
+                        <li><div class="profile-circle">B</div>Buyer 4 </li>
+                        <li><div class="profile-circle">F</div>Farmer 3 </li>
+                        <li><div class="profile-circle">F</div>Farmer 2 </li>
+                        <li><div class="profile-circle">B</div>Buyer 1 </li>
                     </ul>
                 </div>
             </div>
