@@ -13,7 +13,8 @@ if (isset($_POST['submit'])) {
     $email = sec_input($_POST['email']);
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
-    //if user and email already exist
+    
+    // Check if username or email already exists
     $sql = "SELECT * FROM tbl_users WHERE username='$username' OR email='$email' LIMIT 1";
     $query = $con->query($sql);
     $row = $query->fetch_array();
@@ -28,17 +29,23 @@ if (isset($_POST['submit'])) {
             exit();
         }
     }
-    // if user password and email is not empty
+    
+    // Check if password fields match and required fields are not empty
     if (!empty($username) && !empty($password) && !empty($email)) {
-        if($password === $password2){
-        $query = "INSERT INTO tbl_users (first_name,last_name,username,phone,email,password,user_type) VALUES ('$fname','$lname','$username','$phone','$email','$password','$role')";
+        if ($password === $password2) {
+            // Set default profile picture path
+            $default_profile_picture = 'Assets/default-profile.png';
+            
+            $query = "INSERT INTO tbl_users (first_name, last_name, username, phone, email, password, user_type, profile_picture) VALUES ('$fname', '$lname', '$username', '$phone', '$email', '$password', '$role', '$default_profile_picture')";
 
-        mysqli_query($con, $query);
-        header("Location: ../../Frontend/login.php");
-        die;
+            mysqli_query($con, $query);
+            header("Location: ../../Frontend/login.php");
+            die;
+        } else {
+            echo ('<script>alert("Passwords do not match");window.location = "../../Frontend/signup.php";</script>');
         }
     } else {
-        echo ('<script>alert("ehem");window.location = "../../Frontend/signup.php";</script>');
+        echo ('<script>alert("Please fill all required fields");window.location = "../../Frontend/signup.php";</script>');
     }
 }
 
@@ -49,3 +56,4 @@ function sec_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+?>

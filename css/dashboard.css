@@ -204,3 +204,9 @@ header {
 .nav-button-link {
     text-decoration: none; 
 }
+
+.profile-image img {
+    width: 100px; /* or any appropriate size */
+    height: 100px; /* or any appropriate size */
+    border-radius: 50%; /* optional: for a circular profile picture */
+}

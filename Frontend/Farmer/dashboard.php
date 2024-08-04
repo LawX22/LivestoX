@@ -1,10 +1,23 @@
 <?php
 session_start();
+include('../../Backend/db/db_connect.php'); 
+
 if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
     header("Location: ../../Frontend/login.php");
     exit();
 }
+
+// Fetch user data
+$user_id = $_SESSION['id'];
+$query = "SELECT first_name, last_name FROM tbl_users WHERE id = ?";
+$stmt = mysqli_prepare($con, $query);
+mysqli_stmt_bind_param($stmt, 'i', $user_id);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $first_name, $last_name);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
