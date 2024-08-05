@@ -60,6 +60,13 @@ header {
     border-radius: 4px;
 }
 
+/* FILTERING SECTION*/
+
+.search i {
+    cursor: pointer;
+    font-size: 20px;
+}
+
 .filter-popup {
     position: fixed;
     top: 50%;

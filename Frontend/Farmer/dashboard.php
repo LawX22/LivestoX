@@ -243,19 +243,5 @@ mysqli_stmt_close($stmt);
 </body>
 
 <script src="../../js/logout-confirmation.js"></script>
-<script>
-    function showFilterPopup() {
-        document.getElementById('filter-popup').style.display = 'block';
-    }
-
-    function hideFilterPopup() {
-        document.getElementById('filter-popup').style.display = 'none';
-    }
-
-    function applyFilters() {
-        // Add filter application logic here
-        alert('Filters applied!');
-        hideFilterPopup();
-    }
-</script>
+<script src="../../js/filtering.js"></script>
 </html>
