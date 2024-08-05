@@ -44,9 +44,54 @@ mysqli_stmt_close($stmt);
             <header>
                 <div class="logo">LivestoX Logo Here</div>
                 <div class="search">
+                    <i class="fas fa-filter" onclick="showFilterPopup()"></i>
                     <input type="text" placeholder="Search Livestock">
                 </div>
             </header>
+           <!-- Filter Popup -->
+            <div id="filter-popup" class="filter-popup" style="display:none;">
+                <div class="filter-content">
+                    <span class="close" onclick="hideFilterPopup()">&times;</span>
+                    <h2>Search Livestock For Sale</h2>
+                    <div class="auction-options">
+                        <button class="auction-btn active">Private Treaty</button>
+                        <button class="auction-btn">Online Auctions</button>
+                    </div>
+                    <div class="animal-icons">
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Bulls">Bulls</div>
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Cows">Cows</div>
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Horses">Horses</div>
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Pigs">Pigs</div>
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Goats">Goats</div>
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Sheep">Sheep</div>
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Alpacas">Alpacas</div>
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Rabbits">Rabbits</div>
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Dogs">Dogs</div>
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Cats">Cats</div>
+                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Humans">Humans</div>
+                    </div>
+                    <div class="filter-search">
+                        <select>
+                            <option value="">Livestock</option>
+                            <option value="cows">Chickens</option>
+                            <option value="bulls">Bulls</option>
+                            <option value="cows">Cows</option>
+                            <option value="cows">Pigs</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                        <select>
+                            <option value="">Breed</option>
+                            <option value="cows">Roundhead</option>
+                            <option value="cows">Hatch</option>
+                            <option value="cows">Hatch</option>
+                            <option value="cows">Sweater</option>
+                            <!-- Add class options here -->
+                        </select>
+                        <button onclick="applyFilters()">Search</button>
+                    </div>
+                </div>
+            </div>             
+   
             <div class="listings">
                 <div class="listing-card">
                     <div class="listing-image"></div>
@@ -198,4 +243,19 @@ mysqli_stmt_close($stmt);
 </body>
 
 <script src="../../js/logout-confirmation.js"></script>
+<script>
+    function showFilterPopup() {
+        document.getElementById('filter-popup').style.display = 'block';
+    }
+
+    function hideFilterPopup() {
+        document.getElementById('filter-popup').style.display = 'none';
+    }
+
+    function applyFilters() {
+        // Add filter application logic here
+        alert('Filters applied!');
+        hideFilterPopup();
+    }
+</script>
 </html>
