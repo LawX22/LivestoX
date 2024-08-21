@@ -8,8 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image = $_FILES['questionImage']['name'] ?? null;
 
     $user_id = $_SESSION['id'];
+  
+    date_default_timezone_set("Asia/Manila");
     $created_at = date('Y-m-d H:i:s');
-
     // Verify that the user_id exists in tbl_users
     $query = "SELECT COUNT(*) FROM tbl_users WHERE id = ?";
     $stmt = mysqli_prepare($con, $query);
@@ -54,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Handle file upload if present
     if ($image) {
-        $target_dir = "../../uploads/forum/";
+        $target_dir = "../../Uploads";
         $target_file = $target_dir . basename($image);
         if (!move_uploaded_file($_FILES['questionImage']['tmp_name'], $target_file)) {
             $image = null; // Handle file upload failure
@@ -89,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'last_name' => $last_name,
                 'title' => $title,
                 'description' => $description,
-                'image' => $image ? 'uploads/forum/' . $image : null,
+                'image' => $image ? 'Uploads' . $image : null,
                 'created_at' => $created_at
             )
         );

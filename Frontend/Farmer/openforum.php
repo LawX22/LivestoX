@@ -7,6 +7,9 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
     exit();
 }
 
+$sql = "SELECT * FROM tbl_users WHERE id  = '". $_SESSION['id'] . "'";
+$result = mysqli_query($con, $sql);
+
 // Fetch user data
 $user_id = $_SESSION['id'];
 $query = "SELECT first_name, last_name FROM tbl_users WHERE id = ?";
@@ -17,8 +20,8 @@ mysqli_stmt_bind_result($stmt, $first_name, $last_name);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
 
-// Fetch posts with the id field included
-$postQuery = "SELECT f.id, f.title, f.description, f.image, f.created_at, u.first_name, u.last_name, u.user_type 
+// Fetch posts with the user_id field included
+$postQuery = "SELECT f.id, f.title, f.description, f.image, f.created_at, f.user_id, u.first_name, u.last_name, u.user_type 
               FROM forum f 
               JOIN tbl_users u ON f.user_id = u.id 
               ORDER BY f.created_at DESC";
@@ -39,7 +42,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -79,6 +82,30 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                     </div>
                 </div>
 
+                <!-- Modal Popup for Edit Post -->
+                <div id="editModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-btn">&times;</span>
+                        <h2>Edit Post</h2>
+                        <form id="editForm" action="../../Backend/forum/update_question.php" method="post" enctype="multipart/form-data">
+                            <input type="hidden" id="editPostId" name="postId">
+                            <div class="form-group">
+                                <label for="editTitle">Title:</label>
+                                <input type="text" id="editTitle" name="editTitle" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDescription">Description:</label>
+                                <textarea id="editDescription" name="editDescription" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="editImage">Upload Image (optional):</label>
+                                <input type="file" id="editImage" name="editImage" accept="image/*">
+                            </div>
+                            <button type="submit" class="submit-btn">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+
                 <!-- Container for displaying posts -->
                 <div id="postContainer" class="post-container">
                     <?php foreach ($posts as $post): ?>
@@ -91,17 +118,19 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                                 <div class="user-type"><?= htmlspecialchars($post['user_type']); ?></div> 
                                 <!-- Display date and time -->
                                 <div class="date-time-container">
-                                    <div class="date"><?= date('F j, Y g:i a', strtotime($post['created_at'])); ?></div>
-                                    <!-- Meatball menu -->
-                                    <div class="meatball-menu">
+                                    <div class="date">
+                                        <?= date('F j, Y g:i:a', strtotime($post['created_at'])); ?>
+                                    </div>
+                                    
+                                    <div class="meatball-menu" <?= $user_id == $post['user_id'] ? '' : 'style="display:none"'?>> 
                                         <i class="fas fa-ellipsis-v"></i>
                                         <div class="dropdown-menu">
-                                            <a href="#" class="dropdown-item">Edit</a>
-                                            <a href="#" class="dropdown-item delete-post" data-post-id="<?= $post['id']; ?>">Delete</a>
+                                            <a href="#" class="dropdown-item" data-post-id="<?= $post['id']; ?>">Edit</a>
+                                            <a href="#" class="dropdown-item delete-post" data-post-id-delete="<?= $post['id']; ?>">Delete</a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                         <div class="post-content">
                             <h3><?= htmlspecialchars($post['title']); ?></h3>
