@@ -43,33 +43,6 @@
                 </ul>
             </nav>
             
-            <div class="filters">
-                <h3>SEARCH FILTER</h3>
-                <h5>By Category</h5>
-                <div class="filter-categories">
-                    <label>
-                        <input type="checkbox" name="category" value="cows">
-                        Cows
-                    </label>
-                    <label>
-                        <input type="checkbox" name="category" value="pigs">
-                        Pigs
-                    </label>
-                    <label>
-                        <input type="checkbox" name="category" value="chickens">
-                        Chickens
-                    </label>
-                    <label>
-                        <input type="checkbox" name="category" value="goats">
-                        Goats
-                    </label>
-                    <label>
-                        <input type="checkbox" name="category" value="turkey">
-                        Turkey
-                    </label>
-                    <button class="confirm-button">FILTER</button>
-                </div>
-            </div>
 
             <div class="logout">
                 <a href="../../Backend/login/logout.php" id="logout-link">

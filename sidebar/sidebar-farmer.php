@@ -41,40 +41,13 @@
                         <a href="openforum.php" class="nav-button-link">
                             <button class="nav-button
                             <?php if ($page == 'openforum') {echo 'active';} ?>" href="../Frontend/Farmer/openforum.php">
-                            <i class="fas fa-comments"></i> Open Forum
+                            <i class="fas fa-comments"></i> Livestock Forum
                             </button>
                         </a>
                     </li>
                 </ul>
             </nav>
             <button class="create-listing-button">Livestock Post</button>
-            <div class="filters">
-                <h3>SEARCH FILTER</h3>
-                <h5>By Category</h5>
-                <div class="filter-categories">
-                    <label>
-                        <input type="checkbox" name="category" value="cows">
-                        Cows
-                    </label>
-                    <label>
-                        <input type="checkbox" name="category" value="pigs">
-                        Pigs
-                    </label>
-                    <label>
-                        <input type="checkbox" name="category" value="chickens">
-                        Chickens
-                    </label>
-                    <label>
-                        <input type="checkbox" name="category" value="goats">
-                        Goats
-                    </label>
-                    <label>
-                        <input type="checkbox" name="category" value="turkey">
-                        Turkey
-                    </label>
-                    <button class="confirm-button">FILTER</button>
-                </div>
-            </div>
 
             <div class="logout">
                 <a href="../../Backend/login/logout.php" id="logout-link">

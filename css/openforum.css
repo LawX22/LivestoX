@@ -78,14 +78,15 @@ header {
 
 .forum-post .post-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    position: relative; /* For positioning the dropdown menu */
 }
 
 .forum-post .post-header .profile-info {
     display: flex;
     align-items: center;
+    flex: 1; /* Takes up remaining space */
 }
 
 .forum-post .post-header .profile-info .profile-circle {
@@ -106,8 +107,60 @@ header {
     margin-right: 10px;
 }
 
+.forum-post .post-header .profile-info .user-type {
+    color: #fff;
+    background-color: #3b8cd3; /* Background color to make it stand out */
+    border-radius: 10px; /* Rounded corners */
+    padding: 4px 8px; /* Padding for better spacing */
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase; /* Capitalize text */
+    margin-top: 2px; /* Space between name and user type */
+}
+
 .forum-post .post-header .date {
     color: #aaa;
+    margin-left: 8px;
+}
+
+.forum-post .post-header .meatball-menu {
+    position: absolute; /* Positioned at the end of the post header */
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    cursor: pointer;
+}
+
+.forum-post .post-header .meatball-menu i {
+    font-size: 18px;
+    color: #333;
+}
+
+.forum-post .post-header .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.forum-post .post-header .dropdown-item {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+.forum-post .post-header .dropdown-item:hover {
+    background-color: #f4f4f4;
+}
+
+.forum-post .post-header .meatball-menu:hover .dropdown-menu {
+    display: block;
 }
 
 .forum-post .post-content {
@@ -134,4 +187,78 @@ header {
 .forum-post .post-actions .comments i {
     margin-right: 5px;
     font-size: 20px;
+}
+
+/* Modal container */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-height: 90vh; /* Ensure the modal doesn't overflow the viewport */
+    overflow-y: auto; /* Scroll inside the modal if content exceeds max-height */
+}
+
+/* Close button */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
 }
