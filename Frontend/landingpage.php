@@ -12,26 +12,25 @@
 <body>
     <header>
         <div class="logo">
-            <div class="logo-circle">Logo</div>
+            <div class="logo-circle">L</div>
             <h1>LivestoX</h1>
         </div>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About Us</a></li>
-                <li><a href="#">Feedbacks</a></li>
-                <li><a href="#">Contacts Us</a></li>
+                <li><a href="#">Livestock</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="#">Contact Us</a></li>
             </ul>
         </nav>
     </header>
+    
     <main>
         <section class="intro">
-            <h2><span>Online</span> Marketplace</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-            <a href="login.php" class="get-started-link"><button>Get Started</button></a>
-        </section>
-        <section class="design-details">
-            <div class="details">More Design Details Here</div>
+            <h2>Free Range <span>Animal Farming</span></h2>
+            <p>We provide organic, free-range livestock farming solutions, sourced from trustworthy farmers who prioritize animal welfare. Enjoy healthier, high-quality products for you and your family. Join our community today!</p>
+            <a href="login.php" class="get-started-link"><button>See Our Animals</button></a>
         </section>
     </main>
 </body>
