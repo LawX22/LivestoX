@@ -7,6 +7,12 @@ if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'buyer') {
     exit();
 }
 
+$sql = "SELECT * FROM tbl_users WHERE id  = '". $_SESSION['id'] . "'";
+$result = mysqli_query($con, $sql);
+
+$sql1 = "SELECT * FROM tbl_users where user_type = 'farmer'";
+$result1 = mysqli_query($con, $sql1);
+
 // Fetch user data
 $user_id = $_SESSION['id'];
 $query = "SELECT first_name, last_name FROM tbl_users WHERE id = ?";
@@ -18,7 +24,7 @@ mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
 
 // Fetch posts with the id field included
-$postQuery = "SELECT f.id, f.title, f.description, f.image, f.created_at, u.first_name, u.last_name, u.user_type 
+$postQuery = "SELECT f.id, f.title, f.description, f.image, f.created_at, f.user_id, u.first_name, u.last_name, u.user_type 
               FROM forum f 
               JOIN tbl_users u ON f.user_id = u.id 
               ORDER BY f.created_at DESC";
@@ -45,7 +51,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
     <div class="container">
         <?php 
             $page = 'openforum';
-            include('../../sidebar/sidebar-farmer.php');
+            include('../../sidebar/sidebar-buyer.php');
         ?>
         <div class="main-content">
             <header>
@@ -88,14 +94,16 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                                 <div class="profile-circle"><?= strtoupper($post['first_name'][0]); ?></div>
                                 <div class="name"><?= htmlspecialchars($post['first_name'] . ' ' . $post['last_name']); ?></div>
                                 <!-- Display user type -->
-                                <div class="user-type"><?= htmlspecialchars($post['user_type']); ?></div> 
+                                <div class="user-type" <?= $result1 = 'farmer' ? 'style="background-color: #6633de;"' : 'style="background-color: #3b8cd3;"'?>><?= htmlspecialchars($post['user_type']); ?></div> 
+
+                                <?// = $user_type== $post['user_type'] ? 'style="background-color: #6633de;"' : 'style="background-color: #3b8cd3;"'?>
                                 <!-- Display date and time -->
                                 <div class="date-time-container">
                                     <div class="date">
                                         <?= date('F j, Y g:i:a', strtotime($post['created_at'])); ?>
                                     </div>
                                     <!-- Meatball menu -->
-                                    <div class="meatball-menu">
+                                    <div class="meatball-menu" <?= $user_id == $post['user_id'] ? '' : 'style="display:none"'?>> 
                                         <i class="fas fa-ellipsis-v"></i>
                                         <div class="dropdown-menu">
                                             <a href="#" class="dropdown-item">Edit</a>

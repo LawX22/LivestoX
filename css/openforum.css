@@ -109,7 +109,7 @@ header {
 
 .forum-post .post-header .profile-info .user-type {
     color: #fff;
-    background-color: #3b8cd3; /* Background color to make it stand out */
+     /* Background color to make it stand out */
     border-radius: 10px; /* Rounded corners */
     padding: 4px 8px; /* Padding for better spacing */
     font-size: 14px;
