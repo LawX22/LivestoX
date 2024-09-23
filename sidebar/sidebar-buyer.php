@@ -43,6 +43,9 @@
                 </ul>
             </nav>
             
+            <div class="noti-box">
+                <p>Notification here</p>
+            </div>
 
             <div class="logout">
                 <a href="../../Backend/login/logout.php" id="logout-link">

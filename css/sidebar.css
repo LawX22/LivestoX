@@ -87,6 +87,17 @@ i {
     border-radius: 5px;
 }
 
+/* NOTIFICATION */
+
+.noti-box {
+    margin-top: 40px;
+    height: 15rem;
+    border: 3px solid rgb(225, 133, 133);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
 /* LOG-OUT BUTTON */
 
 .logout-button {
@@ -96,7 +107,7 @@ i {
     border-radius: 10px;
     color: white;
     background-color: #52B788;
-    margin-top: 38vh;
+    margin-top: 20px;
     display: block; 
     margin-left: auto; 
     margin-right: auto; 

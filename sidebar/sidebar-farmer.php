@@ -49,6 +49,10 @@
             </nav>
             <button class="create-listing-button">Livestock Post</button>
 
+            <div class="noti-box">
+                <p>Notification here</p>
+            </div>
+
             <div class="logout">
                 <a href="../../Backend/login/logout.php" id="logout-link">
                     <button type="button" class="logout-button" onclick="confirmLogout(event)">LOG OUT</button>
