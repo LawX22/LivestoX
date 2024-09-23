@@ -94,9 +94,10 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                                 <div class="profile-circle"><?= strtoupper($post['first_name'][0]); ?></div>
                                 <div class="name"><?= htmlspecialchars($post['first_name'] . ' ' . $post['last_name']); ?></div>
                                 <!-- Display user type -->
-                                <div class="user-type" <?= $result1 = 'farmer' ? 'style="background-color: #6633de;"' : 'style="background-color: #3b8cd3;"'?>><?= htmlspecialchars($post['user_type']); ?></div> 
+                                <div class="user-type" style="background-color: <?= ($post['user_type'] === 'farmer') ? '#FFA908' : '#52B788'; ?>;">
+                                        <?= htmlspecialchars($post['user_type']); ?>
+                                    </div> 
 
-                                <?// = $user_type== $post['user_type'] ? 'style="background-color: #6633de;"' : 'style="background-color: #3b8cd3;"'?>
                                 <!-- Display date and time -->
                                 <div class="date-time-container">
                                     <div class="date">
@@ -104,12 +105,12 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                                     </div>
                                     <!-- Meatball menu -->
                                     <div class="meatball-menu" <?= $user_id == $post['user_id'] ? '' : 'style="display:none"'?>> 
-                                        <i class="fas fa-ellipsis-v"></i>
-                                        <div class="dropdown-menu">
-                                            <a href="#" class="dropdown-item">Edit</a>
-                                            <a href="#" class="dropdown-item delete-post" data-post-id="<?= $post['id']; ?>">Delete</a>
+                                            <i class="fas fa-ellipsis-v"></i>
+                                            <div class="dropdown-menu">
+                                                <a href="#" class="dropdown-item" data-post-id="<?= $post['id']; ?>">Edit</a>
+                                                <a href="#" class="dropdown-item delete-post" data-post-id-delete="<?= $post['id']; ?>">Delete</a>
+                                            </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

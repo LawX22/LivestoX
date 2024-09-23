@@ -107,31 +107,37 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                 </div>
 
                 <!-- Container for displaying posts -->
-                <div id="postContainer" class="post-container">
-                    <?php foreach ($posts as $post): ?>
-                    <div class="forum-post card">
-                        <div class="post-header">
-                            <div class="profile-info">
-                                <div class="profile-circle"><?= strtoupper($post['first_name'][0]); ?></div>
-                                <div class="name"><?= htmlspecialchars($post['first_name'] . ' ' . $post['last_name']); ?></div>
-                                <!-- Display user type -->
-                                <div class="user-type"><?= htmlspecialchars($post['user_type']); ?></div> 
-                                <!-- Display date and time -->
-                                <div class="date-time-container">
-                                    <div class="date">
-                                        <?= date('F j, Y g:i:a', strtotime($post['created_at'])); ?>
-                                    </div>
+               <div id="postContainer" class="post-container">
+                        <?php foreach ($posts as $post): ?>
+                        <div class="forum-post card">
+                            <div class="post-header">
+                                <div class="profile-info">
+                                    <div class="profile-circle"><?= strtoupper($post['first_name'][0]); ?></div>
+                                    <div class="name"><?= htmlspecialchars($post['first_name'] . ' ' . $post['last_name']); ?></div>
                                     
-                                    <div class="meatball-menu" <?= $user_id == $post['user_id'] ? '' : 'style="display:none"'?>> 
-                                        <i class="fas fa-ellipsis-v"></i>
-                                        <div class="dropdown-menu">
-                                            <a href="#" class="dropdown-item" data-post-id="<?= $post['id']; ?>">Edit</a>
-                                            <a href="#" class="dropdown-item delete-post" data-post-id-delete="<?= $post['id']; ?>">Delete</a>
+                                    <!-- Display user type with dynamic background color -->
+                                    <div class="user-type" style="background-color: <?= ($post['user_type'] === 'farmer') ? '#FFA908' : '#52B788'; ?>;">
+                                        <?= htmlspecialchars($post['user_type']); ?>
+                                    </div> 
+
+                                    <!-- Display date and time -->
+                                    <div class="date-time-container">
+                                        <div class="date">
+                                            <?= date('F j, Y g:i:a', strtotime($post['created_at'])); ?>
+                                        </div>
+                                        
+                                        <!-- Meatball menu -->
+                                        <div class="meatball-menu" <?= $user_id == $post['user_id'] ? '' : 'style="display:none"'?>> 
+                                            <i class="fas fa-ellipsis-v"></i>
+                                            <div class="dropdown-menu">
+                                                <a href="#" class="dropdown-item" data-post-id="<?= $post['id']; ?>">Edit</a>
+                                                <a href="#" class="dropdown-item delete-post" data-post-id-delete="<?= $post['id']; ?>">Delete</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div> 
-                        </div>
+                                </div> 
+                            </div>
+
                         <div class="post-content">
                             <h3><?= htmlspecialchars($post['title']); ?></h3>
                             <p><?= nl2br(htmlspecialchars($post['description'])); ?></p>

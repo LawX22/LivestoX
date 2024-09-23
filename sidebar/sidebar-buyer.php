@@ -37,7 +37,7 @@
                         <a href="openforum.php" class="nav-button-link">
                             <button class="nav-button
                             <?php if ($page == 'openforum') {echo 'active';} ?>" href="../Frontend/Buyer/openforum.php">
-                            <i class="fas fa-comments"></i> Open Forum</button>
+                            <i class="fas fa-comments"></i> Livestock Forum</button>
                         </a>
                     </li>
                 </ul>
