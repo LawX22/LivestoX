@@ -1,7 +1,12 @@
 <div class="sidebar">
-            <div class="profile-section">
-                <div class="profile-image"></div>
-                <div class="profile-name"><?php echo htmlspecialchars($first_name . ' ' . $last_name); ?></div>
+<div class="profile-section">
+                <div class="profile-image">
+                    <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Image">
+                </div>
+                <div class="profile-name">
+                    <?php echo htmlspecialchars($first_name . ' ' . $last_name); ?>
+                    <p class="user-type"><?php echo htmlspecialchars(ucfirst($user_type)); ?></p> <!-- User type added here -->
+                </div>
             </div>
             <nav>
                 <ul>

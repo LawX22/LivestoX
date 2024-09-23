@@ -2,6 +2,15 @@
 session_start();
 include('../../Backend/db/db_connect.php');
 
+// Check if the user is logged in
+if (!isset($_SESSION['id'])) {
+    header("Location: ../../Frontend/login.php");
+    exit();
+}
+
+// Get the user type from the session
+$user_type = $_SESSION['user_type'];
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $postId = $_POST['postId'];
     $title = mysqli_real_escape_string($con, $_POST['editTitle']);
@@ -25,7 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
     if (mysqli_stmt_execute($stmt)) {
-        header("Location: ../../Frontend/Farmer/openforum.php");
+        // Redirect based on user type
+        if ($user_type === 'farmer') {
+            header("Location: ../../Frontend/Farmer/openforum.php");
+        } elseif ($user_type === 'buyer') {
+            header("Location: ../../Frontend/Buyer/openforum.php");
+        }
         exit();
     } else {
         echo "Error updating post: " . mysqli_error($con);
