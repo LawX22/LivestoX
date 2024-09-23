@@ -33,10 +33,9 @@ if (isset($_POST['submit'])) {
     // Check if password fields match and required fields are not empty
     if (!empty($username) && !empty($password) && !empty($email)) {
         if ($password === $password2) {
-            // Set default profile picture path
-            $default_profile_picture = 'Assets/default-profile.png';
             
-            $query = "INSERT INTO tbl_users (first_name, last_name, username, phone, email, password, user_type, profile_picture) VALUES ('$fname', '$lname', '$username', '$phone', '$email', '$password', '$role', '$default_profile_picture')";
+            // Prepare query without default profile picture
+            $query = "INSERT INTO tbl_users (first_name, last_name, username, phone, email, password, user_type) VALUES ('$fname', '$lname', '$username', '$phone', '$email', '$password', '$role')";
 
             mysqli_query($con, $query);
             header("Location: ../../Frontend/login.php");
