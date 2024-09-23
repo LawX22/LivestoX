@@ -102,6 +102,10 @@ header {
     margin-right: 10px;
 }
 
+.profile-info {
+   gap: 10px;
+}
+
 .forum-post .post-header .profile-info .name {
     font-weight: bold;
     margin-right: 10px;

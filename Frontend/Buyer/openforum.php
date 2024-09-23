@@ -121,54 +121,74 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                 <!-- Container for displaying posts -->
                <div id="postContainer" class="post-container">
                         <?php foreach ($posts as $post): ?>
-                        <div class="forum-post card">
-                            <div class="post-header">
-                                <div class="profile-info">
-                                    <div class="profile-circle"><?= strtoupper($post['first_name'][0]); ?></div>
-                                    <div class="name"><?= htmlspecialchars($post['first_name'] . ' ' . $post['last_name']); ?></div>
-                                    
-                                    <!-- Display user type with dynamic background color -->
-                                    <div class="user-type" style="background-color: <?= ($post['user_type'] === 'farmer') ? '#FFA908' : '#52B788'; ?>;">
-                                        <?= htmlspecialchars($post['user_type']); ?>
-                                    </div> 
+                            <div class="forum-post card">
+                                <div class="post-header">
+                                    <div class="profile-info">
+                                        <div class="profile-image">
+                                            <?php
+                                            // Fetch the profile image of the post's author
+                                            $post_user_id = $post['user_id'];
+                                            $profileQuery = "SELECT profile_picture FROM tbl_users WHERE id = ?";
+                                            $profileStmt = mysqli_prepare($con, $profileQuery);
+                                            mysqli_stmt_bind_param($profileStmt, 'i', $post_user_id);
+                                            mysqli_stmt_execute($profileStmt);
+                                            mysqli_stmt_bind_result($profileStmt, $post_profile_picture);
+                                            mysqli_stmt_fetch($profileStmt);
+                                            mysqli_stmt_close($profileStmt);
 
-                                    <!-- Display date and time -->
-                                    <div class="date-time-container">
-                                        <div class="date">
-                                            <?= date('F j, Y g:i:a', strtotime($post['created_at'])); ?>
+                                            // Determine the correct profile picture to show
+                                            if (!empty($post_profile_picture) && file_exists('../../uploads/profile_pictures/' . $post_profile_picture)) {
+                                                $post_profile_image = '../../uploads/profile_pictures/' . $post_profile_picture;
+                                            } else {
+                                                $post_profile_image = $default_profile_picture; // Use default if not found
+                                            }
+                                            ?>
+                                            <img src="<?php echo htmlspecialchars($post_profile_image); ?>" alt="Profile Image">
                                         </div>
+                                        <div class="name"><?= htmlspecialchars($post['first_name'] . ' ' . $post['last_name']); ?></div>
                                         
-                                        <!-- Meatball menu -->
-                                        <div class="meatball-menu" <?= $user_id == $post['user_id'] ? '' : 'style="display:none"'?>> 
-                                            <i class="fas fa-ellipsis-v"></i>
-                                            <div class="dropdown-menu">
-                                                <a href="#" class="dropdown-item" data-post-id="<?= $post['id']; ?>">Edit</a>
-                                                <a href="#" class="dropdown-item delete-post" data-post-id-delete="<?= $post['id']; ?>">Delete</a>
+                                        <!-- Display user type with dynamic background color -->
+                                        <div class="user-type" style="background-color: <?= ($post['user_type'] === 'farmer') ? '#FFA908' : '#52B788'; ?>;">
+                                            <?= htmlspecialchars($post['user_type']); ?>
+                                        </div> 
+
+                                        <!-- Display date and time -->
+                                        <div class="date-time-container">
+                                            <div class="date">
+                                                <?= date('F j, Y g:i:a', strtotime($post['created_at'])); ?>
+                                            </div>
+                                            
+                                            <!-- Meatball menu -->
+                                            <div class="meatball-menu" <?= $user_id == $post['user_id'] ? '' : 'style="display:none"'?>> 
+                                                <i class="fas fa-ellipsis-v"></i>
+                                                <div class="dropdown-menu">
+                                                    <a href="#" class="dropdown-item" data-post-id="<?= $post['id']; ?>">Edit</a>
+                                                    <a href="#" class="dropdown-item delete-post" data-post-id-delete="<?= $post['id']; ?>">Delete</a>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div> 
+                                </div>
+                                
+                                <div class="post-content">
+                                    <h3><?= htmlspecialchars($post['title']); ?></h3>
+                                    <p><?= nl2br(htmlspecialchars($post['description'])); ?></p>
+                                    <?php if ($post['image']): ?>
+                                        <img src="<?= htmlspecialchars('uploads/forum/' . $post['image']); ?>" alt="Post Image">
+                                    <?php endif; ?>
+                                </div>
+                                <div class="post-actions">
+                                    <div class="likes">
+                                        <i class="fas fa-thumbs-up"></i> 11k
                                     </div>
-                                </div> 
+                                    <div class="dislikes">
+                                        <i class="fas fa-thumbs-down"></i> 500
+                                    </div>
+                                    <div class="comments">
+                                        <i class="fas fa-comments"></i> 100
+                                    </div>
+                                </div>
                             </div>
-
-                        <div class="post-content">
-                            <h3><?= htmlspecialchars($post['title']); ?></h3>
-                            <p><?= nl2br(htmlspecialchars($post['description'])); ?></p>
-                            <?php if ($post['image']): ?>
-                                <img src="<?= htmlspecialchars('uploads/forum/' . $post['image']); ?>" alt="Post Image">
-                            <?php endif; ?>
-                        </div>
-                        <div class="post-actions">
-                            <div class="likes">
-                                <i class="fas fa-thumbs-up"></i> 11k
-                            </div>
-                            <div class="dislikes">
-                                <i class="fas fa-thumbs-down"></i> 500
-                            </div>
-                            <div class="comments">
-                                <i class="fas fa-comments"></i> 100
-                            </div>
-                        </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
 
