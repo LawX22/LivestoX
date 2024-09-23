@@ -49,6 +49,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
     <title>LivestoX - Auction Page</title>
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
+    <link rel="stylesheet" href="../../css/auction.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,10 +69,130 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                     <input type="text" placeholder="Search Livestock">
                 </div>
             </header>
-                    <h1>AUCTION PAGE</h1>
-            </div>
+
+             <!-- Auction Cards List -->
+             <div class="auction-list">
+                <!-- Auction Card 1 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="../../Assets/Cow-Gang.jpg" alt="Livestock Image">
+                    </div>
+                    <div class="auction-details">
+                        <h2 class="auction-title">Livestock Auction Title</h2>
+                        <p class="auction-description">Brief description of the livestock being auctioned.</p>
+                        <div class="bidding-info">
+                            <p>Opening Bid: <span class="opening-bid">$500.00</span></p>
+                            <p>Current Bid: <span class="current-bid">$850.00</span></p>
+                        </div>
+                        <div class="time-remaining">
+                            <p>Time Remaining: 2d 5h 32m</p>
+                        </div>
+                        <a href="#" class="view-details-btn">View Full Details</a>
+                    </div>
+                </div>
+
+                 <!-- Auction Card 2 -->
+                 <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="../../Assets/Goat-Gang.jpg"" alt="Livestock Image">
+                    </div>
+                    <div class="auction-details">
+                        <h2 class="auction-title">Another Auction Title</h2>
+                        <p class="auction-description">This is a brief description for another auction item.</p>
+                        <div class="bidding-info">
+                            <p>Opening Bid: <span class="opening-bid">$750.00</span></p>
+                            <p>Current Bid: <span class="current-bid">$1,000.00</span></p>
+                        </div>
+                        <div class="time-remaining">
+                            <p>Time Remaining: 1d 3h 12m</p>
+                        </div>
+                        <a href="#" class="view-details-btn">View Full Details</a>
+                    </div>
+                </div>
+
+                <!-- Auction Card 3 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="../../Assets/Livestock.jpg"" alt="Livestock Image">
+                    </div>
+                    <div class="auction-details">
+                        <h2 class="auction-title">Another Auction Title</h2>
+                        <p class="auction-description">This is a brief description for another auction item.</p>
+                        <div class="bidding-info">
+                            <p>Opening Bid: <span class="opening-bid">$750.00</span></p>
+                            <p>Current Bid: <span class="current-bid">$1,000.00</span></p>
+                        </div>
+                        <div class="time-remaining">
+                            <p>Time Remaining: 1d 3h 12m</p>
+                        </div>
+                        <a href="#" class="view-details-btn">View Full Details</a>
+                    </div>
+                </div>
+
+                <!-- Auction Cards List -->
+             <div class="auction-list">
+                <!-- Auction Card 1 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="../../Assets/Cow-Gang.jpg" alt="Livestock Image">
+                    </div>
+                    <div class="auction-details">
+                        <h2 class="auction-title">Livestock Auction Title</h2>
+                        <p class="auction-description">Brief description of the livestock being auctioned.</p>
+                        <div class="bidding-info">
+                            <p>Opening Bid: <span class="opening-bid">$500.00</span></p>
+                            <p>Current Bid: <span class="current-bid">$850.00</span></p>
+                        </div>
+                        <div class="time-remaining">
+                            <p>Time Remaining: 2d 5h 32m</p>
+                        </div>
+                        <a href="#" class="view-details-btn">View Full Details</a>
+                    </div>
+                </div>
+
+                 <!-- Auction Card 2 -->
+                 <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="../../Assets/Goat-Gang.jpg"" alt="Livestock Image">
+                    </div>
+                    <div class="auction-details">
+                        <h2 class="auction-title">Another Auction Title</h2>
+                        <p class="auction-description">This is a brief description for another auction item.</p>
+                        <div class="bidding-info">
+                            <p>Opening Bid: <span class="opening-bid">$750.00</span></p>
+                            <p>Current Bid: <span class="current-bid">$1,000.00</span></p>
+                        </div>
+                        <div class="time-remaining">
+                            <p>Time Remaining: 1d 3h 12m</p>
+                        </div>
+                        <a href="#" class="view-details-btn">View Full Details</a>
+                    </div>
+                </div>
+
+                <!-- Auction Card 3 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="../../Assets/Livestock.jpg"" alt="Livestock Image">
+                    </div>
+                    <div class="auction-details">
+                        <h2 class="auction-title">Another Auction Title</h2>
+                        <p class="auction-description">This is a brief description for another auction item.</p>
+                        <div class="bidding-info">
+                            <p>Opening Bid: <span class="opening-bid">$750.00</span></p>
+                            <p>Current Bid: <span class="current-bid">$1,000.00</span></p>
+                        </div>
+                        <div class="time-remaining">
+                            <p>Time Remaining: 1d 3h 12m</p>
+                        </div>
+                        <a href="#" class="view-details-btn">View Full Details</a>
+                    </div>
+                </div>
+
+                
+
         </div>
     </div>
+</div>
 </body>
 
 <script src="../../js/logout-confirmation.js"></script>

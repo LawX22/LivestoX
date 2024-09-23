@@ -1,0 +1,105 @@
+.auction-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Center cards horizontally */
+    padding: 20px; /* Add padding for better spacing */
+}
+
+.auction-card {
+    width: 100%;
+    max-width: 350px; /* Set a maximum width for cards */
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Slightly larger border-radius for smoother corners */
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Increase box-shadow for a more prominent effect */
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
+}
+
+.auction-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* More shadow on hover */
+}
+
+.auction-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.auction-details {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.auction-title {
+    font-size: 1.5rem;
+    font-weight: 700; /* Increase font weight */
+    margin-bottom: 10px;
+    color: #333; /* Darker text color for better readability */
+    text-align: center; /* Center title text */
+}
+
+.auction-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: justify; /* Justify description text */
+}
+
+.bidding-info {
+    margin-bottom: 15px;
+    text-align: center; /* Center the bidding info */
+}
+
+.bidding-info p {
+    margin: 5px 0;
+}
+
+.opening-bid,
+.current-bid {
+    font-weight: 700;
+    color: #28a745;
+}
+
+.time-remaining {
+    font-size: 0.9rem;
+    color: #ff4757;
+    margin-bottom: 15px;
+    text-align: center; /* Center the time remaining */
+}
+
+.view-details-btn {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 8px; /* Larger radius for a smoother button */
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Add hover transition */
+}
+
+.view-details-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+@media (max-width: 768px) {
+    .auction-list {
+        flex-direction: column; /* Stack the auction cards vertically on smaller screens */
+        align-items: center;
+    }
+
+    .auction-card {
+        width: 100%; /* Full width for smaller devices */
+        max-width: 100%;
+    }
+}
