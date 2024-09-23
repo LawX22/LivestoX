@@ -2,20 +2,43 @@
 session_start();
 include('../../Backend/db/db_connect.php'); 
 
+// Redirect if the user is not logged in or is not a buyer
 if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
     header("Location: ../../Frontend/login.php");
     exit();
 }
 
-// Fetch user data
+// Fetch the logged-in user's full details including profile picture and user type
 $user_id = $_SESSION['id'];
-$query = "SELECT first_name, last_name FROM tbl_users WHERE id = ?";
+$query = "SELECT first_name, last_name, profile_picture, user_type FROM tbl_users WHERE id = ?";
 $stmt = mysqli_prepare($con, $query);
 mysqli_stmt_bind_param($stmt, 'i', $user_id);
 mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $first_name, $last_name);
+mysqli_stmt_bind_result($stmt, $first_name, $last_name, $profile_picture, $user_type);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
+
+// Set default profile picture
+$default_profile_picture = '../../Assets/default-profile.png';
+
+// Check if the profile picture exists and file exists on server
+if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . $profile_picture)) {
+    $profile_image = '../../uploads/profile_pictures/' . $profile_picture;
+} else {
+    $profile_image = $default_profile_picture;
+}
+
+// Fetch all buyer users (if needed for display)
+$sql1 = "SELECT * FROM tbl_users WHERE user_type = 'farmer'";
+$result1 = mysqli_query($con, $sql1);
+
+// Fetch posts with associated user information
+$postQuery = "SELECT f.id, f.title, f.description, f.image, f.created_at, f.user_id, u.first_name, u.last_name, u.user_type 
+              FROM forum f 
+              JOIN tbl_users u ON f.user_id = u.id 
+              ORDER BY f.created_at DESC";
+$postResult = mysqli_query($con, $postQuery);
+$posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
