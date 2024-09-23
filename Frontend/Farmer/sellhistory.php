@@ -26,11 +26,12 @@ mysqli_stmt_close($stmt);
     <title>LivestoX - Sell History Page</title>
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
+    <link rel="stylesheet" href="../../css/sellhistory.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -40,16 +41,187 @@ mysqli_stmt_close($stmt);
         ?>
         <div class="main-content">
             <header>
-                <div class="logo">LivestoX Logo Here</div>
-                <div class="search">
-                    <input type="text" placeholder="Search Livestock">
-                </div>
+                <div class="logo">LivestoX</div>
             </header>
-                    <h1>SELL HISTORY PAGE</h1>
+
+            <div class="header-text">
+                <h1>Sell History</h1>
+                <p>Your livestock sales, simplified and easy to track.</p>
             </div>
+
+            <section class="main-section">
+                <div class="sell-history-section">
+                    <div class="history-header">
+                        <h2>Overview of Sales</h2>
+                        <div class="history-filters">
+                            <input type="text" id="search" placeholder="Search ">
+                            <select id="filter-type">
+                                <option value="">Livestock Type</option>
+                                <option value="cattle">Cattle</option>
+                                <option value="sheep">Sheep</option>
+                                <option value="goat">Goat</option>
+                            </select>
+                            <select id="filter-date">
+                                <option value="">Date</option>
+                                <option value="last-7-days">Last 7 Days</option>
+                                <option value="last-30-days">Last 30 Days</option>
+                                <option value="last-year">Last Year</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sell-history-grid">
+                        <div class="history-card">
+                            <div class="card-header">
+                                <h3>Cattle Sale</h3>
+                                <span class="sale-date">15 Sept 2023</span>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Quantity:</strong> 10</p>
+                                <p><strong>Price:</strong> $15,000</p>
+                                <p><strong>Buyer:</strong> John Doe Farms</p>
+                            </div>
+                            <div class="card-footer">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <div class="history-card">
+                            <div class="card-header">
+                                <h3>Cattle Sale</h3>
+                                <span class="sale-date">15 Sept 2023</span>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Quantity:</strong> 10</p>
+                                <p><strong>Price:</strong> $15,000</p>
+                                <p><strong>Buyer:</strong> John Doe Farms</p>
+                            </div>
+                            <div class="card-footer">
+                                <span class="status-badge pending">Pending</span>
+                            </div>
+                        </div>
+                        <div class="history-card">
+                            <div class="card-header">
+                                <h3>Cattle Sale</h3>
+                                <span class="sale-date">15 Sept 2023</span>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Quantity:</strong> 10</p>
+                                <p><strong>Price:</strong> $15,000</p>
+                                <p><strong>Buyer:</strong> John Doe Farms</p>
+                            </div>
+                            <div class="card-footer">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div><div class="history-card">
+                            <div class="card-header">
+                                <h3>Cattle Sale</h3>
+                                <span class="sale-date">15 Sept 2023</span>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Quantity:</strong> 10</p>
+                                <p><strong>Price:</strong> $15,000</p>
+                                <p><strong>Buyer:</strong> John Doe Farms</p>
+                            </div>
+                            <div class="card-footer">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="graph-section">
+                    <h2>Sales Chart</h2>
+                    <p>Monitor your livestock sales and postings to track performance</p>
+
+                    <div class="graphs">
+                        <h3>Total Sales by Type</h3>
+                        <canvas id="salesChart" style="max-width: 800px; margin: auto;"></canvas>
+
+                        <h3>Livestock Posted for Sale</h3>
+                        <canvas id="postedChart" style="max-width: 800px; margin: auto;"></canvas>
+                    </div>
+                </div>
+
+            </section>
         </div>
     </div>
-</body>
 
-<script src="../../js/logout-confirmation.js"></script>
+    <script src="../../js/logout-confirmation.js"></script>
+    <script>
+        const salesData = {
+    labels: ['Cattle', 'Sheep', 'Goat'],
+    datasets: [{
+        label: 'Sales ($)',
+        data: [15000, 4000, 2500], // Replace with dynamic data if needed
+        backgroundColor: [
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)'
+        ],
+        borderColor: [
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+    }]
+};
+
+const postedData = {
+    labels: ['Cattle', 'Sheep', 'Goat'],
+    datasets: [{
+        label: 'Livestock Posted',
+        data: [20, 15, 10], // Example data for livestock posted
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)'
+        ],
+        borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)'
+        ],
+        borderWidth: 1
+    }]
+};
+
+const salesConfig = {
+    type: 'bar',
+    data: salesData,
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+};
+
+const postedConfig = {
+    type: 'bar',
+    data: postedData,
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+};
+
+const salesChart = new Chart(
+    document.getElementById('salesChart'),
+    salesConfig
+);
+
+const postedChart = new Chart(
+    document.getElementById('postedChart'),
+    postedConfig
+);
+
+    </script>
+</body>
 </html>

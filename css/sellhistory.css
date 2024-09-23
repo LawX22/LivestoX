@@ -1,0 +1,192 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9fafb;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-text h1 {
+    font-size: 30px;
+    margin: 0;
+    color: #333;
+}
+
+.header-text p {
+    font-size: 16px;
+    color: #666;
+}
+
+.main-section {
+    display: flex;
+    gap: 18px;
+}
+
+.sell-history-section {
+    flex: 1; /* Allow it to take available space */
+    padding: 20px; /* Optional padding */
+}
+
+.sell-history-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-height: calc(100vh - 320px); /* Set a maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Keep the existing styles for history-card and other elements here */
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.history-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+}
+
+.history-filters {
+    display: flex;
+    gap: 10px;
+}
+
+#search {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 200px;
+}
+
+#filter-type,
+#filter-date {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 180px;
+}
+
+.sell-history-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.history-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.history-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.history-card .card-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.history-card .sale-date {
+    font-size: 14px;
+    color: #999;
+}
+
+.history-card .card-body {
+    margin-top: 10px;
+}
+
+.history-card .card-body p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.history-card .card-body p strong {
+    color: #333;
+}
+
+.history-card .card-footer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.status-badge.completed {
+    background-color: #52B788;
+}
+
+.status-badge.pending {
+    background-color: #ff9900;
+}
+
+.graph-section {
+    width: 400px; /* Fixed width for the graph section */
+    padding: 20px; /* Optional padding */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.graphs {
+    padding-top: 30px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    .history-filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #search, #filter-type, #filter-date {
+        width: 100%;
+    }
+
+    .sell-history-section {
+        height: auto; /* Allow full height on smaller screens */
+    }
+
+    .graph-section {
+        width: 100%; /* Allow graph section to take full width on smaller screens */
+    }
+}
