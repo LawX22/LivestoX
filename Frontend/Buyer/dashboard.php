@@ -101,149 +101,94 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
             </div>       
             <div class="listings">
                 <div class="listing-card">
-                    <div class="listing-image"></div>
+                    <div class="listing-image">
+                        <img src="../../Assets/Livestock.jpg" alt="Livestock Image" class="livestock-img">
+                    </div>
                     <div class="listing-details">
                         <div class="listing-info">
-                            <div class="farmer-name">Farmer 7 FullName</div>
+                            <div class="livestock-title">Quality Beef Cattle for Sale</div> <!-- Title for livestock -->
+                            <div class="farmer-name">Lawrenz Xavier Carisusa</div>
                             <div class="post-date">July 19, 2024 at 10:02 am</div>
-                            <div class="description">Livestock Descriptions</div>
+                            <div class="description">
+                                <ul>
+                                    <li><strong>Animal Type:</strong> Beef Cattle</li>
+                                    <li><strong>Breed:</strong> Angus</li>
+                                    <li><strong>Quantity Available:</strong> 5</li>
+                                    <li><strong>Weight:</strong> Approx. 1,200 lbs each</li>
+                                    <li><strong>Health Status:</strong> Vaccinated and dewormed</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="actions">
                             <div class="likes">
                                 5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
                             </div>
                             <button class="chat-button">CHAT</button>
+                            <button class="details-button">VIEW FULL DETAILS</button> 
                         </div>
                     </div>
                 </div>
+
                 <div class="listing-card">
-                    <div class="listing-image"></div>
+                    <div class="listing-image">
+                        <img src="../../Assets/Cow-Gang.jpg" alt="Livestock Image" class="livestock-img">
+                    </div>
                     <div class="listing-details">
                         <div class="listing-info">
-                            <div class="farmer-name">Farmer 22 FullName</div>
-                            <div class="post-date">July 19, 2024 at 10:02 am</div>
-                            <div class="description">Livestock Descriptions</div>
+                            <div class="livestock-title">Dairy Goats for Sale</div> <!-- Title for livestock -->
+                            <div class="farmer-name">Farmer Jane Doe</div>
+                            <div class="post-date">September 20, 2024 at 11:15 am</div>
+                            <div class="description">
+                                <ul>
+                                    <li><strong>Animal Type:</strong> Dairy Goat</li>
+                                    <li><strong>Breed:</strong> Nubian</li>
+                                    <li><strong>Quantity Available:</strong> 8</li>
+                                    <li><strong>Age:</strong> 1 year</li>
+                                    <li><strong>Health Status:</strong> Fully vaccinated</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="actions">
                             <div class="likes">
-                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
+                                4.8 ⭐⭐⭐⭐⭐ Livestock Ratings (700)
                             </div>
                             <button class="chat-button">CHAT</button>
+                            <button class="details-button">VIEW FULL DETAILS</button> 
                         </div>
                     </div>
                 </div>
+
                 <div class="listing-card">
-                    <div class="listing-image"></div>
+                    <div class="listing-image">
+                        <img src="../../Assets/Goat-Gang.jpg" alt="Livestock Image" class="livestock-img">
+                    </div>
                     <div class="listing-details">
                         <div class="listing-info">
-                            <div class="farmer-name">Farmer 9 FullName</div>
-                            <div class="post-date">July 19, 2024 at 10:02 am</div>
-                            <div class="description">Livestock Descriptions</div>
+                            <div class="livestock-title">Heritage Pork for Sale</div> <!-- Title for livestock -->
+                            <div class="farmer-name">Farmer Mike Smith</div>
+                            <div class="post-date">September 22, 2024 at 3:30 pm</div>
+                            <div class="description">
+                                <ul>
+                                    <li><strong>Animal Type:</strong> Pig</li>
+                                    <li><strong>Breed:</strong> Berkshire</li>
+                                    <li><strong>Quantity Available:</strong> 10</li>
+                                    <li><strong>Weight:</strong> Approx. 250 lbs each</li>
+                                    <li><strong>Health Status:</strong> Certified organic</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="actions">
                             <div class="likes">
-                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
+                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.5k)
                             </div>
                             <button class="chat-button">CHAT</button>
+                            <button class="details-button">VIEW FULL DETAILS</button> 
                         </div>
                     </div>
                 </div>
-                <div class="listing-card">
-                    <div class="listing-image"></div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="farmer-name">Farmer 9 FullName</div>
-                            <div class="post-date">July 19, 2024 at 10:02 am</div>
-                            <div class="description">Livestock Descriptions</div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">
-                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
-                            </div>
-                            <button class="chat-button">CHAT</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image"></div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="farmer-name">Farmer 9 FullName</div>
-                            <div class="post-date">July 19, 2024 at 10:02 am</div>
-                            <div class="description">Livestock Descriptions</div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">
-                                5.0 ⭐⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
-                            </div>
-                            <button class="chat-button">CHAT</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image"></div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="farmer-name">Farmer 9 FullName</div>
-                            <div class="post-date">July 19, 2024 at 10:02 am</div>
-                            <div class="description">Livestock Descriptions</div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">
-                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
-                            </div>
-                            <button class="chat-button">CHAT</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image"></div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="farmer-name">Farmer 9 FullName</div>
-                            <div class="post-date">July 19, 2024 at 10:02 am</div>
-                            <div class="description">Livestock Descriptions</div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">
-                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
-                            </div>
-                            <button class="chat-button">CHAT</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image"></div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="farmer-name">Farmer 9 FullName</div>
-                            <div class="post-date">July 19, 2024 at 10:02 am</div>
-                            <div class="description">Livestock Descriptions</div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">
-                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
-                            </div>
-                            <button class="chat-button">CHAT</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image"></div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="farmer-name">Farmer 9 FullName</div>
-                            <div class="post-date">July 19, 2024 at 10:02 am</div>
-                            <div class="description">Livestock Descriptions</div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">
-                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
-                            </div>
-                            <button class="chat-button">CHAT</button>
-                        </div>
-                    </div>
-                </div>  
+
+                <!-- Repeat for more listings -->
+                 
             </div>
         </div>
     </div>
