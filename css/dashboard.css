@@ -154,87 +154,143 @@ header {
 }
 
 /* LIVESTOCK CARD POSTS */
-
 .listings {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: flex; /* Use flexbox for row layout */
+    flex-wrap: wrap; /* Allow wrapping to the next line */
     gap: 20px;  
+    justify-content: center; /* Center cards horizontally */
+    padding: 20px; /* Add padding for better spacing */
 }
 
 .listing-card {
-    display: flex;
-    flex-direction: column;  
-    background-color: #ffffff;
+    width: 100%;
+    max-width: 350px; /* Set a maximum width for cards */
     border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    border-radius: 12px; /* Rounded corners */
     overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Slight box-shadow */
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
 }
 
-.listing-image {
-    width: 100%;  
-    height: 200px;  
-    background-color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #aaa;
-    border-radius: 8px;
-    margin-bottom: 10px;  
+.listing-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Shadow intensifies */
+}
+
+.listing-image img {
+    width: 100%;
+    height: 220px; /* Set consistent height */
+    object-fit: cover;
+    border-bottom: 1px solid #ddd; /* Border to separate image */
 }
 
 .listing-details {
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex: 1;
+    flex-grow: 1;
 }
 
 .listing-info {
-    margin-bottom: 10px;
+    flex-grow: 1; /* Allow this section to take up available space */
+    margin-bottom: 15px; /* Add space below the info section */
 }
 
-.farmer-name {
-    font-size: 14px; 
-    font-weight: bold;
+.livestock-title {
+    font-size: 1.4rem; /* Font size for the title */
+    font-weight: 700; /* Bold font weight */
+    color: #333; /* Darker color for visibility */
+    margin-bottom: 5px; /* Space below the title */
+    text-align: center; /* Center align title */
 }
 
-.post-date {
-    font-size: 10px; 
-    color: #888;
+.farmer-name, .post-date {
+    font-size: 0.9rem; /* Font size for farmer name and post date */
+    color: #555; /* Color for text */
+    text-align: center; /* Center align text */
+    margin-bottom: 5px; /* Space below each text */
 }
 
 .description {
-    margin-top: 10px;
-    font-size: 12px;  
+    text-align: left; /* Align text to the left for better readability */
+}
+
+.description ul {
+    padding-left: 20px; /* Indent list */
+    margin: 0; /* Remove default margin */
 }
 
 .actions {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center align buttons */
 }
 
 .likes {
-    display: flex;
-    align-items: center;
-    font-size: 12px; 
+    font-weight: 700; /* Weight for likes */
+    color: #28a745; /* Green color */
+    text-align: center; /* Center likes text */
+    margin-bottom: 10px; /* Space below likes */
 }
 
-.likes i {
-    margin-left: 5px;
+.chat-button, .details-button {
+    background-color: #007bff; /* Button color */
+    color: #fff; /* Button text color */
+    padding: 10px 15px; /* Button padding */
+    border: none; /* Remove border */
+    border-radius: 8px; /* Rounded corners */
+    font-weight: 600; /* Weight for button text */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Button hover effect */
+    width: 100%; /* Full width for buttons */
+    margin-bottom: 10px; /* Space below buttons */
 }
 
-.chat-button {
-    padding: 8px;  
-    background-color: #52B788;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;  
+.chat-button:hover, .details-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-3px); /* Lift effect on hover */
 }
+
+@media (max-width: 768px) {
+    .listings {
+        flex-direction: column; /* Stack the cards vertically on smaller screens */
+        align-items: center; /* Center alignment */
+    }
+
+    .listing-card {
+        width: 100%; /* Full width for smaller devices */
+        max-width: 100%; /* No max-width on small screens */
+    }
+}
+
+.livestock-title {
+    font-size: 1.4rem; /* Font size for the title */
+    font-weight: 700; /* Bold font weight */
+    color: #333; /* Darker color for visibility */
+    margin-bottom: 10px; /* Space below the title */
+    text-align: center; /* Center align title */
+}
+
+.details-button {
+    background-color: #6c757d; /* Gray color for the button */
+    color: #fff; /* Button text color */
+    padding: 10px 15px; /* Button padding */
+    text-align: center; /* Center button text */
+    border-radius: 8px; /* Rounded corners */
+    font-weight: 600; /* Weight for button text */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Button hover effect */
+}
+
+.details-button:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
 
 .nav-button-link {
     text-decoration: none; 

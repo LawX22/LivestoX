@@ -172,7 +172,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                 <!-- Auction Card 3 -->
                 <div class="auction-card">
                     <div class="auction-image">
-                        <img src="../../Assets/Livestock.jpg"" alt="Livestock Image">
+                        <img src="../../Assets/Livestock.jpg" alt="Livestock Image">
                     </div>
                     <div class="auction-details">
                         <h2 class="auction-title">Another Auction Title</h2>
