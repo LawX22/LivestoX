@@ -30,10 +30,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="inbox.php" class="nav-button-link">
+                        <a href="message.php" class="nav-button-link">
                             <button class="nav-button
-                            <?php if ($page == 'inbox') {echo 'active';} ?>" href="../Frontend/Admin/inbox.php">
-                            <i class="fas fa-inbox"></i> Inbox
+                            <?php if ($page == 'inbox') {echo 'active';} ?>" href="../Frontend/Admin/message.php">
+                            <i class="fas fa-inbox"></i> Message
                         </button>
                         </a>
                     </li>

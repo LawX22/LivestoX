@@ -2,20 +2,30 @@
 session_start();
 include('../../Backend/db/db_connect.php'); 
 
-if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'admin') {
+if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'buyer') {
     header("Location: ../../Frontend/login.php");
     exit();
 }
 
-// Fetch user data
+// Fetch user data including user_type
 $user_id = $_SESSION['id'];
-$query = "SELECT first_name, last_name FROM tbl_users WHERE id = ?";
+$query = "SELECT first_name, last_name, profile_picture, user_type FROM tbl_users WHERE id = ?";
 $stmt = mysqli_prepare($con, $query);
 mysqli_stmt_bind_param($stmt, 'i', $user_id);
 mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $first_name, $last_name);
+mysqli_stmt_bind_result($stmt, $first_name, $last_name, $profile_picture, $user_type);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
+
+// Set default profile picture
+$default_profile_picture = '../../Assets/default-profile.png';
+
+// Check if profile picture exists and file exists on server
+if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . $profile_picture)) {
+    $profile_image = '../../uploads/profile_pictures/' . $profile_picture;
+} else {
+    $profile_image = $default_profile_picture;
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,10 +33,10 @@ mysqli_stmt_close($stmt);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LivestoX - Inbox Page</title>
+    <title>LivestoX - Message Page</title>
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
-    <link rel="stylesheet" href="../../css/inbox.css">
+    <link rel="stylesheet" href="../../css/message.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +46,7 @@ mysqli_stmt_close($stmt);
     <div class="container">
         <?php 
             $page = 'inbox';
-            include('../../sidebar/sidebar-admin.php');
+            include('../../sidebar/sidebar-buyer.php');
         ?>
         <div class="main-content">
             <header>
