@@ -119,7 +119,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                 </div>
 
                 <!-- Container for displaying posts -->
-               <div id="postContainer" class="post-container">
+                <div id="postContainer" class="post-container">
                         <?php foreach ($posts as $post): ?>
                             <div class="forum-post card">
                                 <div class="post-header">
@@ -173,8 +173,12 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                                 <div class="post-content">
                                     <h3><?= htmlspecialchars($post['title']); ?></h3>
                                     <p><?= nl2br(htmlspecialchars($post['description'])); ?></p>
+                                    
+                                    <!-- Slot for image post -->
                                     <?php if ($post['image']): ?>
-                                        <img src="<?= htmlspecialchars('uploads/forum/' . $post['image']); ?>" alt="Post Image">
+                                        <div class="post-image">
+                                            <img src="<?= htmlspecialchars('uploads/forum_posts/' . $post['image']); ?>" alt="Post Image">
+                                        </div>
                                     <?php endif; ?>
                                 </div>
                                 <div class="post-actions">
@@ -189,8 +193,8 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                                     </div>
                                 </div>
                             </div>
-                    <?php endforeach; ?>
-                </div>
+                        <?php endforeach; ?>
+                    </div>
 
             </div>
         </div>

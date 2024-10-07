@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Handle file upload if present
     if ($image) {
-        $target_dir = "../../Uploads";
+        $target_dir = "../../uploads/forum_posts/";
         $target_file = $target_dir . basename($image);
         if (!move_uploaded_file($_FILES['questionImage']['tmp_name'], $target_file)) {
             $image = null; // Handle file upload failure

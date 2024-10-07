@@ -38,8 +38,8 @@ header {
 }
 
 .open-forum {
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     margin-top: 20px;
     padding: 20px;
 }
@@ -265,4 +265,16 @@ header {
 
 .submit-btn:hover {
     background-color: #45a049;
+}
+
+
+.post-image {
+    margin-top: 10px; /* Space above the image */
+    text-align: center; /* Center the image */
+}
+
+.post-image img {
+    max-width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: rounded corners */
 }
