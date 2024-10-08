@@ -3,6 +3,7 @@ session_start();
 include('../../Backend/db/db_connect.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get JSON input
     $data = json_decode(file_get_contents('php://input'), true);
     $post_id = $data['post_id'];
 

@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
     date_default_timezone_set("Asia/Manila");
     $created_at = date('Y-m-d H:i:s');
+    
     // Verify that the user_id exists in tbl_users
     $query = "SELECT COUNT(*) FROM tbl_users WHERE id = ?";
     $stmt = mysqli_prepare($con, $query);
@@ -60,50 +61,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!move_uploaded_file($_FILES['questionImage']['tmp_name'], $target_file)) {
             $image = null; // Handle file upload failure
         }
-    } else {
-        $image = null;
     }
 
-    // Insert into database
-    $query = "INSERT INTO forum (user_id, title, description, image, created_at) VALUES (?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($con, $query);
+    // Insert post into the database
+    $insertQuery = "INSERT INTO forum (user_id, title, description, image, created_at)
+                    VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($con, $insertQuery);
     mysqli_stmt_bind_param($stmt, 'issss', $user_id, $title, $description, $image, $created_at);
-    $success = mysqli_stmt_execute($stmt);
+    mysqli_stmt_execute($stmt);
+    $post_id = mysqli_insert_id($con);
     mysqli_stmt_close($stmt);
 
-    // Fetch user data for the post
-    $query = "SELECT first_name, last_name FROM tbl_users WHERE id = ?";
-    $stmt = mysqli_prepare($con, $query);
-    mysqli_stmt_bind_param($stmt, 'i', $user_id);
+    // Fetch newly inserted post details
+    $selectQuery = "SELECT u.first_name, u.last_name, u.user_type, f.title, f.description, f.image, f.created_at
+                    FROM forum f
+                    JOIN tbl_users u ON f.user_id = u.id
+                    WHERE f.id = ?";
+    $stmt = mysqli_prepare($con, $selectQuery);
+    mysqli_stmt_bind_param($stmt, 'i', $post_id);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $first_name, $last_name);
+    mysqli_stmt_bind_result($stmt, $first_name, $last_name, $user_type, $title, $description, $image, $created_at);
     mysqli_stmt_fetch($stmt);
     mysqli_stmt_close($stmt);
 
-    // Prepare response
-    if ($success) {
-        $response = array(
-            'status' => 'success',
-            'message' => 'Post added successfully.',
-            'post' => array(
-                'first_name' => $first_name,
-                'last_name' => $last_name,
-                'title' => $title,
-                'description' => $description,
-                'image' => $image ? 'Uploads' . $image : null,
-                'created_at' => $created_at
-            )
-        );
-    } else {
-        $response = array(
-            'status' => 'error',
-            'message' => 'Failed to add post.'
-        );
-    }
+    // Prepare the response
+    $response = array(
+        'status' => 'success',
+        'message' => 'Post added successfully.',
+        'post' => array(
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'user_type' => $user_type,
+            'title' => $title,
+            'description' => $description,
+            'image' => $image ? 'forum_posts/' . $image : null,
+            'created_at' => $created_at,
+            'profile_image' => 'uploads/profile_pictures/default.png', // Add logic for profile image
+        )
+    );
 
-    // Send JSON response
     header('Content-Type: application/json');
     echo json_encode($response);
 }
 ?>
-        
