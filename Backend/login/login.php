@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
         $_SESSION['user_type'] = $row['user_type']; // Adding user type to the session
 
         if($row['user_type'] == "farmer"){
-            header("Location: ../../Frontend/Farmer/dashboard.php");
+            header("Location: ../../Frontend/Farmer/browse_livestock.php");
         } else if($row['user_type'] == "buyer") {
             header("Location: ../../Frontend/Buyer/dashboard.php");
         } else if($row['user_type'] == "admin"){

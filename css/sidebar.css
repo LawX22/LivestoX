@@ -120,3 +120,7 @@ i {
 .logout-button:hover {
     background-color: #00332a;
 }
+
+.nav-button-link {
+    text-decoration: none; 
+}

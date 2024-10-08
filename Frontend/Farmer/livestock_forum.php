@@ -59,7 +59,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
 <body>
     <div class="container">
         <?php 
-            $page = 'openforum';
+            $page = 'livestock_forum';
             include('../../sidebar/sidebar-farmer.php');
         ?>
         <div class="main-content">
