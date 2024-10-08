@@ -1,0 +1,115 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ced4da;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+header .search input {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    width: 250px;
+}
+
+.dashboard-content {
+    margin-top: 20px;
+}
+
+.dashboard-section {
+    margin-bottom: 30px;
+}
+
+.dashboard-section h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.overview-cards, .listing-cards, .insight-cards {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    color: #212529;
+    border: 3px solid #348ad5;
+    transition: background-color 0.3s ease;
+}
+
+.card:hover {
+    background-color: #f1f1f1;
+}
+
+.card i {
+    font-size: 30px;
+    color: #348ad5;
+    margin-right: 15px;
+}
+
+.card h3 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.card p, .card span {
+    margin: 0;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.create-listing {
+    background-color: #348ad5;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.create-listing:hover {
+    background-color: #0056b3;
+}
+
+
+@media screen and (max-width: 768px) {
+    .overview-cards, .listing-cards, .insight-cards {
+        grid-template-columns: 1fr;
+    }
+}

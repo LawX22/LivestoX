@@ -12,9 +12,9 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="dashboard.php" class="nav-button-link">
+                        <a href="browse_livestock.php" class="nav-button-link">
                             <button class="nav-button
-                            <?php if ($page == 'dashboard') {echo 'active';} ?>" href="../Frontend/Farmer/dashboard.php">
+                            <?php if ($page == 'browse_livestock') {echo 'active';} ?>" href="../Frontend/Farmer/browse_livestock.php">
                             <i class="fas fa-globe"></i>  Browse Livestock
                             </button>
                         </a>
@@ -36,17 +36,17 @@
                         </a>
                     </li>
                     <li>
-                        <a href="sellhistory.php" class="nav-button-link">
+                        <a href="seller_dashboard.php" class="nav-button-link">
                             <button class="nav-button
-                            <?php if ($page == 'sellhistory') {echo 'active';} ?>" href="../Frontend/Farmer/sellhistory.php">
-                            <i class="fas fa-history"></i> Sell History
+                            <?php if ($page == 'seller_dashboard') {echo 'active';} ?>" href="../Frontend/Farmer/seller_dashboard.php">
+                            <i class="fas fa-history"></i> Seller Dashboard
                             </button>
                         </a>
                     </li>
                     <li>
-                        <a href="openforum.php" class="nav-button-link">
+                        <a href="livestock_forum.php" class="nav-button-link">
                             <button class="nav-button
-                            <?php if ($page == 'openforum') {echo 'active';} ?>" href="../Frontend/Farmer/openforum.php">
+                            <?php if ($page == 'livestock_forum') {echo 'active';} ?>" href="../Frontend/Farmer/livestock_forum.php">
                             <i class="fas fa-comments"></i> Livestock Forum
                             </button>
                         </a>
