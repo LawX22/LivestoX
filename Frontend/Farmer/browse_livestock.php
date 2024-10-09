@@ -42,8 +42,6 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
-</head>
 <body>
     <div class="container">
         <?php 
@@ -52,7 +50,11 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
         ?>
         <div class="main-content">
             <header>
-                <div class="logo">LivestoX Logo Here</div>
+                <div class="livestock-logo">
+                    <img src="../../Assets/livestock-logo.png" alt="Livestock Logo" class="livestock-img">
+                    <div class="logo-name">LivestoX</div>
+                </div>
+
                 <div class="search">
                     <i class="fas fa-filter" onclick="showFilterPopup()"></i>
                     <input type="text" placeholder="Search Livestock">
