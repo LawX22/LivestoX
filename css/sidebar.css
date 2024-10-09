@@ -15,9 +15,10 @@
 }
 
 .profile-image img {
+    border: 3px solid #348ad5;  
     border-radius: 50%;
-    width: 50px; /* Adjust size as needed */
-    height: 50px;
+    width: 60px; 
+    height: 60px;
     object-fit: cover;
 }
 
@@ -36,6 +37,7 @@
 /* FUNCTION BUTTONS */
 
 nav ul {
+    margin-top: 12px;
     list-style: none;
     padding: 0;
 }
