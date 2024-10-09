@@ -11,9 +11,9 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="dashboard.php" class="nav-button-link">
+                        <a href="browse_livestock.php" class="nav-button-link">
                             <button class="nav-button
-                            <?php if ($page == 'dashboard') {echo 'active';} ?>" href="../Frontend/Buyer/dashboard.php">
+                            <?php if ($page == 'browse_livestock') {echo 'active';} ?>" href="../Frontend/Buyer/browse_livestock.php">
                             <i class="fas fa-globe"></i>  Browse Livestock</button>
                         </a>
                     </li>
@@ -27,21 +27,21 @@
                     <li>
                         <a href="message.php" class="nav-button-link">
                             <button class="nav-button
-                            <?php if ($page == 'inbox') {echo 'active';} ?>" href="../Frontend/Buyer/message.php">
+                            <?php if ($page == 'message') {echo 'active';} ?>" href="../Frontend/Buyer/message.php">
                             <i class="fas fa-inbox"></i> Message</button>  
                         </a>
                     </li>
                     <li>
-                        <a href="buyhistory.php" class="nav-button-link">
+                        <a href="buyer_dashboard.php" class="nav-button-link">
                             <button class="nav-button
-                            <?php if ($page == 'buyhistory') {echo 'active';} ?>" href="../Frontend/Buyer/buyhistory.php">
-                            <i class="fas fa-history"></i> Buy History</button>
+                            <?php if ($page == 'buyer_dashboard') {echo 'active';} ?>" href="../Frontend/Buyer/buyer_dashboard.php">
+                            <i class="fas fa-history"></i> Buyer Dashboard</button>
                         </a>
                     </li>
                     <li>
-                        <a href="openforum.php" class="nav-button-link">
+                        <a href="livestock_forum.php" class="nav-button-link">
                             <button class="nav-button
-                            <?php if ($page == 'openforum') {echo 'active';} ?>" href="../Frontend/Buyer/openforum.php">
+                            <?php if ($page == 'livestock_forum') {echo 'active';} ?>" href="../Frontend/Buyer/livestock_forum.php">
                             <i class="fas fa-comments"></i> Livestock Forum</button>
                         </a>
                     </li>
