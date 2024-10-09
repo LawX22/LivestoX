@@ -44,7 +44,10 @@ body {
     display: flex;
     align-items: center;
     color: #212529;
-    border: 3px solid #348ad5;
+    border: 3px solid #52B788;
+    border-top: 7px solid #52B788;
+    border-right: 7px solid #52B788;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 }
 
@@ -54,7 +57,7 @@ body {
 
 .card i {
     font-size: 30px;
-    color: #348ad5;
+    color: #52B788;
     margin-right: 15px;
 }
 

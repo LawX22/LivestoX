@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../../Backend/db/db_connect.php'); 
+include('../../Backend/db/db_connect.php');
 
 // Redirect if the user is not logged in or is not a buyer
 if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
@@ -46,7 +46,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LivestoX - Message   Page</title>
+    <title>LivestoX - Message Page</title>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
     <link rel="stylesheet" href="../../css/message.css">
@@ -69,22 +69,133 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                 </div>
             </header>
             <div class="chat-container">
+                <!-- Left section with users and search bar -->
                 <div class="chat-list">
                     <div class="chat-list-header">
                         <h3>Livestock Users</h3>
                     </div>
+                    <!-- Search bar for users -->
+                    <div class="search-bar">
+                            <input type="text" placeholder="Search for users...">
+                            <button class="search-button"><i class="fas fa-search"></i></button>
+                        </div>
+                    <div class="chats">
                     <ul>
-                        <li><div class="profile-circle">B</div>Buyer 7 </li>
-                        <li><div class="profile-circle">F</div>Farmer 6 </li>
-                        <li><div class="profile-circle">F</div>Farmer 5 </li>
-                        <li><div class="profile-circle">B</div>Buyer 4 </li>
-                        <li><div class="profile-circle">B</div>Buyer 3 </li>
-                        <li><div class="profile-circle">F</div>Farmer 2 </li>
-                        <li><div class="profile-circle">B</div>Buyer 1 </li>
+                        <li>
+                            <div class="profile-circle">B</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Buyer 7</span>
+                                <span class="last-message">Last message here...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="profile-circle">F</div>
+                            <div class="chat-preview">
+                                <span class="user-name">Farmer 6</span>
+                                <span class="last-message">Another message preview...</span>
+                            </div>
+                        </li>
+
+                        
+                        <!-- Repeat for other users -->
                     </ul>
+                    </div>
                 </div>
+                
+                <!-- Chat window -->
                 <div class="chat-window">
-                <div class="chat-header">
+                    <div class="chat-header">
                         <div class="profile-info">
                             <div class="main-profile-circle">F</div>
                             <h3>Farmer 7 FullName</h3>
@@ -98,27 +209,14 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                     </div>
                     <div class="chat-footer">
                         <input type="text" placeholder="Type something...">
+                        <button class="send-button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
-                </div>
-                <div class="online-users">
-                    <div class="chat-list-header">
-                        <h3>Online - 2</h3>
-                    </div>
-                    <ul>
-                        <li><div class="profile-circle">B</div>Buyer 8 </li>
-                        <li><div class="profile-circle">B</div>Buyer 7 </li>
-                        <li><div class="profile-circle">F</div>Farmer 6 </li>
-                        <li><div class="profile-circle">F</div>Farmer 5 </li>
-                        <li><div class="profile-circle">B</div>Buyer 4 </li>
-                        <li><div class="profile-circle">F</div>Farmer 3 </li>
-                        <li><div class="profile-circle">F</div>Farmer 2 </li>
-                        <li><div class="profile-circle">B</div>Buyer 1 </li>
-                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
 <script src="../../js/logout-confirmation.js"></script>
 </html>
