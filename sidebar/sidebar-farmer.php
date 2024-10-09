@@ -30,7 +30,7 @@
                     <li>
                         <a href="message.php" class="nav-button-link">
                             <button class="nav-button
-                            <?php if ($page == 'inbox') {echo 'active';} ?>" href="../Frontend/Farmer/message.php">
+                            <?php if ($page == 'message') {echo 'active';} ?>" href="../Frontend/Farmer/message.php">
                             <i class="fas fa-inbox"></i> Message 
                             </button>
                         </a>
