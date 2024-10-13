@@ -51,27 +51,86 @@
     </nav>
 
     <!-- Create Listing Button with Icon -->
-    <button class="create-listing-button" onclick="openModal()">
+    <button class="create-listing-button" onclick="openModal('createListingModal')">
         <i class="fas fa-plus-circle"></i> Post Livestocks
     </button>
 
     <!-- Modal for Post Livestock or Auction -->
     <div id="createListingModal" class="modal-choose">
         <div class="modal-content-chs">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="closeModal('createListingModal')">&times;</span>
             <h2>Choose Post Type</h2>
             <div class="card-container">
-                <div class="choose-card" onclick="postLivestock()">
-                    <i class="fas fa-cow"></i>
+                <div class="choose-card" onclick="openPostModal('livestockModal')">
+                <i class="fas fa-paw"></i>
                     <h3>Livestock</h3>
-                    <p>Create listings for different type of Livestocks</p>
+                    <p>Create listings for different types of Livestocks</p>
                 </div>
-                <div class="choose-card" onclick="postAuction()">
+                <div class="choose-card" onclick="openPostModal('auctionModal')">
                     <i class="fas fa-gavel"></i>
                     <h3>Auction</h3>
                     <p>Post Livestock Auction for buyers to bid</p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Livestock Modal -->
+    <div id="livestockModal" class="modal-choose">
+        <div class="modal-content-chs">
+            <span class="close" onclick="closeModal('livestockModal')">&times;</span>
+            <h2>Post Livestock</h2>
+            <form action="submit_livestock.php" method="POST">
+                <label for="livestock-title">Title:</label>
+                <input type="text" id="livestock-title" name="title" placeholder="Enter Livestock Title" required>
+                
+                <label for="livestock-description">Description:</label>
+                <textarea id="livestock-description" name="description" placeholder="Describe the livestock" required></textarea>
+                
+                <label for="livestock-price">Price:</label>
+                <input type="number" id="livestock-price" name="price" placeholder="Enter Price" required>
+                
+                <label for="livestock-category">Category:</label>
+                <select id="livestock-category" name="category" required>
+                    <option value="cattle">Cattle</option>
+                    <option value="sheep">Sheep</option>
+                    <option value="goats">Goats</option>
+                    <option value="poultry">Poultry</option>
+                </select>
+
+                <button type="submit">Submit Livestock</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Auction Modal -->
+    <div id="auctionModal" class="modal-choose">
+        <div class="modal-content-chs">
+            <span class="close" onclick="closeModal('auctionModal')">&times;</span>
+            <h2>Post Auction</h2>
+            <form action="submit_auction.php" method="POST">
+                <label for="auction-title">Title:</label>
+                <input type="text" id="auction-title" name="title" placeholder="Enter Auction Title" required>
+                
+                <label for="auction-description">Description:</label>
+                <textarea id="auction-description" name="description" placeholder="Describe the auction" required></textarea>
+                
+                <label for="auction-starting-price">Starting Price:</label>
+                <input type="number" id="auction-starting-price" name="starting_price" placeholder="Enter Starting Price" required>
+                
+                <label for="auction-end-date">Auction End Date:</label>
+                <input type="date" id="auction-end-date" name="end_date" required>
+
+                <label for="auction-category">Category:</label>
+                <select id="auction-category" name="category" required>
+                    <option value="cattle">Cattle</option>
+                    <option value="sheep">Sheep</option>
+                    <option value="goats">Goats</option>
+                    <option value="poultry">Poultry</option>
+                </select>
+
+                <button type="submit">Submit Auction</button>
+            </form>
         </div>
     </div>
 
@@ -88,23 +147,18 @@
 
 <script>
     // Open Modal
-    function openModal() {
-        document.getElementById("createListingModal").style.display = "block";
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
     }
 
     // Close Modal
-    function closeModal() {
-        document.getElementById("createListingModal").style.display = "none";
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
     }
 
-    // Post Livestock Function
-    function postLivestock() {
-        window.location.href = "post_livestock.php"; // Change to your livestock posting URL
-    }
-
-    // Post Auction Function
-    function postAuction() {
-        window.location.href = "post_auction.php"; // Change to your auction posting URL
+    // Open specific Post Modal (Livestock or Auction)
+    function openPostModal(postModalId) {
+        closeModal('createListingModal'); // Close the initial modal
+        openModal(postModalId); // Open the respective post modal
     }
 </script>
-

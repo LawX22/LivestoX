@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
         } else if($row['user_type'] == "buyer") {
             header("Location: ../../Frontend/Buyer/browse_livestock.php");
         } else if($row['user_type'] == "admin"){
-            header("Location: ../../Frontend/Admin/dashboard.php");
+            header("Location: ../../Frontend/Admin/browse_livestock.php");
         }
         exit();
     } else {

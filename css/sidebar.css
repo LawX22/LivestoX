@@ -130,27 +130,27 @@ i {
 /* MODAL STYLES */
 
 .modal-choose {
-    display: none; 
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); 
+    background-color: rgba(0, 0, 0, 0.4);
     overflow: auto;
     padding-top: 60px;
 }
 
-.modal-content-chs{
+.modal-content-chs {
     background-color: white;
     margin: 5% auto;
     padding: 40px;
-    border-radius: 12px; 
-    width: 60%; /* Increased width */
+    border-radius: 12px;
+    width: 60%;
     height: 55vh;
     text-align: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .close {
@@ -165,7 +165,12 @@ i {
     color: #000;
 }
 
-/* CARD CONTAINER IN MODAL */
+.modal-content-chs h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #246949;
+    font-weight: bold;
+}
 
 .card-container {
     display: flex;
@@ -174,62 +179,193 @@ i {
 }
 
 .choose-card {
-    width: 45%; /* Adjusted to make the cards larger */
+    width: 45%;
     padding: 30px;
     background-color: #f5f5f5;
-    border-radius: 12px; 
+    border-radius: 12px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border: 3px solid #52B788;
     border-top: 7px solid #52B788;
     border-right: 7px solid #52B788;
 }
 
 .choose-card:hover {
-    transform: scale(1.01); /* Slightly more pronounced hover effect */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+    transform: scale(1.01);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .choose-card i {
-    font-size: 50px; /* Larger icons */
+    font-size: 50px;
     margin-bottom: 15px;
     color: #52B788;
 }
 
 .choose-card h3 {
-    font-size: 22px; /* Larger title text */
+    font-size: 22px;
     color: #246949;
     margin-bottom: 10px;
 }
 
 .choose-card p {
     font-size: 16px;
-    color: #666; /* Slightly lighter text for descriptions */
+    color: #666;
 }
 
-/* Additional Styling for Modal Text and Header */
-.modal-content-chs h2 {
-    margin-bottom: 30px; /* More space for better layout */
-    font-size: 28px; /* Larger header */
-    color: #246949;
-    font-weight: bold;
-}
-
-/* Responsive Styles for Smaller Screens */
 @media only screen and (max-width: 768px) {
     .modal-content-chs {
-        width: 80%; /* Increase width for smaller screens */
+        width: 80%;
         padding: 30px;
     }
 
     .choose-card {
-        width: 100%; /* Make cards stack on smaller screens */
+        width: 100%;
         margin-bottom: 20px;
     }
 
     .card-container {
-        flex-direction: column; /* Stack cards vertically on small screens */
+        flex-direction: column;
     }
+}
+
+/* LIVESTOCK MODAL */
+
+#livestockModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    padding-top: 60px;
+}
+
+#livestockModal .modal-content-chs {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 12px;
+    width: 60%;
+    max-height: 80vh; /* Adjust height to fit within viewport */
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Scroll within modal if content overflows */
+}
+
+#livestockModal .modal-content-chs h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #52B788;
+}
+
+#livestockModal form {
+    text-align: left;
+}
+
+#livestockModal label {
+    font-size: 18px;
+    color: #246949;
+    margin: 10px 0;
+    display: block;
+}
+
+#livestockModal input[type="text"],
+#livestockModal textarea,
+#livestockModal select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+#livestockModal button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #52B788;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#livestockModal button[type="submit"]:hover {
+    background-color: #00332a;
+}
+
+/* AUCTION MODAL */
+
+#auctionModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    padding-top: 60px;
+}
+
+#auctionModal .modal-content-chs {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 12px;
+    width: 60%;
+    max-height: 80vh; /* Adjust height to fit within viewport */
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Scroll within modal if content overflows */
+}
+
+#auctionModal .modal-content-chs h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #52B788;
+}
+
+#auctionModal form {
+    text-align: left;
+}
+
+#auctionModal label {
+    font-size: 18px;
+    color: #246949;
+    margin: 10px 0;
+    display: block;
+}
+
+#auctionModal input[type="text"],
+#auctionModal textarea,
+#auctionModal input[type="number"],
+#auctionModal input[type="date"],
+#auctionModal select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+#auctionModal button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #52B788;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#auctionModal button[type="submit"]:hover {
+    background-color: #00332a;
 }

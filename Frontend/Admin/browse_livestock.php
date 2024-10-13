@@ -2,7 +2,7 @@
 session_start();
 include('../../Backend/db/db_connect.php'); 
 
-if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'buyer') {
+if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'admin') {
     header("Location: ../../Frontend/login.php");
     exit();
 }
@@ -20,12 +20,14 @@ mysqli_stmt_close($stmt);
 // Set default profile picture
 $default_profile_picture = '../../Assets/default-profile.png';
 
+// Check if profile picture exists and file exists on server
 if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . $profile_picture)) {
     $profile_image = '../../uploads/profile_pictures/' . $profile_picture;
 } else {
     $profile_image = $default_profile_picture;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,19 +36,17 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LivestoX - Dashboard</title>
     <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/buyer_browse.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
 <body>
     <div class="container">
         <?php 
             $page = 'browse_livestock';
-            include('../../sidebar/sidebar-buyer.php');
+            include('../../sidebar/sidebar-admin.php');
         ?>
         <div class="main-content">
             <header>
@@ -54,13 +54,13 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                     <img src="../../Assets/livestock-logo.png" alt="Livestock Logo" class="livestock-img">
                     <div class="logo-name">LivestoX</div>
                 </div>
+
                 <div class="search">
                     <i class="fas fa-filter" onclick="showFilterPopup()"></i>
                     <input type="text" placeholder="Search Livestock">
                 </div>
             </header>
-
-            <!-- Filter Popup -->
+           <!-- Filter Popup -->
             <div id="filter-popup" class="filter-popup" style="display:none;">
                 <div class="filter-content">
                     <span class="close" onclick="hideFilterPopup()">&times;</span>
@@ -89,28 +89,29 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                             <option value="bulls">Bulls</option>
                             <option value="cows">Cows</option>
                             <option value="cows">Pigs</option>
+                            <!-- Add more options as needed -->
                         </select>
                         <select>
                             <option value="">Breed</option>
-                            <option value="roundhead">Roundhead</option>
-                            <option value="hatch">Hatch</option>
-                            <option value="sweater">Sweater</option>
+                            <option value="cows">Roundhead</option>
+                            <option value="cows">Hatch</option>
+                            <option value="cows">Hatch</option>
+                            <option value="cows">Sweater</option>
+                            <!-- Add class options here -->
                         </select>
                         <button onclick="applyFilters()">Search</button>
                     </div>
                 </div>
-            </div>       
-            
-            <!-- Livestock Listings Section -->
-            <div class="listings"> 
-                <!-- First Listing -->
+            </div>             
+   
+            <div class="listings">
                 <div class="listing-card">
                     <div class="listing-image">
                         <img src="../../Assets/Livestock.jpg" alt="Livestock Image" class="livestock-img">
                     </div>
                     <div class="listing-details">
                         <div class="listing-info">
-                            <div class="livestock-title">Quality Beef Cattle for Sale</div>
+                            <div class="livestock-title">Quality Beef Cattle for Sale</div> <!-- Title for livestock -->
                             <div class="farmer-name">Lawrenz Xavier Carisusa</div>
                             <div class="post-date">July 19, 2024 at 10:02 am</div>
                             <div class="description">
@@ -124,24 +125,22 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                             </div>
                         </div>
                         <div class="actions">
-                            <div class="likes">5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)</div>
+                            <div class="likes">
+                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
+                            </div>
                             <button class="chat-button">CHAT</button>
                             <button class="details-button">VIEW FULL DETAILS</button> 
-                            <button class="save-button">
-                                <i class="fas fa-heart"></i> Save
-                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Second Listing -->
                 <div class="listing-card">
                     <div class="listing-image">
                         <img src="../../Assets/Cow-Gang.jpg" alt="Livestock Image" class="livestock-img">
                     </div>
                     <div class="listing-details">
                         <div class="listing-info">
-                            <div class="livestock-title">Dairy Goats for Sale</div>
+                            <div class="livestock-title">Dairy Goats for Sale</div> <!-- Title for livestock -->
                             <div class="farmer-name">Farmer Jane Doe</div>
                             <div class="post-date">September 20, 2024 at 11:15 am</div>
                             <div class="description">
@@ -155,119 +154,52 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                             </div>
                         </div>
                         <div class="actions">
-                            <div class="likes">4.8 ⭐⭐⭐⭐⭐ Livestock Ratings (700)</div>
+                            <div class="likes">
+                                4.8 ⭐⭐⭐⭐⭐ Livestock Ratings (700)
+                            </div>
                             <button class="chat-button">CHAT</button>
                             <button class="details-button">VIEW FULL DETAILS</button> 
-                            <button class="save-button">
-                                <i class="fas fa-heart"></i> Save
-                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Third Listing -->
                 <div class="listing-card">
                     <div class="listing-image">
                         <img src="../../Assets/Goat-Gang.jpg" alt="Livestock Image" class="livestock-img">
                     </div>
                     <div class="listing-details">
                         <div class="listing-info">
-                            <div class="livestock-title">Heritage Pork for Sale</div>
+                            <div class="livestock-title">Heritage Pork for Sale</div> <!-- Title for livestock -->
                             <div class="farmer-name">Farmer Mike Smith</div>
                             <div class="post-date">September 22, 2024 at 3:30 pm</div>
                             <div class="description">
                                 <ul>
                                     <li><strong>Animal Type:</strong> Pig</li>
                                     <li><strong>Breed:</strong> Berkshire</li>
-                                    <li><strong>Weight:</strong> 150 lbs</li>
-                                    <li><strong>Health Status:</strong> Organic, No Hormones</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (300)</div>
-                            <button class="chat-button">CHAT</button>
-                            <button class="details-button">VIEW FULL DETAILS</button> 
-                            <button class="save-button">
-                                <i class="fas fa-heart"></i> Save
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fourth Listing -->
-                <div class="listing-card">
-                    <div class="listing-image">
-                        <img src="../../Assets/livestock-logo.png" alt="Livestock Image" class="livestock-img">
-                    </div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="livestock-title">High-Quality Sheep for Sale</div>
-                            <div class="farmer-name">Sarah Wong</div>
-                            <div class="post-date">October 5, 2024 at 9:00 am</div>
-                            <div class="description">
-                                <ul>
-                                    <li><strong>Animal Type:</strong> Sheep</li>
-                                    <li><strong>Breed:</strong> Dorset</li>
                                     <li><strong>Quantity Available:</strong> 10</li>
-                                    <li><strong>Age:</strong> 2 years</li>
-                                    <li><strong>Health Status:</strong> Fully vaccinated</li>
+                                    <li><strong>Weight:</strong> Approx. 250 lbs each</li>
+                                    <li><strong>Health Status:</strong> Certified organic</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="actions">
-                            <div class="likes">4.9 ⭐⭐⭐⭐⭐ Livestock Ratings (520)</div>
+                            <div class="likes">
+                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.5k)
+                            </div>
                             <button class="chat-button">CHAT</button>
                             <button class="details-button">VIEW FULL DETAILS</button> 
-                            <button class="save-button">
-                                <i class="fas fa-heart"></i> Save
-                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Fifth Listing -->
-                <div class="listing-card">
-                    <div class="listing-image">
-                        <img src="../../Assets/livestock-logo.png" alt="Livestock Image" class="livestock-img">
-                    </div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="livestock-title">Organic Free-Range Pigs</div>
-                            <div class="farmer-name">John Doe</div>
-                            <div class="post-date">October 8, 2024 at 5:20 pm</div>
-                            <div class="description">
-                                <ul>
-                                    <li><strong>Animal Type:</strong> Pig</li>
-                                    <li><strong>Breed:</strong> Large White</li>
-                                    <li><strong>Weight:</strong> 200 lbs each</li>
-                                    <li><strong>Health Status:</strong> Organic, No Antibiotics</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">4.7 ⭐⭐⭐⭐⭐ Livestock Ratings (850)</div>
-                            <button class="chat-button">CHAT</button>
-                            <button class="details-button">VIEW FULL DETAILS</button> 
-                            <button class="save-button">
-                                <i class="fas fa-heart"></i> Save
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <!-- Repeat for more listings -->
+                 
             </div>
-
+            
         </div>
     </div>
-
-<script>
-    function showFilterPopup() {
-        document.getElementById('filter-popup').style.display = 'block';
-    }
-
-    function hideFilterPopup() {
-        document.getElementById('filter-popup').style.display = 'none';
-    }
-</script>
 </body>
+
+<script src="../../js/logout-confirmation.js"></script>
+<script src="../../js/filtering.js"></script>
 </html>

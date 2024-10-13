@@ -136,3 +136,21 @@ header {
         max-width: 100%;
     }
 }
+
+.save-button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #FFC107;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.save-button i {
+    margin-right: 5px;
+}

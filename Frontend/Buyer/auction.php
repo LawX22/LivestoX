@@ -61,8 +61,8 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                 </div>
             </header>
 
-             <!-- Auction Cards List -->
-             <div class="auction-list">
+            <!-- Auction Cards List -->
+            <div class="auction-list">
                 <!-- Auction Card 1 -->
                 <div class="auction-card">
                     <div class="auction-image">
@@ -79,32 +79,14 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                             <p>Time Remaining: 2d 5h 32m</p>
                         </div>
                         <a href="#" class="view-details-btn">View Full Details</a>
+                        <button class="save-button"><i class="fas fa-heart"></i> Save</button>
                     </div>
                 </div>
 
-                 <!-- Auction Card 2 -->
-                 <div class="auction-card">
-                    <div class="auction-image">
-                        <img src="../../Assets/Goat-Gang.jpg"" alt="Livestock Image">
-                    </div>
-                    <div class="auction-details">
-                        <h2 class="auction-title">Another Auction Title</h2>
-                        <p class="auction-description">This is a brief description for another auction item.</p>
-                        <div class="bidding-info">
-                            <p>Opening Bid: <span class="opening-bid">$750.00</span></p>
-                            <p>Current Bid: <span class="current-bid">$1,000.00</span></p>
-                        </div>
-                        <div class="time-remaining">
-                            <p>Time Remaining: 1d 3h 12m</p>
-                        </div>
-                        <a href="#" class="view-details-btn">View Full Details</a>
-                    </div>
-                </div>
-
-                <!-- Auction Card 3 -->
+                <!-- Auction Card 2 -->
                 <div class="auction-card">
                     <div class="auction-image">
-                        <img src="../../Assets/Livestock.jpg"" alt="Livestock Image">
+                        <img src="../../Assets/Goat-Gang.jpg" alt="Livestock Image">
                     </div>
                     <div class="auction-details">
                         <h2 class="auction-title">Another Auction Title</h2>
@@ -117,46 +99,7 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                             <p>Time Remaining: 1d 3h 12m</p>
                         </div>
                         <a href="#" class="view-details-btn">View Full Details</a>
-                    </div>
-                </div>
-
-                <!-- Auction Cards List -->
-             <div class="auction-list">
-                <!-- Auction Card 1 -->
-                <div class="auction-card">
-                    <div class="auction-image">
-                        <img src="../../Assets/Cow-Gang.jpg" alt="Livestock Image">
-                    </div>
-                    <div class="auction-details">
-                        <h2 class="auction-title">Livestock Auction Title</h2>
-                        <p class="auction-description">Brief description of the livestock being auctioned.</p>
-                        <div class="bidding-info">
-                            <p>Opening Bid: <span class="opening-bid">$500.00</span></p>
-                            <p>Current Bid: <span class="current-bid">$850.00</span></p>
-                        </div>
-                        <div class="time-remaining">
-                            <p>Time Remaining: 2d 5h 32m</p>
-                        </div>
-                        <a href="#" class="view-details-btn">View Full Details</a>
-                    </div>
-                </div>
-
-                 <!-- Auction Card 2 -->
-                 <div class="auction-card">
-                    <div class="auction-image">
-                        <img src="../../Assets/Goat-Gang.jpg"" alt="Livestock Image">
-                    </div>
-                    <div class="auction-details">
-                        <h2 class="auction-title">Another Auction Title</h2>
-                        <p class="auction-description">This is a brief description for another auction item.</p>
-                        <div class="bidding-info">
-                            <p>Opening Bid: <span class="opening-bid">$750.00</span></p>
-                            <p>Current Bid: <span class="current-bid">$1,000.00</span></p>
-                        </div>
-                        <div class="time-remaining">
-                            <p>Time Remaining: 1d 3h 12m</p>
-                        </div>
-                        <a href="#" class="view-details-btn">View Full Details</a>
+                        <button class="save-button"><i class="fas fa-heart"></i> Save</button>
                     </div>
                 </div>
 
@@ -176,14 +119,53 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                             <p>Time Remaining: 1d 3h 12m</p>
                         </div>
                         <a href="#" class="view-details-btn">View Full Details</a>
+                        <button class="save-button"><i class="fas fa-heart"></i> Save</button>
                     </div>
                 </div>
 
-                
+                <!-- Auction Card 4 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="../../Assets/Cow-Gang.jpg" alt="Livestock Image">
+                    </div>
+                    <div class="auction-details">
+                        <h2 class="auction-title">Livestock Auction Title</h2>
+                        <p class="auction-description">Brief description of the livestock being auctioned.</p>
+                        <div class="bidding-info">
+                            <p>Opening Bid: <span class="opening-bid">$500.00</span></p>
+                            <p>Current Bid: <span class="current-bid">$850.00</span></p>
+                        </div>
+                        <div class="time-remaining">
+                            <p>Time Remaining: 2d 5h 32m</p>
+                        </div>
+                        <a href="#" class="view-details-btn">View Full Details</a>
+                        <button class="save-button"><i class="fas fa-heart"></i> Save</button>
+                    </div>
+                </div>
 
+                <!-- Auction Card 5 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="../../Assets/Goat-Gang.jpg" alt="Livestock Image">
+                    </div>
+                    <div class="auction-details">
+                        <h2 class="auction-title">Another Auction Title</h2>
+                        <p class="auction-description">This is a brief description for another auction item.</p>
+                        <div class="bidding-info">
+                            <p>Opening Bid: <span class="opening-bid">$750.00</span></p>
+                            <p>Current Bid: <span class="current-bid">$1,000.00</span></p>
+                        </div>
+                        <div class="time-remaining">
+                            <p>Time Remaining: 1d 3h 12m</p>
+                        </div>
+                        <a href="#" class="view-details-btn">View Full Details</a>
+                        <button class="save-button"><i class="fas fa-heart"></i> Save</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 <script src="../../js/logout-confirmation.js"></script>
