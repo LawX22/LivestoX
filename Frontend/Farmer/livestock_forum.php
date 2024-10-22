@@ -201,12 +201,12 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                     <?php endforeach; ?>
                 </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../js/logout-confirmation.js"></script>
-    <script src="../../js/forum-modal.js"></script>
-    <script src="../../js/forum/submit-ajax.js"></script>
-    <script src="../../js/forum/update-ajax.js"></script>
-    <script src="../../js/forum/delete-ajax.js"></script>
-    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../../js/logout-confirmation.js"></script>
+        <script src="../../js/forum/forum-modal.js"></script>
+        <script src="../../js/forum/submit-ajax.js"></script>
+        <script src="../../js/forum/update-ajax.js"></script>
+        <script src="../../js/forum/delete-ajax.js"></script>
+
 </body>
 </html>

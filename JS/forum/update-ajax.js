@@ -1,66 +1,52 @@
-$(document).ready(function () {
-    // Open edit modal and populate with post data
-    $('.edit-post-btn').on('click', function () {
-        const postId = $(this).data('id');
-        const postTitle = $(this).data('title');
-        const postDescription = $(this).data('description');
-        const postImage = $(this).data('image');
+// update-ajax.js
 
-        $('#editPostId').val(postId);
-        $('#editTitle').val(postTitle);
-        $('#editDescription').val(postDescription);
-        if (postImage) {
-            $('#currentImage').attr('src', postImage).show();
-        } else {
-            $('#currentImage').hide();
+document.addEventListener("DOMContentLoaded", function() {
+    // Get modal elements
+    var editModal = document.getElementById("editModal");
+    var closeBtn = document.querySelector("#editModal .close-btn");
+
+    // Function to open the edit modal
+    function openEditModal(postId, title, description) {
+        document.getElementById('editPostId').value = postId;
+        document.getElementById('editTitle').value = title;
+        document.getElementById('editDescription').value = description;
+        editModal.style.display = "flex";
+    }
+
+    // Close the modal when the "x" is clicked
+    closeBtn.onclick = function() {
+        editModal.style.display = "none";
+    }
+
+    // Close the modal if the user clicks outside the modal
+    window.onclick = function(event) {
+        if (event.target == editModal) {
+            editModal.style.display = "none";
         }
+    }
 
-        $('#editModal').show(); // Open modal
-    });
-
-    // Handle form submission for updating post
-    $('#editPostForm').on('submit', function (e) {
-        e.preventDefault();
-
-        var formData = new FormData(this);
-        
-        $.ajax({
-            url: '../../Backend/forum/update_question.php',
-            type: 'POST',
-            data: formData,
-            processData: false, // Don't process the files
-            contentType: false, // Set content type to false for file uploads
-            success: function (response) {
-                const res = JSON.parse(response);
-
-                if (res.status === 'success') {
-                    // Update the post dynamically in the forum without page refresh
-                    const updatedPost = res.post;
-                    const postElement = $(`#post-${updatedPost.id}`);
-
-                    postElement.find('.post-title').text(updatedPost.title);
-                    postElement.find('.post-description').html(updatedPost.description.replace(/\n/g, '<br>'));
-                    
-                    if (updatedPost.image) {
-                        postElement.find('.post-image img').attr('src', '../../uploads/forum_posts/' + updatedPost.image).show();
-                    } else {
-                        postElement.find('.post-image img').hide();
-                    }
-
-                    alert('Post updated successfully!');
-                    $('#editModal').hide(); // Close the modal
-                } else {
-                    alert('Error updating post: ' + res.message);
-                }
-            },
-            error: function (xhr, status, error) {
-                alert('Something went wrong! Please try again.');
-            }
+    // Add event listeners to the "Edit" links in the dropdown menus
+    document.querySelectorAll('.dropdown-item[data-post-id]').forEach(function(editLink) {
+        editLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            var postId = this.getAttribute('data-post-id');
+            var postTitle = this.closest('.forum-post').querySelector('h3').textContent.trim();
+            var postDescription = this.closest('.forum-post').querySelector('p').textContent.trim();
+            openEditModal(postId, postTitle, postDescription);
         });
     });
 
-    // Close edit modal
-    $('.close-edit-modal').on('click', function () {
-        $('#editModal').hide();
+    // Form submission event listener for the "Save Changes" button
+    var editForm = document.getElementById('editForm');
+    editForm.addEventListener('submit', function(event) {
+        // Show confirmation dialog before saving changes
+        var saveConfirm = confirm("Are you sure you want to save these changes?");
+
+        if (saveConfirm) {
+            alert("Changes saved successfully!");
+        } else {
+            event.preventDefault();
+            alert("Changes not saved.");
+        }
     });
 });

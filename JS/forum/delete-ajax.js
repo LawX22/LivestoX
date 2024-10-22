@@ -1,32 +1,38 @@
-$(document).ready(function () {
-    // Handle delete post action
-    $('.delete-post-btn').on('click', function () {
-        var postId = $(this).data('id');
+// delete-ajax.js
 
-        if (confirm('Are you sure you want to delete this post?')) {
-            $.ajax({
-                url: '../../Backend/forum/delete_question.php',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    post_id: postId
-                }),
-                success: function (response) {
-                    const res = JSON.parse(response);
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.delete-post').forEach(function(deleteButton) {
+        deleteButton.addEventListener('click', function(event) {
+            event.preventDefault();
 
-                    if (res.status === 'success') {
-                        // Remove the post element from the DOM
-                        $(`#post-${postId}`).remove();
-                        alert('Post deleted successfully!');
+            // Get the post ID from the data attribute
+            var postId = this.getAttribute('data-post-id-delete');
+
+            // Confirm the deletion
+            var confirmation = confirm('Are you sure you want to delete this post?');
+            if (confirmation) {
+                // Send the AJAX request to delete the post
+                fetch('http://localhost/LivestoX/Backend/forum/delete_question.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ post_id: postId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Post was successfully deleted, remove it from the DOM
+                        this.closest('.forum-post').remove();
                     } else {
-                        alert('Error: ' + res.message);
+                        alert('Error: ' + data.message);
                     }
-                },
-                error: function (xhr, status, error) {
-                    alert('Something went wrong! Please try again.');
-                }
-            });
-        }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while deleting the post.');
+                });
+            }
+        });
     });
 });
-
