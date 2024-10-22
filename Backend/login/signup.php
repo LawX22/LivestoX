@@ -36,11 +36,11 @@ if (isset($_POST['submit'])) {
 
             // Generate a unique user_id based on role and a random number
             $randomNumber = time() .rand(100000, 999999);  // Generate a random number
-            $user_id = strtolower($role) . "_" . $randomNumber;  // e.g. "farmer_796696" or "buyer_68587"
+            $user_unique_id = strtolower($role) . "_" . $randomNumber;  // e.g. "farmer_796696" or "buyer_68587"
             
             // Insert the user into the database with the unique user_id
-            $query = "INSERT INTO tbl_users (user_id, first_name, last_name, username, phone, email, password, user_type) 
-                      VALUES ('$user_id', '$fname', '$lname', '$username', '$phone', '$email', '$password', '$role')";
+            $query = "INSERT INTO tbl_users (user_unique_id, first_name, last_name, username, phone, email, password, user_type) 
+                      VALUES ('$user_unique_id', '$fname', '$lname', '$username', '$phone', '$email', '$password', '$role')";
 
             mysqli_query($con, $query);
             header("Location: ../../Frontend/login.php");
