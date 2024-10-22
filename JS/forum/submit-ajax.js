@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#submitPostForm').on('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting the traditional way
+        event.preventDefault(); // Prevent form from submitting the traditional way
 
         var formData = new FormData(this); // Create a FormData object
 
@@ -11,10 +11,11 @@ $(document).ready(function() {
             contentType: false, // Tell jQuery not to set a content type
             processData: false, // Tell jQuery not to process the data
             success: function(response) {
-                // If the request was successful, handle the response
-                var res = JSON.parse(response); // Parse the JSON response
+                var res = response; // Assuming response is already a parsed object
+
                 if (res.status === 'success') {
                     alert(res.message); // Show success message
+
                     // Optionally, append the new post to the post container without reloading
                     var newPostHTML = `
                         <div class="forum-post card">
@@ -33,7 +34,7 @@ $(document).ready(function() {
                             <div class="post-content">
                                 <h3>${res.post.title}</h3>
                                 <p>${res.post.description}</p>
-                                ${res.post.image ? `<div class="post-image"><img src="uploads/forum_posts/${res.post.image}" alt="Post Image"></div>` : ''}
+                                ${res.post.image ? `<div class="post-image"><img src="${res.post.image}" alt="Post Image"></div>` : ''}
                             </div>
                             <div class="post-actions">
                                 <div class="likes"><i class="fas fa-thumbs-up"></i> 11k</div>
@@ -42,6 +43,7 @@ $(document).ready(function() {
                             </div>
                         </div>
                     `;
+
                     $('#postContainer').prepend(newPostHTML); // Prepend the new post to the top of the posts container
                 } else {
                     alert(res.message); // Show error message if post submission failed

@@ -36,9 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (mysqli_stmt_execute($stmt)) {
         // Redirect based on user type
         if ($user_type === 'farmer') {
-            header("Location: ../../Frontend/Farmer/openforum.php");
+            header("Location: ../../Frontend/Farmer/livestock_forum.php");
         } elseif ($user_type === 'buyer') {
-            header("Location: ../../Frontend/Buyer/openforum.php");
+            header("Location: ../../Frontend/Buyer/livestock_forum.php");
         }
         exit();
     } else {

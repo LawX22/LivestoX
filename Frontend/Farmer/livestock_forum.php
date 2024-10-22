@@ -181,10 +181,11 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                                 <!-- Slot for image post -->
                                 <?php if ($post['image']): ?>
                                     <div class="post-image">
-                                        <img src="<?= htmlspecialchars('uploads/forum_posts/' . $post['image']); ?>" alt="Post Image">
+                                        <img src="<?= htmlspecialchars('../../uploads/forum_posts/' . $post['image']); ?>" alt="Post Image">
                                     </div>
                                 <?php endif; ?>
                             </div>
+                            
                             <div class="post-actions">
                                 <div class="likes">
                                     <i class="fas fa-thumbs-up"></i> 11k

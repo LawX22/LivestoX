@@ -1,5 +1,4 @@
 body {
-    font-family: 'Poppins', sans-serif;
     background-color: #f4f4f9;
     margin: 0;
     padding: 0;
@@ -270,12 +269,17 @@ header {
 
 
 .post-image {
-    margin-top: 10px; /* Space above the image */
+    border: 5px solid red;
+    margin-top: 20px; /* Space above the image */
     text-align: center; /* Center the image */
+    width: 40%; /* Adjust this width as necessary */
+    max-width: 500px; /* Maximum width of the image container */
+    margin-left: auto; /* Center the container */
+    margin-right: auto; /* Center the container */
 }
 
 .post-image img {
-    max-width: 100%; /* Responsive image */
+    width: 100%; /* Responsive image that fits the container */
     height: auto; /* Maintain aspect ratio */
     border-radius: 8px; /* Optional: rounded corners */
 }

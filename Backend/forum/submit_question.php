@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Check for duplicate post (same title and description within a short timeframe)
+    // Check for duplicate post
     $checkQuery = "SELECT COUNT(*) FROM forum 
                    WHERE user_id = ? 
                    AND title = ? 
@@ -94,9 +94,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'user_type' => $user_type,
             'title' => $title,
             'description' => $description,
-            'image' => $image ? 'forum_posts/' . $image : null,
+            'image' => $image ? 'uploads/forum_posts/' . $image : null, // Ensure correct path
             'created_at' => $created_at,
-            'profile_image' => 'uploads/profile_pictures/default.png', // Add logic for profile image
+            'profile_image' => 'uploads/profile_pictures/default.png', // Default profile image
         )
     );
 
