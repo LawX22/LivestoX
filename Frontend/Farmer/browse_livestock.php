@@ -1,32 +1,44 @@
 <?php
-session_start();
-include('../../Backend/db/db_connect.php'); 
+    session_start();
+    include('../../Backend/db/db_connect.php'); 
 
-// Check if the user is logged in as a farmer
-if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
-    header("Location: ../../Frontend/login.php");
-    exit();
-}
+    // Check if the user is logged in as a farmer
+    if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
+        header("Location: ../../Frontend/login.php");
+        exit();
+    }
 
-// Fetch user data including user_type
-$user_id = $_SESSION['id'];
-$query = "SELECT first_name, last_name, profile_picture, user_type FROM tbl_users WHERE id = ?";
-$stmt = mysqli_prepare($con, $query);
-mysqli_stmt_bind_param($stmt, 'i', $user_id);
-mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $first_name, $last_name, $profile_picture, $user_type);
-mysqli_stmt_fetch($stmt);
-mysqli_stmt_close($stmt);
+    // Fetch user data including user_type
+    $user_id = $_SESSION['id'];
+    $query = "SELECT first_name, last_name, profile_picture, user_type FROM tbl_users WHERE id = ?";
+    $stmt = mysqli_prepare($con, $query);
+    mysqli_stmt_bind_param($stmt, 'i', $user_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $first_name, $last_name, $profile_picture, $user_type);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
 
-// Set default profile picture
-$default_profile_picture = '../../Assets/default-profile.png';
+    // Set default profile picture
+    $default_profile_picture = '../../Assets/default-profile.png';
 
-// Check if profile picture exists and file exists on server
-if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . $profile_picture)) {
-    $profile_image = '../../uploads/profile_pictures/' . $profile_picture;
-} else {
-    $profile_image = $default_profile_picture;
-}
+    // Check if profile picture exists and file exists on server
+    if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . $profile_picture)) {
+        $profile_image = '../../uploads/profile_pictures/' . $profile_picture;
+    } else {
+        $profile_image = $default_profile_picture;
+    }
+
+    // Fetch livestock listings for the logged-in farmer, ordered by the latest added first
+    $listings_query = "SELECT lp.*, u.first_name, u.last_name 
+    FROM livestock_posts lp 
+    JOIN tbl_users u ON lp.farmer_id = u.id 
+    WHERE lp.farmer_id = ? 
+    ORDER BY lp.date_posted DESC"; // Order by date_posted in descending order
+    $listings_stmt = mysqli_prepare($con, $listings_query);
+    mysqli_stmt_bind_param($listings_stmt, "i", $user_id);
+    mysqli_stmt_execute($listings_stmt);
+    $listings_result = mysqli_stmt_get_result($listings_stmt);
+
 ?>
 
 <!DOCTYPE html>
@@ -106,71 +118,58 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
 
             <!-- Container for displaying posts -->
             <div class="listings">
-    <?php
-    // Fetch livestock listings for the logged-in farmer
-    $listings_query = "SELECT lp.*, u.first_name, u.last_name 
-                       FROM livestock_posts lp 
-                       JOIN tbl_users u ON lp.farmer_id = u.id 
-                       WHERE lp.farmer_id = ?";
-    $listings_stmt = mysqli_prepare($con, $listings_query);
-    mysqli_stmt_bind_param($listings_stmt, "i", $user_id);
-    mysqli_stmt_execute($listings_stmt);
-    $listings_result = mysqli_stmt_get_result($listings_stmt);
-
-    // Check if listings exist and display them
-    if ($listings_result->num_rows > 0) {
-        while ($listing = mysqli_fetch_assoc($listings_result)) {
-            // Format the date and time as needed
-            $formatted_date_time = date('F j, Y, g:i A', strtotime($listing['date_posted']));
-            
-            // Set default image if no image is provided
-            $default_image = '../../Assets/default-profile.png'; // Use the specified default profile image
-            $image_url = !empty($listing['image_posts']) && file_exists('../../uploads/livestock_posts/' . $listing['image_posts']) 
-                ? '../../uploads/livestock_posts/' . htmlspecialchars($listing['image_posts']) 
-                : $default_image; // Fallback to default profile image if no livestock image
-
-            ?>
-            <div class="listing-card">
-                <div class="listing-image">
-                    <img src="<?php echo $image_url; ?>" alt="Livestock Image" class="livestock-img">
-                </div>
-                <div class="listing-details">
-                    <div class="listing-info">
-                        <div class="livestock-title"><?php echo htmlspecialchars($listing['title']); ?></div>
-                        <div class="farmer-name"><?php echo htmlspecialchars($listing['first_name'] . ' ' . $listing['last_name']); ?></div>
-                        <div class="post-date"><?php echo $formatted_date_time; ?></div>
-                        <div class="description">
-                            <ul>
-                                <li><strong>Animal Type:</strong> <?php echo htmlspecialchars($listing['livestock_type']); ?></li>
-                                <li><strong>Breed:</strong> <?php echo htmlspecialchars($listing['breed']); ?></li>
-                                <li><strong>Quantity Available:</strong> <?php echo htmlspecialchars($listing['quantity']); ?></li>
-                                <li><strong>Weight:</strong> <?php echo htmlspecialchars($listing['weight']); ?> kg</li>
-                                <li><strong>Health Status:</strong> <?php echo htmlspecialchars($listing['health_status']); ?></li>
-                                <li><strong>Location:</strong> <?php echo htmlspecialchars($listing['location']); ?></li>
-                                <li><strong>Price:</strong> $<?php echo htmlspecialchars($listing['price']); ?></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <div class="likes">5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)</div>
-                        <button class="chat-button">CHAT</button>
-                        <button class="details-button">VIEW FULL DETAILS</button>
-                    </div>
-                </div>
-            </div>
             <?php
-        }
-    } else {
-        echo '<p>No livestock listings available.</p>';
-    }
+                // Check if listings exist and display them
+                if ($listings_result->num_rows > 0) {
+                    while ($listing = mysqli_fetch_assoc($listings_result)) {
+                        // Format the date and time as needed
+                        $formatted_date_time = date('F j, Y, g:i A', strtotime($listing['date_posted']));
+                        
+                        // Set default image if no image is provided
+                        $default_image = '../../Assets/default-profile.png'; // Use the specified default profile image
+                        $image_url = !empty($listing['image_posts']) && file_exists('../../uploads/livestock_posts/' . $listing['image_posts']) 
+                            ? '../../uploads/livestock_posts/' . htmlspecialchars($listing['image_posts']) 
+                            : $default_image; // Fallback to default profile image if no livestock image
 
-    // Close the statement
-    mysqli_stmt_close($listings_stmt);
-    ?>
-</div>
+                        ?>
+                        <div class="listing-card">
+                            <div class="listing-image">
+                                <img src="<?php echo $image_url; ?>" alt="Livestock Image" class="livestock-img">
+                            </div>
+                            <div class="listing-details">
+                                <div class="listing-info">
+                                    <div class="livestock-title"><?php echo htmlspecialchars($listing['title']); ?></div>
+                                    <div class="farmer-name"><?php echo htmlspecialchars($listing['first_name'] . ' ' . $listing['last_name']); ?></div>
+                                    <div class="post-date"><?php echo $formatted_date_time; ?></div>
+                                    <div class="description">
+                                        <ul>
+                                            <li><strong>Animal Type:</strong> <?php echo htmlspecialchars($listing['livestock_type']); ?></li>
+                                            <li><strong>Breed:</strong> <?php echo htmlspecialchars($listing['breed']); ?></li>
+                                            <li><strong>Quantity Available:</strong> <?php echo htmlspecialchars($listing['quantity']); ?></li>
+                                            <li><strong>Weight:</strong> <?php echo htmlspecialchars($listing['weight']); ?> kg</li>
+                                            <li><strong>Health Status:</strong> <?php echo htmlspecialchars($listing['health_status']); ?></li>
+                                            <li><strong>Location:</strong> <?php echo htmlspecialchars($listing['location']); ?></li>
+                                            <li><strong>Price:</strong> $<?php echo htmlspecialchars($listing['price']); ?></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="actions">
+                                    <div class="likes">5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)</div>
+                                    <button class="chat-button">CHAT</button>
+                                    <button class="details-button">VIEW FULL DETAILS</button>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo '<p>No livestock listings available.</p>';
+                }
 
-
-
+                // Close the statement
+                mysqli_stmt_close($listings_stmt);
+                ?>
+                </div>
 
         </div>
     </div>
