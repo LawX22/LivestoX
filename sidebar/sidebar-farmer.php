@@ -52,7 +52,7 @@
 
     <!-- Create Listing Button with Icon -->
     <button class="create-listing-button" onclick="openModal('createListingModal')">
-        <i class="fas fa-plus-circle"></i> Post Livestocks
+        <i class="fas fa-plus-circle"></i> Post Livestock
     </button>
 
     <!-- Modal for Post Livestock or Auction -->
@@ -62,9 +62,9 @@
             <h2>Choose Post Type</h2>
             <div class="card-container">
                 <div class="choose-card" onclick="openPostModal('livestockModal')">
-                <i class="fas fa-paw"></i>
+                    <i class="fas fa-paw"></i>
                     <h3>Livestock</h3>
-                    <p>Create listings for different types of Livestocks</p>
+                    <p>Create listings for different types of livestock</p>
                 </div>
                 <div class="choose-card" onclick="openPostModal('auctionModal')">
                     <i class="fas fa-gavel"></i>
@@ -80,23 +80,46 @@
         <div class="modal-content-chs">
             <span class="close" onclick="closeModal('livestockModal')">&times;</span>
             <h2>Post Livestock</h2>
-            <form action="submit_livestock.php" method="POST">
+            <form action="../../Backend/livestock_posts/add_post.php" method="POST" enctype="multipart/form-data">
                 <label for="livestock-title">Title:</label>
                 <input type="text" id="livestock-title" name="title" placeholder="Enter Livestock Title" required>
                 
                 <label for="livestock-description">Description:</label>
                 <textarea id="livestock-description" name="description" placeholder="Describe the livestock" required></textarea>
                 
-                <label for="livestock-price">Price:</label>
-                <input type="number" id="livestock-price" name="price" placeholder="Enter Price" required>
-                
-                <label for="livestock-category">Category:</label>
-                <select id="livestock-category" name="category" required>
-                    <option value="cattle">Cattle</option>
-                    <option value="sheep">Sheep</option>
-                    <option value="goats">Goats</option>
-                    <option value="poultry">Poultry</option>
+                <label for="livestock-type">Type:</label>
+                <select id="livestock-type" name="livestock_type" required>
+                    <option value="Cattle">Cow</option>
+                    <option value="Sheep">Sheep</option>
+                    <option value="Goat">Goat</option>
+                    <option value="Poultry">Poultry</option>
+                    <option value="Pig">Pig</option>
+                    <option value="Other">Other</option>
                 </select>
+                
+                <label for="livestock-breed">Breed:</label>
+                <input type="text" id="livestock-breed" name="breed" placeholder="Enter Breed">
+
+                <label for="livestock-age">Age (in years):</label>
+                <input type="number" step="0.01" id="livestock-age" name="age" placeholder="Enter Age">
+
+                <label for="livestock-weight">Weight (kg):</label>
+                <input type="number" step="0.01" id="livestock-weight" name="weight" placeholder="Enter Weight">
+
+                <label for="livestock-health-status">Health Status:</label>
+                <input type="text" id="livestock-health-status" name="health_status" placeholder="Enter Health Status">
+
+                <label for="livestock-location">Location:</label>
+                <input type="text" id="livestock-location" name="location" placeholder="Enter Location">
+
+                <label for="livestock-price">Price:</label>
+                <input type="number" step="0.01" id="livestock-price" name="price" placeholder="Enter Price" required>
+
+                <label for="livestock-quantity">Quantity:</label>
+                <input type="number" id="livestock-quantity" name="quantity" value="1" min="1" required>
+
+                <label for="livestock-image">Image URL:</label>
+                <input type="file" id="livestock-image" name="image_url">
 
                 <button type="submit">Submit Livestock</button>
             </form>
@@ -123,10 +146,10 @@
 
                 <label for="auction-category">Category:</label>
                 <select id="auction-category" name="category" required>
-                    <option value="cattle">Cattle</option>
-                    <option value="sheep">Sheep</option>
-                    <option value="goats">Goats</option>
-                    <option value="poultry">Poultry</option>
+                    <option value="Cattle">Cattle</option>
+                    <option value="Sheep">Sheep</option>
+                    <option value="Goat">Goat</option>
+                    <option value="Poultry">Poultry</option>
                 </select>
 
                 <button type="submit">Submit Auction</button>
@@ -145,20 +168,5 @@
     </div>
 </div>
 
-<script>
-    // Open Modal
-    function openModal(modalId) {
-        document.getElementById(modalId).style.display = "block";
-    }
-
-    // Close Modal
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = "none";
-    }
-
-    // Open specific Post Modal (Livestock or Auction)
-    function openPostModal(postModalId) {
-        closeModal('createListingModal'); // Close the initial modal
-        openModal(postModalId); // Open the respective post modal
-    }
-</script>
+<script src="../../js/logout-confirmation.js"></script>
+<script src="../../js/livestock/open_modal.js"></script>

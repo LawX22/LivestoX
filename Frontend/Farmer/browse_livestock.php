@@ -2,6 +2,7 @@
 session_start();
 include('../../Backend/db/db_connect.php'); 
 
+// Check if the user is logged in as a farmer
 if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
     header("Location: ../../Frontend/login.php");
     exit();
@@ -28,7 +29,6 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,12 +36,12 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LivestoX - Dashboard</title>
     <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/farmer_browse.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
 <body>
     <div class="container">
         <?php 
@@ -60,7 +60,8 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                     <input type="text" placeholder="Search Livestock">
                 </div>
             </header>
-           <!-- Filter Popup -->
+            
+            <!-- Filter Popup -->
             <div id="filter-popup" class="filter-popup" style="display:none;">
                 <div class="filter-content">
                     <span class="close" onclick="hideFilterPopup()">&times;</span>
@@ -95,111 +96,87 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                             <option value="">Breed</option>
                             <option value="cows">Roundhead</option>
                             <option value="cows">Hatch</option>
-                            <option value="cows">Hatch</option>
                             <option value="cows">Sweater</option>
                             <!-- Add class options here -->
                         </select>
                         <button onclick="applyFilters()">Search</button>
                     </div>
                 </div>
-            </div>             
-   
-            <div class="listings">
-                <div class="listing-card">
-                    <div class="listing-image">
-                        <img src="../../Assets/Livestock.jpg" alt="Livestock Image" class="livestock-img">
-                    </div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="livestock-title">Quality Beef Cattle for Sale</div> <!-- Title for livestock -->
-                            <div class="farmer-name">Lawrenz Xavier Carisusa</div>
-                            <div class="post-date">July 19, 2024 at 10:02 am</div>
-                            <div class="description">
-                                <ul>
-                                    <li><strong>Animal Type:</strong> Beef Cattle</li>
-                                    <li><strong>Breed:</strong> Angus</li>
-                                    <li><strong>Quantity Available:</strong> 5</li>
-                                    <li><strong>Weight:</strong> Approx. 1,200 lbs each</li>
-                                    <li><strong>Health Status:</strong> Vaccinated and dewormed</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">
-                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)
-                            </div>
-                            <button class="chat-button">CHAT</button>
-                            <button class="details-button">VIEW FULL DETAILS</button> 
-                        </div>
-                    </div>
-                </div>
-
-                <div class="listing-card">
-                    <div class="listing-image">
-                        <img src="../../Assets/Cow-Gang.jpg" alt="Livestock Image" class="livestock-img">
-                    </div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="livestock-title">Dairy Goats for Sale</div> <!-- Title for livestock -->
-                            <div class="farmer-name">Farmer Jane Doe</div>
-                            <div class="post-date">September 20, 2024 at 11:15 am</div>
-                            <div class="description">
-                                <ul>
-                                    <li><strong>Animal Type:</strong> Dairy Goat</li>
-                                    <li><strong>Breed:</strong> Nubian</li>
-                                    <li><strong>Quantity Available:</strong> 8</li>
-                                    <li><strong>Age:</strong> 1 year</li>
-                                    <li><strong>Health Status:</strong> Fully vaccinated</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">
-                                4.8 ⭐⭐⭐⭐⭐ Livestock Ratings (700)
-                            </div>
-                            <button class="chat-button">CHAT</button>
-                            <button class="details-button">VIEW FULL DETAILS</button> 
-                        </div>
-                    </div>
-                </div>
-
-                <div class="listing-card">
-                    <div class="listing-image">
-                        <img src="../../Assets/Goat-Gang.jpg" alt="Livestock Image" class="livestock-img">
-                    </div>
-                    <div class="listing-details">
-                        <div class="listing-info">
-                            <div class="livestock-title">Heritage Pork for Sale</div> <!-- Title for livestock -->
-                            <div class="farmer-name">Farmer Mike Smith</div>
-                            <div class="post-date">September 22, 2024 at 3:30 pm</div>
-                            <div class="description">
-                                <ul>
-                                    <li><strong>Animal Type:</strong> Pig</li>
-                                    <li><strong>Breed:</strong> Berkshire</li>
-                                    <li><strong>Quantity Available:</strong> 10</li>
-                                    <li><strong>Weight:</strong> Approx. 250 lbs each</li>
-                                    <li><strong>Health Status:</strong> Certified organic</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="likes">
-                                5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.5k)
-                            </div>
-                            <button class="chat-button">CHAT</button>
-                            <button class="details-button">VIEW FULL DETAILS</button> 
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Repeat for more listings -->
-                 
             </div>
+
+            <!-- Container for displaying posts -->
+            <div class="listings">
+    <?php
+    // Fetch livestock listings for the logged-in farmer
+    $listings_query = "SELECT lp.*, u.first_name, u.last_name 
+                       FROM livestock_posts lp 
+                       JOIN tbl_users u ON lp.farmer_id = u.id 
+                       WHERE lp.farmer_id = ?";
+    $listings_stmt = mysqli_prepare($con, $listings_query);
+    mysqli_stmt_bind_param($listings_stmt, "i", $user_id);
+    mysqli_stmt_execute($listings_stmt);
+    $listings_result = mysqli_stmt_get_result($listings_stmt);
+
+    // Check if listings exist and display them
+    if ($listings_result->num_rows > 0) {
+        while ($listing = mysqli_fetch_assoc($listings_result)) {
+            // Format the date and time as needed
+            $formatted_date_time = date('F j, Y, g:i A', strtotime($listing['date_posted']));
             
+            // Set default image if no image is provided
+            $default_image = '../../Assets/default-profile.png'; // Use the specified default profile image
+            $image_url = !empty($listing['image_posts']) && file_exists('../../uploads/livestock_posts/' . $listing['image_posts']) 
+                ? '../../uploads/livestock_posts/' . htmlspecialchars($listing['image_posts']) 
+                : $default_image; // Fallback to default profile image if no livestock image
+
+            ?>
+            <div class="listing-card">
+                <div class="listing-image">
+                    <img src="<?php echo $image_url; ?>" alt="Livestock Image" class="livestock-img">
+                </div>
+                <div class="listing-details">
+                    <div class="listing-info">
+                        <div class="livestock-title"><?php echo htmlspecialchars($listing['title']); ?></div>
+                        <div class="farmer-name"><?php echo htmlspecialchars($listing['first_name'] . ' ' . $listing['last_name']); ?></div>
+                        <div class="post-date"><?php echo $formatted_date_time; ?></div>
+                        <div class="description">
+                            <ul>
+                                <li><strong>Animal Type:</strong> <?php echo htmlspecialchars($listing['livestock_type']); ?></li>
+                                <li><strong>Breed:</strong> <?php echo htmlspecialchars($listing['breed']); ?></li>
+                                <li><strong>Quantity Available:</strong> <?php echo htmlspecialchars($listing['quantity']); ?></li>
+                                <li><strong>Weight:</strong> <?php echo htmlspecialchars($listing['weight']); ?> kg</li>
+                                <li><strong>Health Status:</strong> <?php echo htmlspecialchars($listing['health_status']); ?></li>
+                                <li><strong>Location:</strong> <?php echo htmlspecialchars($listing['location']); ?></li>
+                                <li><strong>Price:</strong> $<?php echo htmlspecialchars($listing['price']); ?></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <div class="likes">5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)</div>
+                        <button class="chat-button">CHAT</button>
+                        <button class="details-button">VIEW FULL DETAILS</button>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    } else {
+        echo '<p>No livestock listings available.</p>';
+    }
+
+    // Close the statement
+    mysqli_stmt_close($listings_stmt);
+    ?>
+</div>
+
+
+
+
         </div>
     </div>
 </body>
 
-<script src="../../js/logout-confirmation.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../../js/filtering.js"></script>
+<script src="../../js/livestock/main.js"></script>
 </html>
