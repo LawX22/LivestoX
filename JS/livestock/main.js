@@ -26,3 +26,23 @@ $(document).ready(function () {
         });
     });
 });
+
+
+function deleteListing(postId) {
+    if (confirm("Are you sure you want to delete this listing?")) {
+        $.ajax({
+            url: "http://localhost/LivestoX/Backend/livestock_posts/delete_post.php",
+            type: "POST",
+            data: { post_id: postId },
+            success: function(response) {
+                alert(response);
+                location.reload(); // Refresh the page after deletion
+            }
+        });
+    }
+}
+
+function updateListing(postId) {
+    // Redirect to update page with postId as a query parameter
+    window.location.href = `../../Frontend/update_listing.php?post_id=${postId}`;
+}

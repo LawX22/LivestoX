@@ -1,27 +1,19 @@
 <?php
-session_start();
 include('../../Backend/db/db_connect.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_id'])) {
     $post_id = $_POST['post_id'];
 
-    // Check if post_id is provided
-    if (empty($post_id)) {
-        echo json_encode(['status' => 'error', 'message' => 'Post ID is required']);
-        exit();
-    }
-
-    $sql = "DELETE FROM livestock_posts WHERE post_id = ? AND farmer_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $post_id, $_SESSION['id']); // Use session 'id' to match user ID
-
-    if ($stmt->execute()) {
-        echo json_encode(['status' => 'success', 'message' => 'Post deleted successfully']);
+    $query = "DELETE FROM livestock_posts WHERE post_id = ?";
+    $stmt = mysqli_prepare($con, $query);
+    mysqli_stmt_bind_param($stmt, 'i', $post_id);
+    
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Listing deleted successfully.";
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Failed to delete post']);
+        echo "Error deleting listing.";
     }
 
-    $stmt->close();
-    $conn->close();
+    mysqli_stmt_close($stmt);
 }
 ?>
