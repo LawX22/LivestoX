@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $location = $_POST['location'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
-    $image = $_FILES['image_posts']['name'] ?? null; 
+    $image = $_FILES['image_posts']; // Use the correct input name for the image upload
 
     $farmer_id = $_SESSION['id']; // Assuming you have the farmer's ID in session
 
@@ -63,30 +63,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Handle file upload if present
-    if ($image) {
+    $imageName = null; // Initialize the image name
+    if ($image['error'] === UPLOAD_ERR_OK) {
         $target_dir = "../../uploads/livestock_posts/";
-        $target_file = $target_dir . basename($image);
-        if (!move_uploaded_file($_FILES['image_posts']['tmp_name'], $target_file)) { 
-            $image = null; // Handle file upload failure
+        $imageName = basename($image['name']);
+        $target_file = $target_dir . $imageName;
+
+        // Move the uploaded file to the target directory
+        if (!move_uploaded_file($image['tmp_name'], $target_file)) {
+            $imageName = null; // Handle file upload failure
         }
     }
 
     // Insert post into the database
     $insertQuery = "INSERT INTO livestock_posts (farmer_id, title, description, livestock_type, breed, age, weight, health_status, location, price, quantity, image_posts) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($con, $insertQuery);
-    mysqli_stmt_bind_param($stmt, 'issssssssdds', $farmer_id, $title, $description, $livestock_type, $breed, $age, $weight, $health_status, $location, $price, $quantity, $image);
+    mysqli_stmt_bind_param($stmt, 'issssssssdds', $farmer_id, $title, $description, $livestock_type, $breed, $age, $weight, $health_status, $location, $price, $quantity, $imageName);
 
     if ($stmt->execute()) {
         $post_id = mysqli_insert_id($con); // Get the last inserted ID
         
         // Fetch newly inserted post details
         $selectQuery = "SELECT title, description, livestock_type, breed, age, weight, health_status, location, price, quantity, image_posts, date_posted 
-                        FROM livestock_posts WHERE post_id = ?"; 
+                        FROM livestock_posts WHERE post_id = ?";
         $stmt = mysqli_prepare($con, $selectQuery);
         mysqli_stmt_bind_param($stmt, 'i', $post_id);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $title, $description, $livestock_type, $breed, $age, $weight, $health_status, $location, $price, $quantity, $image_url, $date_posted);
+        mysqli_stmt_bind_result($stmt, $title, $description, $livestock_type, $breed, $age, $weight, $health_status, $location, $price, $quantity, $image_posts, $date_posted);
         mysqli_stmt_fetch($stmt);
         mysqli_stmt_close($stmt);
 
@@ -105,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'location' => $location,
                 'price' => $price,
                 'quantity' => $quantity,
-                'image_url' => $image ? 'livestock_posts/' . $image : null,
+                'image_posts' => $imageName ? 'livestock_posts/' . $imageName : null,
                 'date_posted' => date('F j, Y', strtotime($date_posted))
             )
         );

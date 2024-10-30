@@ -1,28 +1,27 @@
-$(document).ready(function() {
-    $('#addPostForm').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+$(document).ready(function () {
+    $('#add-post-form').on('submit', function (e) {
+        e.preventDefault(); // Prevent default form submission
 
-        var formData = new FormData(this); // Create FormData object from the form
+        var formData = new FormData(this); // Create a FormData object
 
         $.ajax({
-            type: "POST",
-            url: "http://localhost/LivestoX/Backend/livestock_posts/add_post.php", // Adjust the URL if needed
+            type: 'POST',
+            url: 'http://localhost/LivestoX/Backend/livestock_posts/add_post.php', // Path to the backend PHP file
             data: formData,
-            contentType: false, // Important for file uploads
-            processData: false, // Important for file uploads
-            success: function(response) {
-                const res = JSON.parse(response);
-                alert(res.message); // Show response message
-
-                if (res.status === 'success') {
-                    // Redirect to browse_livestock.php
-                    window.location.href = "http://localhost/LivestoX/Frontend/Farmer/browse_livestock.php"; // Adjust the path if needed
+            contentType: false, // Set to false for FormData
+            processData: false, // Prevent jQuery from processing the data
+            success: function (response) {
+                var result = JSON.parse(response);
+                if (result.status === 'success') {
+                    alert(result.message); // Success message
+                    // Optionally reset the form here
+                    $('#add-post-form')[0].reset();
                 } else {
-                    $('#responseMessage').text(res.message); // Display error message
+                    alert(result.message); // Error message
                 }
             },
-            error: function() {
-                alert('Error adding post');
+            error: function () {
+                alert('An error occurred while adding the post.'); // Handle errors
             }
         });
     });

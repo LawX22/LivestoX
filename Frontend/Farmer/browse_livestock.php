@@ -126,7 +126,7 @@
                         $formatted_date_time = date('F j, Y, g:i A', strtotime($listing['date_posted']));
                         
                         // Set default image if no image is provided
-                        $default_image = '../../Assets/default-profile.png'; // Use the specified default profile image
+                        $default_image = '../../Assets/default-profile.png'; 
                         $image_url = !empty($listing['image_posts']) && file_exists('../../uploads/livestock_posts/' . $listing['image_posts']) 
                             ? '../../uploads/livestock_posts/' . htmlspecialchars($listing['image_posts']) 
                             : $default_image; // Fallback to default profile image if no livestock image
