@@ -157,7 +157,7 @@
                                     <div class="likes">5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)</div>
                                     <button class="chat-button">CHAT</button>
                                     <button class="details-button">VIEW FULL DETAILS</button>
-                                    <button class="update-button" onclick="updateListing(<?php echo $listing['post_id']; ?>)">UPDATE</button>
+                                    <button class="update-button">UPDATE</button>
                                     <button class="delete-button" onclick="deleteListing(<?php echo $listing['post_id']; ?>)">DELETE</button>
                                 </div>
 
@@ -174,6 +174,8 @@
                 ?>
                 </div>
 
+
+
         </div>
     </div>
 </body>
@@ -181,4 +183,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../../js/filtering.js"></script>
 <script src="../../js/livestock/main.js"></script>
+<script src="../../js/livestock/open_modal.js"></script>
 </html>

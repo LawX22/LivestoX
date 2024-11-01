@@ -42,7 +42,5 @@ function deleteListing(postId) {
     }
 }
 
-function updateListing(postId) {
-    // Redirect to update page with postId as a query parameter
-    window.location.href = `../../Frontend/update_listing.php?post_id=${postId}`;
-}
+
+
