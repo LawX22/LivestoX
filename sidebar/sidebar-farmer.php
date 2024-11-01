@@ -90,7 +90,7 @@
                 <label for="livestock-type">Type:</label>
                 <select id="livestock-type" name="livestock_type" required>
                     <option value="Other">Choose Livestock</option>
-                    <option value="Cattle">Cow</option>
+                    <option value="Cow">Cow</option>
                     <option value="Sheep">Sheep</option>
                     <option value="Goat">Goat</option>
                     <option value="Poultry">Poultry</option>
@@ -143,7 +143,7 @@
             <label for="update-livestock-type">Type:</label>
             <select id="update-livestock-type" name="livestock_type" required>
                 <option value="Other">Choose Livestock</option>
-                <option value="Cattle">Cow</option>
+                <option value="Cow">Cow</option>
                 <option value="Sheep">Sheep</option>
                 <option value="Goat">Goat</option>
                 <option value="Poultry">Poultry</option>

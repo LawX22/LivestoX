@@ -58,7 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         } else {
-            $imageName = null; // Handle file upload failure
+            // Handle file upload failure
+            $imageName = null; // Reset imageName to null if upload fails
         }
     }
 
@@ -74,13 +75,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mysqli_stmt_bind_param($stmt, 'sssssssssssd', $title, $description, $livestock_type, $breed, $age, $weight, $health_status, $location, $price, $quantity, $imageName, $post_id);
     }
 
+    // Execute the update statement
     if ($stmt->execute()) {
-        // Do not return any JSON response upon success
-        header('Location: ../../Frontend/Farmer/browse_livestock.php'); // Redirect after successful update
+        // Redirect after successful update
+        header('Location: ../../Frontend/Farmer/browse_livestock.php'); 
         exit(); // Ensure no further code is executed
     } else {
-        header('HTTP/1.1 500 Internal Server Error'); // Send an error header
-        exit(); // Terminate the script
+        // Log the error if the update fails
+        echo "Error executing query: " . mysqli_error($con);
+        exit(); // Terminate the script on error
     }
 
     // Close the statement and connection
