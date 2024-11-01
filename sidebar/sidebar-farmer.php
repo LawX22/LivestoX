@@ -127,14 +127,13 @@
         </div>
     </div>
 
-   <!-- Update Livestock Modal -->
-<div id="updateLivestockModal" class="modal-choose" style="display:none;"> <!-- Make sure the modal starts hidden -->
+    <div id="updateLivestockModal" class="modal-choose">
     <div class="modal-content-chs">
         <span class="close" onclick="closeModal('updateLivestockModal')">&times;</span>
         <h2>Update Livestock</h2>
-        <form action="../../Backend/livestock_posts/update_post.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" id="update-livestock-id" name="post_id"> <!-- Hidden field for post ID -->
-
+        <form id="updateLivestockForm" action="../../Backend/livestock_posts/update_post.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" id="update-post-id" name="post_id" required> <!-- Hidden field for post ID -->
+            
             <label for="update-livestock-title">Title:</label>
             <input type="text" id="update-livestock-title" name="title" placeholder="Enter Livestock Title" required>
             
@@ -175,12 +174,12 @@
 
             <label for="update-livestock-image">Upload New Livestock Image (optional):</label>
             <input type="file" id="update-livestock-image" name="image_posts">
-            <small>Leave blank if you do not wish to change the image.</small> <!-- Instruction for image update -->
 
             <button type="submit">Update Livestock</button>
         </form>
     </div>
 </div>
+
 
 
 
