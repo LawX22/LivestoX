@@ -127,7 +127,8 @@
         </div>
     </div>
 
-    <div id="updateLivestockModal" class="modal-choose">
+    <!-- Livestock Update Modal -->
+<div id="updateLivestockModal" class="modal-choose">
     <div class="modal-content-chs">
         <span class="close" onclick="closeModal('updateLivestockModal')">&times;</span>
         <h2>Update Livestock</h2>
@@ -180,39 +181,6 @@
     </div>
 </div>
 
-
-
-
-    <!-- Auction Modal -->
-    <div id="auctionModal" class="modal-choose">
-        <div class="modal-content-chs">
-            <span class="close" onclick="closeModal('auctionModal')">&times;</span>
-            <h2>Post Auction</h2>
-            <form action="submit_auction.php" method="POST">
-                <label for="auction-title">Title:</label>
-                <input type="text" id="auction-title" name="title" placeholder="Enter Auction Title" required>
-                
-                <label for="auction-description">Description:</label>
-                <textarea id="auction-description" name="description" placeholder="Describe the auction" required></textarea>
-                
-                <label for="auction-starting-price">Starting Price:</label>
-                <input type="number" id="auction-starting-price" name="starting_price" placeholder="Enter Starting Price" required>
-                
-                <label for="auction-end-date">Auction End Date:</label>
-                <input type="date" id="auction-end-date" name="end_date" required>
-
-                <label for="auction-category">Category:</label>
-                <select id="auction-category" name="category" required>
-                    <option value="Cattle">Cattle</option>
-                    <option value="Sheep">Sheep</option>
-                    <option value="Goat">Goat</option>
-                    <option value="Poultry">Poultry</option>
-                </select>
-
-                <button type="submit">Submit Auction</button>
-            </form>
-        </div>
-    </div>
 
     
 
