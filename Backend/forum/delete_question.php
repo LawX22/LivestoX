@@ -18,16 +18,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Ensure the post belongs to the current user (for security)
     $user_id = $_SESSION['id'];
-    $query = "DELETE FROM forum WHERE id = ? AND user_id = ?";
-    $stmt = mysqli_prepare($con, $query);
-    mysqli_stmt_bind_param($stmt, 'ii', $post_id, $user_id);
-    $success = mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
+
+    // Fetch the image filename from the post before deletion
+    $fetchImageQuery = "SELECT image FROM forum WHERE id = ? AND user_id = ?";
+    $fetchStmt = mysqli_prepare($con, $fetchImageQuery);
+    mysqli_stmt_bind_param($fetchStmt, 'ii', $post_id, $user_id);
+    mysqli_stmt_execute($fetchStmt);
+    mysqli_stmt_bind_result($fetchStmt, $imageFilename);
+    mysqli_stmt_fetch($fetchStmt);
+    mysqli_stmt_close($fetchStmt);
+
+    // Delete the post from the database
+    $deleteQuery = "DELETE FROM forum WHERE id = ? AND user_id = ?";
+    $deleteStmt = mysqli_prepare($con, $deleteQuery);
+    mysqli_stmt_bind_param($deleteStmt, 'ii', $post_id, $user_id);
+    $success = mysqli_stmt_execute($deleteStmt);
+    mysqli_stmt_close($deleteStmt);
 
     if ($success) {
+        // Delete the image file from the server if it exists
+        if (!empty($imageFilename)) {
+            $imagePath = '../../uploads/forum_posts/' . $imageFilename;
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
         $response = array(
             'status' => 'success',
-            'message' => 'Post deleted successfully.'
+            'message' => 'Post and associated image deleted successfully.'
         );
     } else {
         $response = array(
