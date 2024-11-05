@@ -55,6 +55,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
@@ -79,7 +80,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                     <div class="modal-content">
                         <span class="close-btn">&times;</span>
                         <h2>Ask a Question</h2>
-                        <form id="questionForm" action="../../Backend/forum/submit_question.php" method="post" enctype="multipart/form-data">
+                        <form id="questionForm" action="#" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="questionTitle">Title:</label>
                                 <input type="text" id="questionTitle" name="questionTitle" required>
@@ -207,6 +208,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
         <script src="../../js/forum/submit-ajax.js"></script>
         <script src="../../js/forum/update-ajax.js"></script>
         <script src="../../js/forum/delete-ajax.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 </body>
 </html>
