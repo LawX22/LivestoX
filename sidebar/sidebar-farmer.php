@@ -13,35 +13,35 @@
     <nav>
         <ul>
             <li>
-                <a href="browse_livestock.php" class="nav-button-link">
+                <a href="browse_livestock" class="nav-button-link">
                     <button class="nav-button <?php if ($page == 'browse_livestock') {echo 'active';} ?>">
                         <i class="fas fa-globe"></i> Browse Livestock
                     </button>
                 </a>
             </li>
             <li>
-                <a href="auction.php" class="nav-button-link">
+                <a href="auction" class="nav-button-link">
                     <button class="nav-button <?php if ($page == 'auction') {echo 'active';} ?>">
                         <i class="fas fa-gavel"></i> Auction Livestock
                     </button>
                 </a>
             </li>
             <li>
-                <a href="message.php" class="nav-button-link">
+                <a href="message" class="nav-button-link">
                     <button class="nav-button <?php if ($page == 'message') {echo 'active';} ?>">
                         <i class="fas fa-inbox"></i> Message
                     </button>
                 </a>
             </li>
             <li>
-                <a href="seller_dashboard.php" class="nav-button-link">
+                <a href="seller_dashboard" class="nav-button-link">
                     <button class="nav-button <?php if ($page == 'seller_dashboard') {echo 'active';} ?>">
                         <i class="fas fa-history"></i> Seller Dashboard
                     </button>
                 </a>
             </li>
             <li>
-                <a href="livestock_forum.php" class="nav-button-link">
+                <a href="livestock_forum" class="nav-button-link">
                     <button class="nav-button <?php if ($page == 'livestock_forum') {echo 'active';} ?>">
                         <i class="fas fa-comments"></i> Livestock Forum
                     </button>
