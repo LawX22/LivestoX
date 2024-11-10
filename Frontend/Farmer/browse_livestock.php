@@ -28,17 +28,18 @@
         $profile_image = $default_profile_picture;
     }
 
-    // Fetch livestock listings for the logged-in farmer, ordered by the latest added first
-    $listings_query = "SELECT lp.*, u.first_name, u.last_name 
-    FROM livestock_posts lp 
-    JOIN tbl_users u ON lp.farmer_id = u.id 
-    WHERE lp.farmer_id = ? 
-    ORDER BY lp.date_posted DESC"; // Order by date_posted in descending order
-    $listings_stmt = mysqli_prepare($con, $listings_query);
-    mysqli_stmt_bind_param($listings_stmt, "i", $user_id);
-    mysqli_stmt_execute($listings_stmt);
-    $listings_result = mysqli_stmt_get_result($listings_stmt);
+    // Fetch livestock posts
+    $listings_query = "SELECT lp.post_id, lp.title, lp.description, lp.price, lp.quantity, lp.image_posts, lp.date_posted, lp.livestock_type, lp.breed, lp.weight, lp.health_status, lp.location, u.first_name, u.last_name 
+                       FROM livestock_posts lp 
+                       JOIN tbl_users u ON lp.farmer_id = u.id 
+                       WHERE lp.availability = 'available' 
+                       ORDER BY lp.date_posted DESC";
+    $listings_result = mysqli_query($con, $listings_query);
 
+    // Error handling for livestock posts query
+    if (!$listings_result) {
+        die("Livestock posts query failed: " . mysqli_error($con));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -51,8 +52,6 @@
     <link rel="stylesheet" href="../../css/farmer_browse.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
     <div class="container">
@@ -78,66 +77,26 @@
                 <div class="filter-content">
                     <span class="close" onclick="hideFilterPopup()">&times;</span>
                     <h2>Search Livestock For Sale</h2>
-                    <div class="auction-options">
-                        <button class="auction-btn active">Private Treaty</button>
-                        <button class="auction-btn">Online Auctions</button>
-                    </div>
-                    <div class="animal-icons">
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Bulls">Bulls</div>
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Cows">Cows</div>
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Horses">Horses</div>
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Pigs">Pigs</div>
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Goats">Goats</div>
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Sheep">Sheep</div>
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Alpacas">Alpacas</div>
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Rabbits">Rabbits</div>
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Dogs">Dogs</div>
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Cats">Cats</div>
-                        <div class="icon"><img src="../../Assets/default-profile.png" alt="Humans">Humans</div>
-                    </div>
-                    <div class="filter-search">
-                        <select>
-                            <option value="">Livestock</option>
-                            <option value="cows">Chickens</option>
-                            <option value="bulls">Bulls</option>
-                            <option value="cows">Cows</option>
-                            <option value="cows">Pigs</option>
-                            <!-- Add more options as needed -->
-                        </select>
-                        <select>
-                            <option value="">Breed</option>
-                            <option value="cows">Roundhead</option>
-                            <option value="cows">Hatch</option>
-                            <option value="cows">Sweater</option>
-                            <!-- Add class options here -->
-                        </select>
-                        <button onclick="applyFilters()">Search</button>
-                    </div>
+                    <!-- Add your filtering content here -->
                 </div>
             </div>
 
             <!-- Container for displaying posts -->
             <div class="listings">
-            <?php
-                // Check if listings exist and display them
-                if ($listings_result->num_rows > 0) {
-                    while ($listing = mysqli_fetch_assoc($listings_result)) {
-                        // Format the date and time as needed
-                        $formatted_date_time = date('F j, Y, g:i A', strtotime($listing['date_posted']));
-                        
-                        // Set default image if no image is provided
-                        $default_image = '../../Assets/default-profile.png'; 
-                        $image_url = !empty($listing['image_posts']) && file_exists('../../uploads/livestock_posts/' . $listing['image_posts']) 
-                            ? '../../uploads/livestock_posts/' . htmlspecialchars($listing['image_posts']) 
-                            : $default_image; // Fallback to default profile image if no livestock image
-
-                        ?>
-                        <div class="listing-card">
-                            <div class="listing-image">
-                                <img src="<?php echo $image_url; ?>" alt="Livestock Image" class="livestock-img">
-                            </div>
-                            <div class="listing-details">
-                                <div class="listing-info">
+                <?php
+                    if (mysqli_num_rows($listings_result) > 0) {
+                        while ($listing = mysqli_fetch_assoc($listings_result)) {
+                            $formatted_date_time = date('F j, Y, g:i A', strtotime($listing['date_posted']));
+                            $default_image = '../../Assets/default-profile.png'; 
+                            $image_url = !empty($listing['image_posts']) && file_exists('../../uploads/livestock_posts/' . $listing['image_posts']) 
+                                ? '../../uploads/livestock_posts/' . htmlspecialchars($listing['image_posts']) 
+                                : $default_image;
+                            ?>
+                            <div class="listing-card">
+                                <div class="listing-image">
+                                    <img src="<?php echo $image_url; ?>" alt="Livestock Image" class="livestock-img">
+                                </div>
+                                <div class="listing-details">
                                     <div class="livestock-title"><?php echo htmlspecialchars($listing['title']); ?></div>
                                     <div class="farmer-name"><?php echo htmlspecialchars($listing['first_name'] . ' ' . $listing['last_name']); ?></div>
                                     <div class="post-date"><?php echo $formatted_date_time; ?></div>
@@ -152,30 +111,24 @@
                                             <li><strong>Price:</strong> $<?php echo htmlspecialchars($listing['price']); ?></li>
                                         </ul>
                                     </div>
+                                    <div class="actions">
+                                        <div class="likes">5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)</div>
+                                        <button class="chat-button">CHAT</button>
+                                        <button class="details-button">VIEW FULL DETAILS</button>
+                                        <button class="update-button" onclick="openUpdateModal(<?php echo $listing['post_id']; ?>)">UPDATE</button>
+                                        <button class="delete-button" onclick="deleteListing(<?php echo $listing['post_id']; ?>)">DELETE</button>
+                                    </div>
                                 </div>
-                                <div class="actions">
-                                    <div class="likes">5.0 ⭐⭐⭐⭐⭐ Livestock Ratings (1.1k)</div>
-                                    <button class="chat-button">CHAT</button>
-                                    <button class="details-button">VIEW FULL DETAILS</button>
-                                    <button class="update-button" onclick="openUpdateModal(<?php echo $listing['post_id']; ?>)">UPDATE</button>
-                                    <button class="delete-button" onclick="deleteListing(<?php echo $listing['post_id']; ?>)">DELETE</button>
-                                </div>
-
                             </div>
-                        </div>
-                        <?php
+                            <?php
+                        }
+                    } else {
+                        echo '<p>No livestock listings available.</p>';
                     }
-                } else {
-                    echo '<p>No livestock listings available.</p>';
-                }
-
-                // Close the statement
-                mysqli_stmt_close($listings_stmt);
+                    // Close the connection
+                    mysqli_close($con);
                 ?>
-                </div>
-
-
-
+            </div>
         </div>
     </div>
 </body>
