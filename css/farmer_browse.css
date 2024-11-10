@@ -1,20 +1,23 @@
-/* CONTAINER */
-
+/* ==========================
+   CONTAINER
+========================== */
 .container {
     display: flex;
     width: 100%;
 }
 
-/* MAIN CONTENT*/
-
+/* ==========================
+   MAIN CONTENT
+========================== */
 .main-content {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
 }
 
-/* HEADER BAR */
-
+/* ==========================
+   HEADER BAR
+========================== */
 header {
     display: flex;
     justify-content: space-between;
@@ -34,8 +37,9 @@ header {
     border-radius: 4px;
 }
 
-/* FILTERING SECTION*/
-
+/* ==========================
+   FILTERING SECTION
+========================== */
 .search i {
     cursor: pointer;
     font-size: 20px;
@@ -93,176 +97,156 @@ header {
 
 .animal-icons {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .animal-icons .icon {
-    margin: 10px;
+    margin: 0 10px;
     text-align: center;
-}
-
-.animal-icons .icon img {
-    width: 50px;
-    height: 50px;
 }
 
 .filter-search {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    gap: 10px;
 }
 
 .filter-search select, .filter-search button {
     padding: 10px;
-    margin: 0 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 4px;
-}
-
-.filter-search button {
     background-color: #52B788;
     color: white;
-    border: none;
     cursor: pointer;
 }
 
-/* LIVESTOCK CARD POSTS */
+/* ==========================
+   LIVESTOCK CARDS
+========================== */
 .listings {
-    display: flex; /* Use flexbox for row layout */
-    flex-wrap: wrap; /* Allow wrapping to the next line */
-    gap: 20px;  
-    justify-content: center; /* Center cards horizontally */
-    padding: 20px; /* Add padding for better spacing */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 .listing-card {
-    width: 100%;
-    max-width: 350px; /* Set a maximum width for cards */
-    border: 1px solid #ddd;
-    border-radius: 12px; /* Rounded corners */
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Slight box-shadow */
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
-}
-
-.listing-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Shadow intensifies */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .listing-image img {
     width: 100%;
-    height: 220px; /* Set consistent height */
+    height: 200px;
     object-fit: cover;
-    border-bottom: 1px solid #ddd; /* Border to separate image */
+    border-radius: 8px;
 }
 
-.listing-details {
-    padding: 20px;
+.card-details {
+    margin-top: 10px;
+}
+
+.animal-type {
+    font-size: 15px;
+    color: grey;
+}
+
+.card-info {
+    margin-bottom: 10px;
+    border-bottom: 3px solid rgba(128, 128, 128, 0.205);
+    padding-bottom: 12px;
+}
+
+.card-bottom-info {
+    font-size: 18px;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    flex-grow: 1;
 }
 
-.listing-info {
-    flex-grow: 1; /* Allow this section to take up available space */
-    margin-bottom: 15px; /* Add space below the info section */
-}
-
-.livestock-title {
-    font-size: 1.4rem; /* Font size for the title */
-    font-weight: 700; /* Bold font weight */
-    color: #333; /* Darker color for visibility */
-    margin-bottom: 5px; /* Space below the title */
-    text-align: center; /* Center align title */
-}
-
-.farmer-name, .post-date {
-    font-size: 0.9rem; /* Font size for farmer name and post date */
-    color: #555; /* Color for text */
-    text-align: center; /* Center align text */
-    margin-bottom: 5px; /* Space below each text */
-}
-
-.description {
-    text-align: left; /* Align text to the left for better readability */
-}
-
-.description ul {
-    padding-left: 20px; /* Indent list */
-    margin: 0; /* Remove default margin */
-}
-
-.actions {
+.card-more-info {
+    font-size: 16px;
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center align buttons */
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.likes {
-    font-weight: 700; /* Weight for likes */
-    color: #28a745; /* Green color */
-    text-align: center; /* Center likes text */
-    margin-bottom: 10px; /* Space below likes */
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 2px;
 }
 
-.chat-button, .details-button {
-    background-color: #007bff; /* Button color */
-    color: #fff; /* Button text color */
-    padding: 10px 15px; /* Button padding */
-    border: none; /* Remove border */
-    border-radius: 8px; /* Rounded corners */
-    font-weight: 600; /* Weight for button text */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Button hover effect */
-    width: 100%; /* Full width for buttons */
-    margin-bottom: 10px; /* Space below buttons */
+.card-more-info i {
+    font-size: 18px;
+    color: #333;
 }
 
-.chat-button:hover, .details-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    transform: translateY(-3px); /* Lift effect on hover */
+.view-button {
+    display: flex;
+    align-items: center;
 }
 
-@media (max-width: 768px) {
-    .listings {
-        flex-direction: column; /* Stack the cards vertically on smaller screens */
-        align-items: center; /* Center alignment */
-    }
-
-    .listing-card {
-        width: 100%; /* Full width for smaller devices */
-        max-width: 100%; /* No max-width on small screens */
-    }
+.view-button button {
+    padding: 10px 20px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    background-color: #52b788ef;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-.livestock-title {
-    font-size: 1.4rem; /* Font size for the title */
-    font-weight: 700; /* Bold font weight */
-    color: #333; /* Darker color for visibility */
-    margin-bottom: 10px; /* Space below the title */
-    text-align: center; /* Center align title */
+.view-button button:hover {
+    background-color: #4c9c76;
 }
 
-.details-button {
-    background-color: #6c757d; /* Gray color for the button */
-    color: #fff; /* Button text color */
-    padding: 10px 15px; /* Button padding */
-    text-align: center; /* Center button text */
-    border-radius: 8px; /* Rounded corners */
-    font-weight: 600; /* Weight for button text */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Button hover effect */
+/* ==========================
+   CARD HEADER & STYLING
+========================== */
+.card-header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-.details-button:hover {
-    background-color: #5a6268; /* Darker gray on hover */
-    transform: translateY(-3px); /* Lift effect on hover */
+.availability {
+    color: green;
+    font-size: 10px;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #52b78866;
+}
+
+.bookmark {
+    font-size: 21px;
+    margin-left: auto;
+}
+
+.post-date {
+    font-size: 13px;
+    color: grey;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+/* ==========================
+   BUTTONS (CARD HEADER)
+========================== */
+.card-header .chat-button, .card-header .details-button {
+    background-color: #52B788;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
 }
 
 
@@ -276,7 +260,7 @@ header {
     font-size: 14px;
 }
 .actions .update-button {
-    background-color: #52B788; /* Green color for update */
+    background-color: #3486ec; /* Green color for update */
 }
 .actions .delete-button {
     background-color: #E63946; /* Red color for delete */
@@ -284,6 +268,3 @@ header {
 .actions .update-button:hover, .actions .delete-button:hover {
     opacity: 0.8;
 }
-
-
-
