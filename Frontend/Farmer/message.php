@@ -99,7 +99,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                     <ul>
                     <?php include('../../Backend/chat/get_chat.php'); ?>
                         <?php foreach ($chats as $row): ?>
-                        <a href="../Pages/direct_message.html?c=<?= $row['gochat_id'] ?>&s=<?= $row['status'] ?>&p=<?= $row['profile_picture'] ?>&n=<?= $row['full_name'] ?>" target="main-content">
+                        <a href="../Pages/direct_message.html?c=<?= $row['gochat_id'] ?>&m=<?php echo $user_id ?>&s=<?= $row['status'] ?>&p=<?= $row['profile_picture'] ?>&n=<?= $row['full_name'] ?>" target="main-content">
                             <li>
                                 <img src="../../uploads/profile_pictures/<?= $row['profile_picture'] ?>" alt="?" class="profile-circle">
                                 <div class="chat-preview">

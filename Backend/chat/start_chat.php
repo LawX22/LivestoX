@@ -9,15 +9,15 @@ include('../../Backend/db/db_connect.php');
     $status = 'request';
 
     try {
-        $query = "INSERT INTO chat (sender, receiver, gochat_id) VALUES (?, ?, ?)";
+        $query = "INSERT INTO chat (sender, receiver, status, gochat_id) VALUES (?, ?, ?, ?)";
         $stmt = mysqli_prepare($con, $query);
-        mysqli_stmt_bind_param($stmt, "iii", $sender, $receiver, $gochat_id);
+        mysqli_stmt_bind_param($stmt, "iisi", $sender, $receiver, $status, $gochat_id);
         $res = mysqli_stmt_execute($stmt);
 
         if ($res) {
-            $query2 = "INSERT INTO messages (gochat_id, status) VALUES (?,?)";
+            $query2 = "INSERT INTO messages (gochat_id) VALUES (?)";
             $stmt2 = mysqli_prepare($con, $query2);
-            mysqli_stmt_bind_param($stmt2, "is", $gochat_id, $status);
+            mysqli_stmt_bind_param($stmt2, "i", $gochat_id);
             $res2 = mysqli_stmt_execute($stmt2);
         }
 
