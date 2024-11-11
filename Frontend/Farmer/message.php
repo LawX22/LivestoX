@@ -116,7 +116,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                 
                 <!-- Chat window -->
                 <div class="iframe-container">
-                <iframe :src="conversations.length > 0 ? '../Pages/direct_message.html?convo=' + conversations[1].conversation_id : ''" 
+                <iframe :src="conversations.length > 0 ? '../Pages/direct_message?c=' + conversations[0].conversation_id : ''" 
                         name="main-content" 
                         frameborder="0">
                 </iframe>

@@ -15,6 +15,10 @@
         .mull {
             text-align: right;
         }
+        .start-info {
+            text-align: center;
+            color: grey;
+        }
     </style>
 </head>
 
@@ -30,12 +34,13 @@
                 <i class="fas fa-calendar"></i>
             </div>
         </div>
+        <p class="start-info">A legendary conversation has been started</p>
         <div v-for="conversation in convo" :key="conversation.message_id" class="chat-message">
-        <p
-            :class="{ mull: String(conversation.user_id) !== String(current_user) }"
-            >
-            {{ conversation.content }}
-        </p>
+            <p
+                :class="{ mull: String(conversation.user_id) !== String(current_user) }"
+                >
+                {{ conversation.content }}
+            </p>
         </div>
         <div
             v-if="convo.length > 0 && convo[convo.length - 1].status === 'accepted'"
@@ -46,6 +51,7 @@
                 v-model="message"
                 @keyup.enter="sendMessage"
             >
+            <input type="file">
             <button class="send-button" @click="sendMessage">
                 <i class="fas fa-paper-plane"></i>
             </button>
