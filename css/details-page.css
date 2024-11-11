@@ -1,0 +1,21 @@
+.container {
+    display: flex; 
+    height: 100vh; 
+    width: 100%;
+}
+
+.left-side {
+    width: 75%; 
+    padding: 20px; 
+    background-color: #f0f0f0; 
+    border: 3px solid red;
+    border-radius: 20px;
+}
+
+.right-side {
+    width: 25%; 
+    padding: 20px;
+    background-color: #d3d3d3; 
+    border: 3px solid red;
+    border-radius: 20px;
+}
