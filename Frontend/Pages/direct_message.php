@@ -5,17 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LivestoX - Message Page</title>
-    <script type="module" src="../../js/vue/direct_message.js" async></script>
+    <script type="module" src="../../js/vue/direct-message.js" async></script>
     <link rel="stylesheet" href="../../css/message.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .mull {
+            text-align: right;
+        }
+        .start-info {
+            text-align: center;
+            color: grey;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Chat window -->
-    <div id="farmer-convo" class="chat-window">
+    <div id="direct-convo" class="chat-window">
         <div class="chat-header">
             <div class="profile-info">
                 <img :src="'../../uploads/profile_pictures/'+profile_picture" alt="?" class="main-profile-circle">
@@ -25,8 +34,13 @@
                 <i class="fas fa-calendar"></i>
             </div>
         </div>
+        <p class="start-info">A legendary conversation has been started</p>
         <div v-for="conversation in convo" :key="conversation.message_id" class="chat-message">
-            <p>{{ conversation.content }}</p>
+            <p
+                :class="{ mull: String(conversation.user_id) !== String(current_user) }"
+                >
+                {{ conversation.content }}
+            </p>
         </div>
         <div
             v-if="convo.length > 0 && convo[convo.length - 1].status === 'accepted'"
@@ -37,6 +51,7 @@
                 v-model="message"
                 @keyup.enter="sendMessage"
             >
+            <input type="file">
             <button class="send-button" @click="sendMessage">
                 <i class="fas fa-paper-plane"></i>
             </button>

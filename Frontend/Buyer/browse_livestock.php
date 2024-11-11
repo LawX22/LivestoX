@@ -21,7 +21,7 @@ $profile_image = !empty($profile_picture) && file_exists('../../uploads/profile_
     ? '../../uploads/profile_pictures/' . $profile_picture
     : $default_profile_picture;
 
-$livestock_posts_query = "SELECT lp.post_id, lp.title, lp.description, lp.price, lp.quantity, lp.image_posts, lp.date_posted, lp.livestock_type, lp.breed, lp.weight, u.first_name AS farmer_first_name, u.last_name AS farmer_last_name 
+$livestock_posts_query = "SELECT lp.post_id, lp.title, lp.description, lp.price, lp.quantity, lp.image_posts, lp.date_posted, lp.livestock_type, lp.breed, lp.weight, u.id, u.first_name AS farmer_first_name, u.last_name AS farmer_last_name 
                         FROM livestock_posts lp 
                         JOIN tbl_users u ON lp.farmer_id = u.id 
                         WHERE lp.availability = 'available' 
@@ -43,6 +43,7 @@ if (!$livestock_posts_result) {
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/buyer_browse.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
+    <script type="module" src="../../js/vue/start-chat.js" async></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,12 +107,14 @@ if (!$livestock_posts_result) {
                             ? '../../uploads/livestock_posts/' . htmlspecialchars($row['image_posts'])
                             : $default_image;
                 ?>
-                        <div class="listing-card">
+                        <div class="listing-card" id="declaration-of-chat">
                             <div class="card-header">
                                 <div class="rates">⭐ 5.0 (1.1k)</div>
                                 <div class="availability"> Available now </div>
                                 <div class="bookmark"> <i class="far fa-heart bookmark-icon"></i> </div>
-                                <!-- <button class="chat-button">CHAT</button> -->
+                                <button
+                                    @click="startWarBuyer(<?php echo $user_id ?>, <?php echo $row['id']; ?>)"
+                                    class="chat-button">CHAT</button>
                             </div>
 
                             <div class="post-date"><?php echo $formatted_date_time; ?></div>

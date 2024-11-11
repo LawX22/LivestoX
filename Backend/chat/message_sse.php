@@ -9,7 +9,7 @@ $uid = $_GET['uid'];
 
 while (true) {
     try {
-        $query = "SELECT messages.*, chat.status
+        $query = "SELECT messages.*, chat.sender, chat.status
                 FROM messages
                 LEFT JOIN chat ON chat.gochat_id = messages.gochat_id
                 WHERE messages.gochat_id = ?
