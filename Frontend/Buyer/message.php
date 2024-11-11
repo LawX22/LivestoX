@@ -54,6 +54,21 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    .iframe-container {
+      width: 100%;
+      max-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    iframe {
+      width: 100%;
+      max-height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
     <div class="container">
@@ -81,139 +96,31 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                         </div>
                     <div class="chats">
                     <ul>
-                        <li>
-                            <div class="profile-circle">B</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Buyer 7</span>
-                                <span class="last-message">Last message here...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="profile-circle">F</div>
-                            <div class="chat-preview">
-                                <span class="user-name">Farmer 6</span>
-                                <span class="last-message">Another message preview...</span>
-                            </div>
-                        </li>
-
-                        
+                        <?php include('../../Backend/chat/get_chat.php'); ?>
+                        <?php foreach ($chats as $row): ?>
+                        <a href="../Pages/direct_message.html?c=<?= $row['gochat_id'] ?>&m=<?php echo $user_id ?>&s=<?= $row['status'] ?>&p=<?= $row['profile_picture'] ?>&n=<?= $row['full_name'] ?>" target="main-content">
+                            <li>
+                                <img src="../../uploads/profile_pictures/<?= $row['profile_picture'] ?>" alt="?" class="profile-circle">
+                                <div class="chat-preview">
+                                    <span class="user-name"><?= $row['full_name'] ?></span>
+                                    <span class="last-message">Last message here...</span>
+                                </div>
+                            </li>
+                        </a>
+                        <?php endforeach; ?>
                         <!-- Repeat for other users -->
                     </ul>
                     </div>
                 </div>
                 
                 <!-- Chat window -->
-                <div class="chat-window">
-                    <div class="chat-header">
-                        <div class="profile-info">
-                            <div class="main-profile-circle">F</div>
-                            <h3>Buyer 22 FullName</h3>
-                        </div>
-                        <div class="calendar-icon">
-                            <i class="fas fa-calendar"></i>
-                        </div>
-                    </div>
-                    <div class="chat-message">
-                        <p>Chatting Interface Here</p>
-                    </div>
-                    <div class="chat-footer">
-                        <input type="text" placeholder="Type something...">
-                        <button class="send-button">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
+                <div class="iframe-container">
+                    <iframe src="" 
+                            name="main-content" 
+                            frameborder="0">
+                    </iframe>
                 </div>
+                
             </div>
         </div>
     </div>
