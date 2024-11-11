@@ -198,7 +198,8 @@ header {
     font-weight: bold;
     background-color: #52b788ef;
     border: none;
-    border-radius: 8px;
+    border-bottom-left-radius: 12px;
+    border-top-right-radius: 12px;
     cursor: pointer;
 }
 
@@ -250,7 +251,7 @@ header {
 }
 
 
-.actions .update-button, .actions .delete-button {
+.actions .update-button, .actions .delete-button, .chat-button {
     padding: 8px 12px;
     margin-top: 5px;
     color: white;
@@ -267,4 +268,8 @@ header {
 }
 .actions .update-button:hover, .actions .delete-button:hover {
     opacity: 0.8;
+}
+
+.chat-button {
+    background-color: #f0ab21;
 }

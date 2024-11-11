@@ -112,7 +112,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
 
                                     <div class="card-bottom-info">
                                         <div class="livestock-title"> <strong><?php echo htmlspecialchars($row['title']); ?></strong></div>
-                                        <div class="price"> <strong>$<?php echo htmlspecialchars($row['price']); ?></strong> /Head</div>
+                                        <div class="price"> <strong>₱<?php echo htmlspecialchars($row['price']); ?></strong> /Head</div>
                                     </div>
                                 </div>
 
@@ -138,6 +138,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                     <div class="actions">
                                         <button class="update-button" onclick="openUpdateModal(<?php echo $row['post_id']; ?>)">UPDATE</button>
                                         <button class="delete-button" onclick="deleteListing(<?php echo $row['post_id']; ?>)">DELETE</button>
+                                        <button class="chat-button">CHAT</button>
                                     </div>
 
                                 </div>
