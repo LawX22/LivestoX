@@ -29,7 +29,7 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
 }
 
 // Fetch livestock listings for the logged-in farmer, ordered by the latest added first
-$listings_query = "SELECT lp.*, u.first_name, u.last_name 
+$listings_query = "SELECT lp.*, u.id, u.first_name, u.last_name 
     FROM livestock_posts lp 
     JOIN tbl_users u ON lp.farmer_id = u.id 
     WHERE lp.farmer_id = ? 
@@ -47,6 +47,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LivestoX - Dashboard</title>
+    <script type="module" src="../../js/vue/start-chat.js" async></script>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/farmer_browse.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
@@ -107,13 +108,16 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                             </div>
 
                             <div class="card-details">
-                                <div class="card-info">
+                                <div class="card-info" id="declaration-of-chat">
                                     <div class="animal-type"><?php echo htmlspecialchars($row['livestock_type'] ?? 'Unknown Type'); ?></div>
 
                                     <div class="card-bottom-info">
                                         <div class="livestock-title"> <strong><?php echo htmlspecialchars($row['title']); ?></strong></div>
                                         <div class="price"> <strong>₱<?php echo htmlspecialchars($row['price']); ?></strong> /Head</div>
                                     </div>
+                                    <button
+                                        @click="startWarFarmer(<?php echo $user_id ?>, <?php echo $row['id']; ?>)"
+                                        class="chat-button">CHAT</button>
                                 </div>
 
                                 <div class="card-more-info">
@@ -138,7 +142,6 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                     <div class="actions">
                                         <button class="update-button" onclick="openUpdateModal(<?php echo $row['post_id']; ?>)">UPDATE</button>
                                         <button class="delete-button" onclick="deleteListing(<?php echo $row['post_id']; ?>)">DELETE</button>
-                                        <button class="chat-button">CHAT</button>
                                     </div>
 
                                 </div>
