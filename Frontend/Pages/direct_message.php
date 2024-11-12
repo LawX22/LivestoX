@@ -15,6 +15,9 @@
         .mull {
             text-align: right;
         }
+        .mull_img {
+            float: right;
+        }
         .start-info {
             text-align: center;
             color: grey;
@@ -36,29 +39,30 @@
         </div>
         <p class="start-info">A legendary conversation has been started</p>
         <div v-for="conversation in convo" :key="conversation.message_id" class="chat-message">
-            <p
-                :class="{ mull: String(conversation.user_id) !== String(current_user) }"
-                >
+            <p :class="{ mull: String(conversation.user_id) !== String(current_user) }">
                 {{ conversation.content }}
             </p>
+            <img 
+                :class="{ mull_img: String(conversation.user_id) !== String(current_user) }"
+                v-if="conversation.image_url && conversation.image_url !== ''" 
+                :src="'../../uploads/livestock_posts/' + conversation.image_url" 
+                alt="upload">
+
         </div>
-        <div
-            v-if="convo.length > 0 && convo[convo.length - 1].status === 'accepted'"
-            class="chat-footer">
+        <div v-if="convo.length > 0 && convo[convo.length - 1].status === 'accepted'" class="chat-footer">
             <input
                 type="text"
                 placeholder="Type something..."
                 v-model="message"
                 @keyup.enter="sendMessage"
             >
-            <input type="file">
+            <input type="file" @change="handleFileUpload">
+            <input type="hidden" v-model="image">
             <button class="send-button" @click="sendMessage">
                 <i class="fas fa-paper-plane"></i>
             </button>
         </div>
-        <div
-            v-else-if="convo.length > 0 && convo[convo.length - 1].status === 'request'"
-            class="chat-footer">
+        <div v-else-if="convo.length > 0 && convo[convo.length - 1].status === 'request'" class="chat-footer">
             <button @click="acceptMessage">Accept</button>
             <button>Block</button>
         </div>

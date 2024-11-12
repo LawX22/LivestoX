@@ -4,6 +4,7 @@ createApp({
   setup() {
     let convo = ref([]);
     let message = ref("");
+    let image = ref("");
 
     const urlParams = new URLSearchParams(window.location.search);
     const chat_id = urlParams.get("c");
@@ -20,17 +21,14 @@ createApp({
       };
     };
 
-    const acceptMessage = async () => {
-      fetch(`../../Backend/chat/accept_message?uid=${chat_id}`);
-    };
-
     const sendMessage = async () => {
-      if (message.value.trim() === "") return;
+      // if (message.value.trim() === "") return;
 
       const messageData = {
         "user_id": current_user,
         "content": message.value,
-        "status": status
+        "status": status,
+        "image": image.value
       };
 
       try {
@@ -53,12 +51,39 @@ createApp({
       }
 
       message.value = "";
+      image.value = "";
+    };
+
+    const handleFileUpload = (event) => {
+      const files = event.target.files;
+      if (files.length === 0) {
+        console.error('No file selected!');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('img', files[0]);
+
+      fetch('../../Backend/chat/upload_photo', {
+        method: 'POST',
+        body: formData 
+      })
+      .then(response => response.json())
+      .then(data => {
+        image.value = data.filename
+      })
+      .catch(error => {
+        console.error('Error during file upload:', error);
+      });
     };
 
     onMounted(() => {
       fetchData();
     });
 
-    return { message, convo, fullname, profile_picture, current_user, sendMessage, acceptMessage};
+    return { 
+      message, convo, fullname, profile_picture, current_user, 
+      sendMessage, handleFileUpload, image
+    };
   },
 }).mount("#direct-convo");
