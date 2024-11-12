@@ -62,6 +62,8 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
       margin: 0;
       padding: 0;
       display: flex;
+      border: 2px solid red;
+      border-radius: 8px;
     }
 
     iframe {
