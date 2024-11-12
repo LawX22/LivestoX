@@ -4,6 +4,7 @@ include('../../Backend/db/db_connect.php');
 // if(isset($_POST['sender']) && isset($_POST['receiver'])) {
     $sender = $_GET['sender'];
     $receiver = $_GET['receiver'];
+    $initial = $_GET['initial'];
     $gochat_id = rand();
 
     $status = 'request';
@@ -24,9 +25,9 @@ include('../../Backend/db/db_connect.php');
             $res = mysqli_stmt_execute($stmt);
 
             if ($res) {
-                $query2 = "INSERT INTO messages (gochat_id) VALUES (?)";
+                $query2 = "INSERT INTO messages (gochat_id, user_id, content) VALUES (?, ?, ?)";
                 $stmt2 = mysqli_prepare($con, $query2);
-                mysqli_stmt_bind_param($stmt2, "i", $gochat_id);
+                mysqli_stmt_bind_param($stmt2, "iis", $gochat_id, $sender, $initial);
                 $res2 = mysqli_stmt_execute($stmt2);
             }
 

@@ -3,12 +3,14 @@ import { createApp, ref, onMounted, } from "https://cdnjs.cloudflare.com/ajax/li
 createApp({
   setup() {
 
+    let firstTime = ref("Give me the white stuff");
+
     const startWarBuyer = async (sender, receiver) => {
       if (sender === receiver ) {
         window.location.href = '../../Frontend/Buyer/message';
       } else {
         try {
-            const response = await fetch(`../../Backend/chat/start_chat?sender=${sender}&receiver=${receiver}`);
+            const response = await fetch(`../../Backend/chat/start_chat?sender=${sender}&receiver=${receiver}&initial=${firstTime.value}`);
             if (response.ok) {
                 window.location.href = '../../Frontend/Buyer/message';
             }
@@ -23,7 +25,7 @@ createApp({
             window.location.href = '../../Frontend/Farmer/message';
         } else {
             try {
-                const response = await fetch(`../../Backend/chat/start_chat?sender=${sender}&receiver=${receiver}`);
+                const response = await fetch(`../../Backend/chat/start_chat?sender=${sender}&receiver=${receiver}&initial=${firstTime.value}`);
                 if (response.ok) {
                     window.location.href = '../../Frontend/Farmer/message';
                 }
@@ -33,7 +35,7 @@ createApp({
         }
       };
 
-    return { startWarBuyer, startWarFarmer };
+    return { startWarBuyer, startWarFarmer, firstTime };
   },
 }).mount("#declaration-of-chat");
   

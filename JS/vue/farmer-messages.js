@@ -6,7 +6,7 @@ createApp({
 
     const fetchData = async () => {
         try {
-          const response = await fetch('http://localhost:3030/c/1');
+          const response = await fetch('../../Backend/chat/get_chat_api');
           if (response.ok) {
             conversations.value = await response.json();
           } else {

@@ -112,6 +112,7 @@ if (!$livestock_posts_result) {
                                 <div class="rates">⭐ 5.0 (1.1k)</div>
                                 <div class="availability"> Available now </div>
                                 <div class="bookmark"> <i class="far fa-heart bookmark-icon"></i> </div>
+                                <input type="text" v-model="firstTime">
                                 <button
                                     @click="startWarBuyer(<?php echo $user_id ?>, <?php echo $row['id']; ?>)"
                                     class="chat-button">CHAT</button>

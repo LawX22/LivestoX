@@ -113,10 +113,9 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                     </ul>
                     </div>
                 </div>
-                
                 <!-- Chat window -->
                 <div class="iframe-container">
-                <iframe :src="conversations.length > 0 ? '../Pages/direct_message?c=' + conversations[0].conversation_id : ''" 
+                <iframe :src="conversations.length > 0 ? '../Pages/direct_message?c=' + conversations[0].gochat_id : ''" 
                         name="main-content" 
                         frameborder="0">
                 </iframe>
