@@ -3,7 +3,7 @@ import { createApp, ref, onMounted, } from "https://cdnjs.cloudflare.com/ajax/li
 createApp({
   setup() {
 
-    let firstTime = ref("Give me the white stuff");
+    let firstTime = ref("Hi, is this still available?");
 
     const startWarBuyer = async (sender, receiver) => {
       if (sender === receiver ) {
