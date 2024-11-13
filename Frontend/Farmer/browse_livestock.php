@@ -135,26 +135,27 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                         <?php echo htmlspecialchars($row['weight'] ?? 'Unknown Weight') . ' kg'; ?>
                                     </div>
                                     <div class="view-button">
-                                        <a href="../../Frontend/Pages/details-page.php" class="view-button-link">
+                                        <a href="../../Frontend/Pages/details-page.php?post_id=<?php echo $row['post_id']; ?>" class="view-button-link">
                                             <button type="button">VIEW</button>
                                         </a>
                                     </div>
+
                                 </div>
 
-                                    <?php
-                                    // Inside your listings loop
-                                    if ($user_id == $row['farmer_id']) { // Only show for the farmer who posted the listing
-                                    ?>
-                                        <div class="actions">
-                                            <button class="update-button" onclick="openUpdateModal(<?php echo $row['post_id']; ?>)">UPDATE</button>
-                                            <button class="delete-button" onclick="deleteListing(<?php echo $row['post_id']; ?>)">DELETE</button>
-                                        </div>
-                                    <?php
-                                    }
-                                    ?>
+                                <?php
+                                // Inside your listings loop
+                                if ($user_id == $row['farmer_id']) { // Only show for the farmer who posted the listing
+                                ?>
+                                    <div class="actions">
+                                        <button class="update-button" onclick="openUpdateModal(<?php echo $row['post_id']; ?>)">UPDATE</button>
+                                        <button class="delete-button" onclick="deleteListing(<?php echo $row['post_id']; ?>)">DELETE</button>
+                                    </div>
+                                <?php
+                                }
+                                ?>
 
 
-                                
+
 
                             </div>
 

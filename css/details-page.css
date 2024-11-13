@@ -1,3 +1,4 @@
+/* Container for layout, keep the same */
 .container {
     display: flex;
     height: 100vh;
@@ -7,6 +8,7 @@
     box-sizing: border-box;
 }
 
+/* Left Side styling remains the same */
 .left-side {
     width: 70%;
     padding: 20px;
@@ -19,19 +21,6 @@
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.right-side {
-    width: 30%; /* Full width for the right side */
-    padding: 20px;
-    background-color: #d3d3d3;
-    border: 3px solid #52B788;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    overflow-y: auto; /* Makes the right side scrollable */
-    max-height: 100vh; /* Ensures the right side fits within the screen */
-}
-
 .livestock-img-large {
     width: 100%;
     height: auto;
@@ -42,37 +31,127 @@
     object-fit: cover;
 }
 
-.price-quantity {
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 15px;
+/* Right Side styling */
+.right-side {
+    width: 30%;
+    padding: 20px;
+    background-color: #d3d3d3;
+    border: 3px solid #52B788;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 100vh;
 }
 
+/* Title, Price, and Listing Time */
 .right-side h2 {
     font-size: 24px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
-.livestock-details p,
-.farmer-details p {
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #52B788;
+    margin-bottom: 5px;
+}
+
+.listing-time {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Details Section */
+.details-section h3,
+.seller-section h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.details-section p {
     font-size: 16px;
     line-height: 1.5;
-    margin: 8px 0;
+    margin: 5px 0;
 }
 
-.contact-button {
+/* Seller Information Section */
+.seller-section {
+    margin-top: 20px;
+}
+
+.farmer-details {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds spacing between the profile image and name */
+    margin-top: 10px;
+}
+
+/* Profile image for farmer, now circular */
+.farmer-profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #52B788;
+    object-fit: cover;
+}
+
+.farmer-details p {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Chatbox Section */
+.chatbox-section {
+    margin-top: 20px;
+    background-color: #f5f5f5;
+    border: 2px solid #52B788;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chatbox-section h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Chat Input Section */
+.chat-input-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Chat Input Box */
+.chat-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Send Button */
+.send-button {
     background-color: #52B788;
     color: #fff;
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 15px;
-    text-align: center;
+    transition: background-color 0.3s;
 }
 
-.contact-button:hover {
+.send-button:hover {
     background-color: #429f68;
 }
