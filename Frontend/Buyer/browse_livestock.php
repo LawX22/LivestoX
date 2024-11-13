@@ -144,7 +144,9 @@ if (!$livestock_posts_result) {
                                         <?php echo htmlspecialchars($row['weight'] ?? 'Unknown Weight') . ' kg'; ?>
                                     </div>
                                     <div class="view-button">
-                                        <button>VIEW</button>
+                                        <a href="../../Frontend/Pages/details-page.php" class="view-button-link">
+                                            <button type="button">VIEW</button>
+                                        </a>
                                     </div>
                                 </div>
 

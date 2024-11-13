@@ -135,7 +135,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                         <?php echo htmlspecialchars($row['weight'] ?? 'Unknown Weight') . ' kg'; ?>
                                     </div>
                                     <div class="view-button">
-                                        <a href="details-page.php" class="view-button-link">
+                                        <a href="../../Frontend/Pages/details-page.php" class="view-button-link">
                                             <button type="button">VIEW</button>
                                         </a>
                                     </div>
