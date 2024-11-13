@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../../Backend/db/db_connect.php'); 
+include('../../Backend/db/db_connect.php');
 
 // Redirect if the user is not logged in or is not a buyer
 if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'admin') {
@@ -43,10 +43,11 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LivestoX - Inbox Page</title>
+    <title>LivestoX - Livestock Forum Page</title>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
     <link rel="stylesheet" href="../../css/livestock_forum.css">
@@ -55,16 +56,21 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 </head>
+
 <body>
     <div class="container">
-        <?php 
-            $page = 'livestock_forum';
-            include('../../sidebar/sidebar-admin.php');
+        <?php
+        $page = 'livestock_forum';
+        include('../../sidebar/sidebar-admin.php');
         ?>
         <div class="main-content">
             <header>
-                <div class="logo">LivestoX Logo Here</div>
+                <div class="livestock-logo">
+                    <img src="../../Assets/livestock-logo.png" alt="Livestock Logo" class="livestock-img">
+                    <div class="logo-name">LivestoX</div>
+                </div>
             </header>
             <div class="open-forum">
                 <h2>Q&A - Livestock Forum for Farmers and Buyers</h2>
@@ -76,7 +82,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                     <div class="modal-content">
                         <span class="close-btn">&times;</span>
                         <h2>Ask a Question</h2>
-                        <form id="questionForm" action="../../Backend/forum/submit_question.php" method="post" enctype="multipart/form-data">
+                        <form id="questionForm" action="#" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="questionTitle">Title:</label>
                                 <input type="text" id="questionTitle" name="questionTitle" required>
@@ -120,57 +126,92 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
 
                 <!-- Container for displaying posts -->
                 <div id="postContainer" class="post-container">
+                    <!-- Existing posts displayed here -->
                     <?php foreach ($posts as $post): ?>
-                    <div class="forum-post card">
-                        <div class="post-header">
-                            <div class="profile-info">
-                                <div class="profile-circle"><?= strtoupper($post['first_name'][0]); ?></div>
-                                <div class="name"><?= htmlspecialchars($post['first_name'] . ' ' . $post['last_name']); ?></div>
-                                <!-- Display user type -->
-                                <div class="user-type"><?= htmlspecialchars($post['user_type']); ?></div> 
-                                <!-- Display date and time -->
-                                <div class="date-time-container">
-                                    <div class="date">
-                                        <?= date('F j, Y g:i:a', strtotime($post['created_at'])); ?>
+                        <div class="forum-post card">
+                            <div class="post-header">
+                                <div class="profile-info">
+                                    <div class="profile-image">
+                                        <?php
+                                        // Fetch the profile image of the post's author
+                                        $post_user_id = $post['user_id'];
+                                        $profileQuery = "SELECT profile_picture FROM tbl_users WHERE id = ?";
+                                        $profileStmt = mysqli_prepare($con, $profileQuery);
+                                        mysqli_stmt_bind_param($profileStmt, 'i', $post_user_id);
+                                        mysqli_stmt_execute($profileStmt);
+                                        mysqli_stmt_bind_result($profileStmt, $post_profile_picture);
+                                        mysqli_stmt_fetch($profileStmt);
+                                        mysqli_stmt_close($profileStmt);
+
+                                        // Determine the correct profile picture to show
+                                        if (!empty($post_profile_picture) && file_exists('../../uploads/profile_pictures/' . $post_profile_picture)) {
+                                            $post_profile_image = '../../uploads/profile_pictures/' . $post_profile_picture;
+                                        } else {
+                                            $post_profile_image = $default_profile_picture; // Use default if not found
+                                        }
+                                        ?>
+                                        <img src="<?php echo htmlspecialchars($post_profile_image); ?>" alt="Profile Image">
                                     </div>
-                                    
-                                    <div class="meatball-menu"> 
-                                        <i class="fas fa-ellipsis-v"></i>
-                                        <div class="dropdown-menu">
-                                            <!-- <a href="#" class="dropdown-item" data-post-id="<?= $post['id']; ?>">Edit</a> -->
-                                            <a href="#" class="dropdown-item delete-post" data-post-id-delete="<?= $post['id']; ?>">Delete</a>
+                                    <div class="name"><?= htmlspecialchars($post['first_name'] . ' ' . $post['last_name']); ?></div>
+
+                                    <!-- Display user type with dynamic background color -->
+                                    <div class="user-type" style="background-color: <?= ($post['user_type'] === 'farmer') ? '#FFA908' : '#52B788'; ?>;">
+                                        <?= htmlspecialchars($post['user_type']); ?>
+                                    </div>
+
+                                    <!-- Display date and time -->
+                                    <div class="date-time-container">
+                                        <div class="date">
+                                            <?= date('F j, Y g:i:a', strtotime($post['created_at'])); ?>
+                                        </div>
+
+                                        <!-- Meatball menu -->
+                                        <div class="meatball-menu">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                            <div class="dropdown-menu">
+                                                <!-- <a href="#" class="dropdown-item" data-post-id="<?= $post['id']; ?>">Edit</a> -->
+                                                <a href="#" class="dropdown-item delete-post" data-post-id-delete="<?= $post['id']; ?>">Delete</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
-                        </div>
-                        <div class="post-content">
-                            <h3><?= htmlspecialchars($post['title']); ?></h3>
-                            <p><?= nl2br(htmlspecialchars($post['description'])); ?></p>
-                            <?php if ($post['image']): ?>
-                                <img src="<?= htmlspecialchars('uploads/forum/' . $post['image']); ?>" alt="Post Image">
-                            <?php endif; ?>
-                        </div>
-                        <div class="post-actions">
-                            <div class="likes">
-                                <i class="fas fa-thumbs-up"></i> 11k
                             </div>
-                            <div class="dislikes">
-                                <i class="fas fa-thumbs-down"></i> 500
+
+                            <div class="post-content">
+                                <h3><?= htmlspecialchars($post['title']); ?></h3>
+                                <p><?= nl2br(htmlspecialchars($post['description'])); ?></p>
+
+                                <!-- Slot for image post -->
+                                <?php if ($post['image']): ?>
+                                    <div class="post-image">
+                                        <img src="<?= htmlspecialchars('../../uploads/forum_posts/' . $post['image']); ?>" alt="Post Image">
+                                    </div>
+                                <?php endif; ?>
                             </div>
-                            <div class="comments">
-                                <i class="fas fa-comments"></i> 100
+
+                            <div class="post-actions">
+                                <div class="likes">
+                                    <i class="fas fa-thumbs-up"></i> 11k
+                                </div>
+                                <div class="dislikes">
+                                    <i class="fas fa-thumbs-down"></i> 500
+                                </div>
+                                <div class="comments">
+                                    <i class="fas fa-comments"></i> 100
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
 
-            </div>
-        </div>
-    </div>
-
-    <script src="../../js/logout-confirmation.js"></script>
-    <script src="../../js/forum-modal.js"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="../../js/logout-confirmation.js"></script>
+                <script src="../../js/forum/forum-modal.js"></script>
+                <script src="../../js/forum/submit-ajax.js"></script>
+                <script src="../../js/forum/update-ajax.js"></script>
+                <script src="../../js/forum/delete-ajax.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+                <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 </body>
+
 </html>
