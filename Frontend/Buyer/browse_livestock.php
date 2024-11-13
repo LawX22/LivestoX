@@ -144,10 +144,11 @@ if (!$livestock_posts_result) {
                                         <?php echo htmlspecialchars($row['weight'] ?? 'Unknown Weight') . ' kg'; ?>
                                     </div>
                                     <div class="view-button">
-                                        <a href="../../Frontend/Pages/details-page.php" class="view-button-link">
-                                            <button type="button">VIEW</button>
-                                        </a>
-                                    </div>
+    <a href="../../Frontend/Pages/details-page.php?post_id=<?php echo $row['post_id']; ?>" class="view-button-link">
+        <button type="button">VIEW</button>
+    </a>
+</div>
+
                                 </div>
 
                                 <input type="text" v-model="firstTime">
