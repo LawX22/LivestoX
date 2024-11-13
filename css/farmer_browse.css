@@ -250,6 +250,14 @@ header {
     font-size: 12px;
 }
 
+.actions {
+    border: 1px solid rgba(128, 128, 128, 0.547);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 5px 20px 12px 20px;
+    border-radius: 8px;
+}
 
 .actions .update-button, .actions .delete-button, .chat-button {
     padding: 8px 12px;

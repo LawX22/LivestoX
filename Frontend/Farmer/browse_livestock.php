@@ -117,7 +117,8 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                     <input type="text" v-model="firstTime">
                                     <button
                                         @click="startWarFarmer(<?php echo $user_id ?>, <?php echo $row['id']; ?>)"
-                                        class="chat-button">CHAT</button>
+                                        class="chat-button">CHAT
+                                    </button>
                                 </div>
 
                                 <div class="card-more-info">
@@ -138,6 +139,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                             <button type="button">VIEW</button>
                                         </a>
                                     </div>
+                                </div>
 
                                     <?php
                                     // Inside your listings loop
@@ -152,7 +154,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                     ?>
 
 
-                                </div>
+                                
 
                             </div>
 
