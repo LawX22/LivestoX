@@ -135,7 +135,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                         <?php echo htmlspecialchars($row['weight'] ?? 'Unknown Weight') . ' kg'; ?>
                                     </div>
                                     <div class="view-button">
-                                        <a href="details-page.php" class="view-button-link">
+                                        <a href="details-page.php?uid=<?php echo $user_id ?>&id=<?php echo $row['id']; ?>" class="view-button-link">
                                             <button type="button">VIEW</button>
                                         </a>
                                     </div>
@@ -160,6 +160,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
             </div>
         </div>
     </div>
+    <?php  include('../../footer/footer.php'); ?>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

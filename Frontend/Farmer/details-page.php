@@ -21,6 +21,8 @@
                     <!-- Messages will appear here -->
                 </div>
                 <div class="chat-input">
+                    <input type="hidden" id="uid-input">
+                    <input type="hidden" id="id-input">
                     <input type="text" placeholder="Type a message..." id="chat-input-field">
                     <button onclick="sendMessage()">Send</button>
                 </div>
@@ -29,18 +31,59 @@
     </div>
 
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const uid = urlParams.get("uid");
+        const id = urlParams.get("id");
+
+        if (uid) {
+            document.getElementById("uid-input").value = uid;
+        }
+
+        if (id) {
+            document.getElementById("id-input").value = id;
+        }
+
+        document.getElementById("chat-input-field").value = "Hello World";
+
         function sendMessage() {
-            const inputField = document.getElementById('chat-input-field');
-            const message = inputField.value.trim();
-            if (message) {
-                const messagesContainer = document.getElementById('chat-messages');
-                const newMessage = document.createElement('div');
-                newMessage.className = 'message';
-                newMessage.textContent = message;
-                messagesContainer.appendChild(newMessage);
-                inputField.value = '';
+            if (uid === id ) {
+                window.location.href = '../../Frontend/Farmer/message';
+            } else {
+                const uid = document.getElementById("uid-input").value;
+                const id = document.getElementById("id-input").value;
+                const message = document.getElementById("chat-input-field").value;
+
+                if (!message.trim()) {
+                    alert("Please type a message.");
+                    return;
+                }
+
+                const data = {
+                    sender: uid,
+                    receiver: id,
+                    initial: message
+                };
+
+                fetch('../../Backend/chat/start_chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('Message sent successfully!');
+                    document.getElementById("chat-input-field").value = '';
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Error sending message.');
+                });
             }
         }
+
     </script>
 </body>
 </html>

@@ -2,9 +2,17 @@
 include('../../Backend/db/db_connect.php');
 
 // if(isset($_POST['sender']) && isset($_POST['receiver'])) {
-    $sender = $_GET['sender'];
-    $receiver = $_GET['receiver'];
-    $initial = $_GET['initial'];
+    // $sender = $_POST['sender'];
+    // $receiver = $_POST['receiver'];
+    // $initial = $_POST['initial'];
+
+    $rawData = file_get_contents('php://input');
+    $data = json_decode($rawData, true);
+
+    $sender = $data['sender'] ?? null;
+    $receiver = $data['receiver'] ?? null;
+    $initial = $data['initial'] ?? null;
+
     $gochat_id = rand();
 
     $status = 'request';
