@@ -1,79 +1,157 @@
+/* Container for layout, keep the same */
 .container {
-    display: flex; 
-    height: 100vh; 
+    display: flex;
+    height: 100vh;
     width: 100%;
-}
-
-.left-side {
-    width: 75%; 
-    padding: 20px; 
-    background-color: #f0f0f0; 
-    border: 3px solid red;
-    border-radius: 20px;
-}
-
-.right-side {
-    width: 25%; 
+    gap: 20px;
     padding: 20px;
-    background-color: #d3d3d3; 
-    border: 3px solid red;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
+    box-sizing: border-box;
 }
 
-.chatbox {
-    display: flex;
-    flex-direction: column;
-    height: 20%;
-    border: 2px solid #999;
-    border-radius: 10px;
-    margin-top: 20px;
-    background-color: #fff;
-}
-
-.chat-messages {
-    flex-grow: 1;
-    padding: 10px;
-    overflow-y: auto;
-    border-bottom: 1px solid #ddd;
-}
-
-.message {
+/* Left Side styling remains the same */
+.left-side {
+    width: 70%;
+    padding: 20px;
     background-color: #f0f0f0;
-    border-radius: 5px;
-    padding: 8px;
+    border: 3px solid #52B788;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.livestock-img-large {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    object-fit: cover;
+}
+
+/* Right Side styling */
+.right-side {
+    width: 30%;
+    padding: 20px;
+    background-color: #d3d3d3;
+    border: 3px solid #52B788;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+/* Title, Price, and Listing Time */
+.right-side h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #52B788;
     margin-bottom: 5px;
 }
 
-.chat-input {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ddd;
+.listing-time {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 20px;
 }
 
-.chat-input input {
-    flex-grow: 1;
-    padding: 8px;
+/* Details Section */
+.details-section h3,
+.seller-section h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.details-section p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 5px 0;
+}
+
+/* Seller Information Section */
+.seller-section {
+    margin-top: 20px;
+}
+
+.farmer-details {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds spacing between the profile image and name */
+    margin-top: 10px;
+}
+
+/* Profile image for farmer, now circular */
+.farmer-profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #52B788;
+    object-fit: cover;
+}
+
+.farmer-details p {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Chatbox Section */
+.chatbox-section {
+    margin-top: 20px;
+    background-color: #f5f5f5;
+    border: 2px solid #52B788;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chatbox-section h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Chat Input Section */
+.chat-input-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Chat Input Box */
+.chat-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-right: 5px;
 }
 
-.chat-input button {
-    padding: 8px 12px;
-    background-color: #007bff;
+/* Send Button */
+.send-button {
+    background-color: #52B788;
     color: #fff;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-.chat-input button:hover {
-    background-color: #0056b3;
-}
-
-p {
-    font-weight: bold;
-    padding: 8px;
+.send-button:hover {
+    background-color: #429f68;
 }

@@ -32,12 +32,11 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
 $listings_query = "SELECT lp.*, u.id, u.first_name, u.last_name 
     FROM livestock_posts lp 
     JOIN tbl_users u ON lp.farmer_id = u.id 
-    WHERE lp.farmer_id = ? 
     ORDER BY lp.date_posted DESC"; // Order by date_posted in descending order
 $listings_stmt = mysqli_prepare($con, $listings_query);
-mysqli_stmt_bind_param($listings_stmt, "i", $user_id);
 mysqli_stmt_execute($listings_stmt);
 $listings_result = mysqli_stmt_get_result($listings_stmt);
+
 
 ?>
 <!DOCTYPE html>
@@ -118,7 +117,8 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                     <input type="text" v-model="firstTime">
                                     <button
                                         @click="startWarFarmer(<?php echo $user_id ?>, <?php echo $row['id']; ?>)"
-                                        class="chat-button">CHAT</button>
+                                        class="chat-button">CHAT
+                                    </button>
                                 </div>
 
                                 <div class="card-more-info">
@@ -135,17 +135,27 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                         <?php echo htmlspecialchars($row['weight'] ?? 'Unknown Weight') . ' kg'; ?>
                                     </div>
                                     <div class="view-button">
-                                        <a href="details-page.php?uid=<?php echo $user_id ?>&id=<?php echo $row['id']; ?>" class="view-button-link">
+                                        <a href="../../Frontend/Pages/details-page.php?post_id=<?php echo $row['post_id']; ?>" class="view-button-link">
                                             <button type="button">VIEW</button>
                                         </a>
                                     </div>
 
+                                </div>
+
+                                <?php
+                                // Inside your listings loop
+                                if ($user_id == $row['farmer_id']) { // Only show for the farmer who posted the listing
+                                ?>
                                     <div class="actions">
                                         <button class="update-button" onclick="openUpdateModal(<?php echo $row['post_id']; ?>)">UPDATE</button>
                                         <button class="delete-button" onclick="deleteListing(<?php echo $row['post_id']; ?>)">DELETE</button>
                                     </div>
+                                <?php
+                                }
+                                ?>
 
-                                </div>
+
+
 
                             </div>
 

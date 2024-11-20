@@ -51,12 +51,12 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
             include('../../sidebar/sidebar-admin.php');
         ?>
         <div class="main-content">
-            <header>
+            <!-- <header>
                 <div class="logo">LivestoX Logo Here</div>
                 <div class="search">
                     <input type="text" placeholder="Search Livestock">
                 </div>
-            </header>
+            </header> -->
                     <h1>REPORTS PAGE</h1>
             </div>
         </div>

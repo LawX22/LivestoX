@@ -112,10 +112,6 @@ if (!$livestock_posts_result) {
                                 <div class="rates">⭐ 5.0 (1.1k)</div>
                                 <div class="availability"> Available now </div>
                                 <div class="bookmark"> <i class="far fa-heart bookmark-icon"></i> </div>
-                                <input type="text" v-model="firstTime">
-                                <button
-                                    @click="startWarBuyer(<?php echo $user_id ?>, <?php echo $row['id']; ?>)"
-                                    class="chat-button">CHAT</button>
                             </div>
 
                             <div class="post-date"><?php echo $formatted_date_time; ?></div>
@@ -148,9 +144,18 @@ if (!$livestock_posts_result) {
                                         <?php echo htmlspecialchars($row['weight'] ?? 'Unknown Weight') . ' kg'; ?>
                                     </div>
                                     <div class="view-button">
-                                        <button>VIEW</button>
+                                        <a href="../../Frontend/Pages/details-page.php?post_id=<?php echo $row['post_id']; ?>" class="view-button-link">
+                                            <button type="button">VIEW</button>
+                                        </a>
                                     </div>
+
                                 </div>
+
+                                <input type="text" v-model="firstTime">
+                                <button
+                                    @click="startWarBuyer(<?php echo $user_id ?>, <?php echo $row['id']; ?>)"
+                                    class="chat-button">CHAT
+                                </button>
 
                             </div>
 
