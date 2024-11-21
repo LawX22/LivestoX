@@ -155,3 +155,34 @@
 .send-button:hover {
     background-color: #429f68;
 }
+
+/* Floating Back Icon */
+.floating-back-icon {
+    position: fixed;
+    top: 30px; /* Adjust as needed */
+    left: 30px; /* Adjust as needed */
+    z-index: 1000;
+    background-color: #52b78891; /* Optional background */
+    border: 5px solid #ffffffd8;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.floating-back-icon a {
+    color: #ffffff; /* Icon color */
+    font-size: 24px;
+    text-decoration: none;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.floating-back-icon a:hover {
+    transform: scale(1.2);
+    color: #40916c; /* Darker shade on hover */
+}
+

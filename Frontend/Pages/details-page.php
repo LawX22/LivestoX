@@ -2,10 +2,19 @@
 session_start();
 include('../../Backend/db/db_connect.php');
 
+// Check if user is logged in and retrieve user_type
+if (isset($_SESSION['user_type'])) {
+    $user_type = $_SESSION['user_type'];
+} else {
+    echo "User not logged in.";
+    exit();
+}
+
 // Fetch the post_id from the URL
 $post_id = isset($_GET['post_id']) ? (int)$_GET['post_id'] : 0;
 
 $user_id = $_SESSION['id'];
+
 // Query to get the specific livestock details
 $listing_query = "SELECT lp.post_id, lp.title, lp.description, lp.price, lp.quantity, lp.image_posts, lp.date_posted, 
                   lp.livestock_type, lp.breed, lp.weight, lp.health_status, lp.location, u.id, u.first_name, u.last_name, u.profile_picture 
@@ -38,6 +47,15 @@ $image_url = !empty($listing['image_posts']) && file_exists('../../uploads/lives
 $farmer_profile_picture = !empty($listing['profile_picture']) && file_exists('../../uploads/profile_pictures/' . $listing['profile_picture'])
     ? '../../uploads/profile_pictures/' . htmlspecialchars($listing['profile_picture'])
     : $default_image;
+
+// Determine back URL based on user type
+if ($user_type === 'farmer') {
+    $back_url = "../../Frontend/Farmer/browse_livestock.php";
+} elseif ($user_type === 'buyer') {
+    $back_url = "../../Frontend/Buyer/browse_livestock.php";
+} else {
+    $back_url = "../../Frontend/landingpage.php"; 
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,13 +63,22 @@ $farmer_profile_picture = !empty($listing['profile_picture']) && file_exists('..
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/details-page.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livestock Details</title>
+    <title>Livestock | Details</title>
 </head>
 
 <body>
+
+    <!-- Floating Back Icon -->
+    <div class="floating-back-icon">
+        <a href="<?php echo $back_url; ?>">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
+    
     <div class="container">
         <!-- Left Side: Image -->
         <div class="left-side">
@@ -91,8 +118,7 @@ $farmer_profile_picture = !empty($listing['profile_picture']) && file_exists('..
                     <input type="text" class="chat-input" id="chat-input-field" placeholder="Type your message here...">
                     <button
                         class="send-button"
-                        onclick="sendMessage(<?php echo $user_id ?>, <?php echo htmlspecialchars($listing['id']); ?>)"
-                        >Send</button>
+                        onclick="sendMessage(<?php echo $user_id ?>, <?php echo htmlspecialchars($listing['id']); ?>)">Send</button>
                 </div>
             </div>
 
@@ -102,7 +128,7 @@ $farmer_profile_picture = !empty($listing['profile_picture']) && file_exists('..
         document.getElementById("chat-input-field").value = "Hello World";
 
         function sendMessage(uid, id) {
-            if (uid === id ) {
+            if (uid === id) {
                 window.location.href = '../../Frontend/Farmer/message';
             } else {
                 const message = document.getElementById("chat-input-field").value;
@@ -119,25 +145,24 @@ $farmer_profile_picture = !empty($listing['profile_picture']) && file_exists('..
                 };
 
                 fetch('../../Backend/chat/start_chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    alert('Message sent successfully!');
-                    document.getElementById("chat-input-field").value = '';
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    alert('Error sending message.');
-                });
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        alert('Message sent successfully!');
+                        document.getElementById("chat-input-field").value = '';
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        alert('Error sending message.');
+                    });
             }
         }
-
     </script>
 </body>
 

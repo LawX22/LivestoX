@@ -50,7 +50,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/farmer_browse.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
-    <!-- <link rel="stylesheet" href="../../css/modal.css"> -->
+    <link rel="stylesheet" href="../../css/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
