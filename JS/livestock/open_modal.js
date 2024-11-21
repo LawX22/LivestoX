@@ -1,14 +1,16 @@
-// Open Modal
-function openModal(modalId) {
-    document.getElementById(modalId).style.display = "block";
+// Toggle the dropdown menu when the kebab icon is clicked
+function toggleDropdown(postId) {
+    var dropdown = document.getElementById('dropdown-' + postId);
+    
+    // Toggle the display of the dropdown
+    if (dropdown.style.display === "block") {
+        dropdown.style.display = "none"; // Hide the dropdown
+    } else {
+        dropdown.style.display = "block"; // Show the dropdown
+    }
 }
 
-// Close Modal
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = "none";
-}
-
-// Fetch post data and open update modal
+// Open Modal for editing the post
 function openUpdateModal(postId) {
     // Fetch existing post data
     fetch(`../../Backend/livestock_posts/fetch_post.php?post_id=${postId}`)
@@ -37,8 +39,17 @@ function openUpdateModal(postId) {
         .catch(error => console.error('Error fetching post data:', error));
 }
 
-// Open specific Post Modal (Livestock or Auction)
-function openPostModal(postModalId) {
-    closeModal('createListingModal'); // Close the initial modal
-    openModal(postModalId); // Open the respective post modal
+// Open a generic modal
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = "block";
+}
+
+// Close a generic modal
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+}
+
+function toggleDropdown(postId) {
+    const dropdown = document.getElementById(`dropdown-${postId}`);
+    dropdown.classList.toggle('show');
 }

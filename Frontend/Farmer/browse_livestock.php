@@ -98,7 +98,24 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                 <div class="rates">⭐ 5.0 (1.1k)</div>
                                 <div class="availability"> Available now </div>
                                 <div class="bookmark"> <i class="far fa-heart bookmark-icon"></i> </div>
-                                <!-- <button class="chat-button">CHAT</button> -->
+
+                                    <?php
+                                    // Inside your listings loop
+                                    if ($user_id == $row['farmer_id']) { // Only show for the farmer who posted the listing
+                                    ?>
+                                        <div class="kebab-menu">
+                                            <button class="kebab-button" onclick="toggleDropdown(<?php echo $row['post_id']; ?>)">
+                                            <span class="kebab-icon"><i class="fas fa-ellipsis-v"></i></span> 
+                                            </button>
+                                            <div id="dropdown-<?php echo $row['post_id']; ?>" class="dropdown-content">
+                                                <button class="update-button" onclick="openUpdateModal(<?php echo $row['post_id']; ?>)">UPDATE</button>
+                                                <button class="delete-button" onclick="deleteListing(<?php echo $row['post_id']; ?>)">DELETE</button>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+
                             </div>
 
                             <div class="post-date"><?php echo $formatted_date_time; ?></div>
@@ -138,21 +155,6 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
 
                                 </div>
 
-                                <?php
-                                // Inside your listings loop
-                                if ($user_id == $row['farmer_id']) { // Only show for the farmer who posted the listing
-                                ?>
-                                    <div class="actions">
-                                        <button class="update-button" onclick="openUpdateModal(<?php echo $row['post_id']; ?>)">UPDATE</button>
-                                        <button class="delete-button" onclick="deleteListing(<?php echo $row['post_id']; ?>)">DELETE</button>
-                                    </div>
-                                <?php
-                                }
-                                ?>
-
-
-
-
                             </div>
 
                         </div>
@@ -166,7 +168,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
             </div>
         </div>
     </div>
-    <?php  include('../../footer/footer.php'); ?>
+    <?php include('../../footer/footer.php'); ?>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
