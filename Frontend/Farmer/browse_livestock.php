@@ -115,11 +115,6 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                         <div class="livestock-title"> <strong><?php echo htmlspecialchars($row['title']); ?></strong></div>
                                         <div class="price"> <strong>₱<?php echo htmlspecialchars($row['price']); ?></strong> /Head</div>
                                     </div>
-                                    <input type="text" v-model="firstTime">
-                                    <button
-                                        @click="startWarFarmer(<?php echo $user_id ?>, <?php echo $row['id']; ?>)"
-                                        class="chat-button">CHAT
-                                    </button>
                                 </div>
 
                                 <div class="card-more-info">
