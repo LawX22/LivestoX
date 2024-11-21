@@ -1,126 +1,642 @@
-/* General Reset */
-* {
+/* Body and General Wrapper */
+body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    color: #333;
 }
 
-/* Body */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
-    height: 100vh; /* Make the body take up the full screen height */
-    display: flex;
-    justify-content: center; /* Center the layout horizontally */
-    align-items: center; /* Center the layout vertically */
-    margin: 0;
+.content-wrapper {
+    margin: 0 auto; /* Centers the content horizontally */
+    padding: 0 20px; /* Adds padding for smaller screens */
+    max-width: 1200px; /* Restricts width to prevent overstretching */
 }
 
 /* Profile Container */
 .profile-container {
-    display: flex;
-    width: 100%;
-    height: 100%; /* Make the profile container take up the full height */
-    max-width: 1400px; /* Optional: to limit the width */
-}
-
-/* Sidebar */
-.sidebar {
-    width: 250px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0; /* Prevent the sidebar from shrinking */
-}
-
-.sidebar-profile {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.profile-img-box {
-    width: 80px;
-    height: 80px;
-    background-color: #ccc;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.profile-name-box {
-    width: 150px;
-    height: 20px;
-    background-color: #ddd;
-    margin-bottom: 5px;
-}
-
-.user-type-box {
-    width: 100px;
-    height: 15px;
-    background-color: #ddd;
-}
-
-/* Sidebar Navigation */
-.sidebar-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar-nav ul li {
-    margin: 15px 0;
-}
-
-.nav-link-box {
-    width: 100%;
-    height: 35px;
-    background-color: #ddd;
-    border-radius: 5px;
-}
-
-/* Main Content */
-.main-content {
-    flex-grow: 1;
-    margin-left: 20px;
-    padding: 20px;
-    overflow-y: auto; /* Allow scrolling if content overflows */
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto; /* Center the profile container */
+    overflow: hidden; /* Ensure content like the cover photo stays inside the container */
+    border-radius: 10px;
+    margin-top: 5px;   
 }
 
 /* Cover Photo */
 .cover-photo {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    background-color: #ccc;
+    height: 400px; /* Adjust the height as needed */
+    overflow: hidden;
+    border: 3px solid #52B788;
+    border-radius: 10px; 
 }
 
-.cover-img-box {
-    width: 100%;
+.cover-photo img {
+    width: 100%; /* Makes the image scale to the container width */
     height: 100%;
-    background-color: #bbb;
+    object-fit: cover;
+    object-position: center;
 }
 
-/* Profile Info */
-.profile-info {
+/* Profile Header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: -60px; /* Creates overlap with the cover photo */
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    flex-wrap: wrap; /* Ensures elements wrap on smaller screens */
+}
+
+/* Left Side: Profile Image and Info */
+.left-side {
+    display: flex;
+    align-items: center;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+    border: 3px solid #1e47ddc8;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.info-and-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+.role {
+    font-size: 1rem;
+    color: gray;
+}
+
+.rating {
+    color: gold;
+    font-size: 1.2rem;
+}
+
+/* Right Side: Stats and Message Button */
+.right-side {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.profile-stats {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.profile-stats p {
+    margin: 5px 0;
+}
+
+.message-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.message-btn:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        align-items: flex-start;
+    }
+
+    .left-side {
+        margin-bottom: 15px; /* Add margin to separate left-side and right-side */
+    }
+
+    .right-side {
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .message-btn {
+        width: 100%; /* Make the message button full-width on smaller screens */
+    }
+}
+
+
+/* Main Content */
+.main-content {
+    display: flex;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+/* Sidebar Styling */
+.user-info {
+    width: 25%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
 }
 
-.about-box {
-    width: 100%;
-    height: 100px;
-    background-color: #ddd;
+.user-info h3 {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
 }
 
-/* Activity Feed */
-.activity-feed {
-    margin-top: 20px;
+
+/* Information Section */
+.information p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
 }
 
-.activity-box {
-    width: 100%;
-    height: 50px;
-    background-color: #ddd;
+.information strong {
+    color: #333;
+}
+
+.information span {
+    color: #777;
+    font-weight: normal;
+}
+
+/* Stats Section */
+.stats p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.stats strong {
+    color: #333;
+}
+
+/* Feedback Section */
+.feedbacks h3 {
+    font-size: 1.2rem;
+    color: #333;
     margin-bottom: 10px;
 }
+
+/* Individual Feedback Cards */
+.feedback-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+}
+
+.rating {
+    color: gold;
+    font-size: 1.2rem;
+}
+
+.feedback-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.add-feedback {
+    margin-top: 20px;
+}
+
+textarea {
+    width: 92%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.submit-feedback {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.submit-feedback:hover {
+    background-color: #45a049;
+}
+
+/* More Button */
+.more-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.more-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Feed Section Styling */
+.feed {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Navigation Styling */
+.feed-nav {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.feed-nav a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #333;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.feed-nav a.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.feed-nav a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Livestock Post Cards Section */
+/* ==========================
+   LIVESTOCK CARDS
+========================== */
+.listings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.listing-card {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.listing-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-details {
+    margin-top: 10px;
+}
+
+.animal-type {
+    font-size: 15px;
+    color: grey;
+}
+
+.card-info {
+    margin-bottom: 10px;
+    border-bottom: 3px solid rgba(128, 128, 128, 0.205);
+    padding-bottom: 12px;
+}
+
+.card-bottom-info {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-more-info {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.card-more-info i {
+    font-size: 18px;
+    color: #333;
+}
+
+.view-button {
+    display: flex;
+    align-items: center;
+}
+
+.view-button button {
+    padding: 10px 20px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    background-color: #52b788ef;
+    border: none;
+    border-bottom-left-radius: 12px;
+    border-top-right-radius: 12px;
+    cursor: pointer;
+}
+
+.view-button button:hover {
+    background-color: #4c9c76;
+}
+
+/* ==========================
+   CARD HEADER & STYLING
+========================== */
+.card-header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.availability {
+    color: green;
+    font-size: 10px;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #52b78866;
+}
+
+.bookmark {
+    font-size: 21px;
+    margin-left: auto;
+}
+
+.post-date {
+    font-size: 13px;
+    color: grey;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+/* ==========================
+   BUTTONS (CARD HEADER)
+========================== */
+.card-header .chat-button, .card-header .details-button {
+    background-color: #52B788;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.actions {
+    border: 1px solid rgba(128, 128, 128, 0.547);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 5px 20px 12px 20px;
+    border-radius: 8px;
+}
+
+.actions .update-button, .actions .delete-button, .chat-button {
+    padding: 8px 12px;
+    margin-top: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.actions .update-button {
+    background-color: #3486ec; /* Green color for update */
+}
+.actions .delete-button {
+    background-color: #E63946; /* Red color for delete */
+}
+.actions .update-button:hover, .actions .delete-button:hover {
+    opacity: 0.8;
+}
+
+.chat-button {
+    background-color: #f0ab21;
+    margin-left: 10px;
+}
+
+
+/* ==========================
+   Kebab Menu and Dropdown Styles
+========================== */
+
+/* Kebab Menu Container */
+.kebab-menu {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Kebab Button */
+.kebab-button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* Kebab Icon Styling */
+.kebab-icon {
+    font-size: 18px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect on Kebab Icon */
+.kebab-button:hover .kebab-icon {
+    color: #52B788; /* Green color on hover */
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: rgb(255, 251, 251);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 3px solid #215c4093;
+    width: 150px;
+    z-index: 100;
+    border-radius: 8px;
+}
+
+/* Show Dropdown when Active */
+.dropdown-content.show {
+    display: block;
+}
+
+/* Dropdown Buttons */
+.dropdown-content button {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content .update-button {
+    border-bottom: 3px solid #215c4093;
+}
+
+/* Hover Effects on Update and Delete Buttons */
+.update-button:hover {
+    background-color: #2c78b7a1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff;
+}
+
+.delete-button:hover {
+    background-color: #c13530a0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #fff
+}
+
+/* ==========================
+   Adding Animation to Show/Hide Dropdown
+========================== */
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation when dropdown is shown */
+.dropdown-content.show {
+    animation: dropdownFadeIn 0.3s ease-in-out;
+}
+
+/* Livestock Forum Section */
+/* .forum .forum-post {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.forum .forum-post p {
+    font-size: 14px;
+    color: #333;
+}
+
+.forum button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.forum button:hover {
+    background-color: #0056b3;
+} */
+
+/* Feedback and Ratings Section */
+/* .feedbacks-ratings h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+} */
+
+/* Feedback Cards */
+/* .feedback-card, .rating-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+}
+
+.rating {
+    font-size: 1.2rem;
+    color: #FFD700;
+}
+
+.feedback-card p, .rating-card p {
+    font-size: 14px;
+    color: #333;
+}
+
+.feedback-card .rating, .rating-card .rating {
+    margin-bottom: 10px;
+} */
+
+/* More Button */
+/* .more-btn, .more-forum {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.more-btn:hover, .more-forum:hover {
+    background-color: #0056b3;
+} */
