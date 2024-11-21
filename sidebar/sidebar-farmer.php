@@ -1,14 +1,17 @@
 <!-- Sidebar Section -->
 <div class="sidebar">
-    <div class="profile-section">
-        <div class="profile-image">
-            <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Image">
+    <a href="../../Frontend/Pages/users-profile-page.php" class="profile-section-link">
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Image">
+            </div>
+            <div class="profile-name">
+                <?php echo htmlspecialchars($first_name . ' ' . $last_name); ?>
+                <p class="user-type"><?php echo htmlspecialchars(ucfirst($user_type)); ?></p>
+            </div>
         </div>
-        <div class="profile-name">
-            <?php echo htmlspecialchars($first_name . ' ' . $last_name); ?>
-            <p class="user-type"><?php echo htmlspecialchars(ucfirst($user_type)); ?></p>
-        </div>
-    </div>
+    </a>
+
 
     <nav>
         <ul>

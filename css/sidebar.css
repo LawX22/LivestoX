@@ -12,6 +12,8 @@
 .profile-section {
     display: flex;
     align-items: center;
+    border: 1px solid red;
+    padding: 5px;
 }
 
 .profile-image img {
@@ -31,6 +33,11 @@
 .profile-name p{
     font-size: 14px;
     font-weight: lighter;
+}
+
+.profile-section-link {
+    display: block;
+    text-decoration: none;
 }
 
 
