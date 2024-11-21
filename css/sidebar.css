@@ -128,7 +128,6 @@ i {
 }
 
 /* MODAL STYLES */
-
 .modal-choose {
     display: none;
     position: fixed;
@@ -148,11 +147,13 @@ i {
     padding: 40px;
     border-radius: 12px;
     width: 60%;
-    height: 55vh;
+    max-height: 70vh; /* Make modal height responsive */
     text-align: center;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Enable vertical scroll when content overflows */
 }
 
+/* Close Button */
 .close {
     color: #aaa;
     float: right;
@@ -230,3 +231,65 @@ i {
     }
 }
 
+/* MODAL SPECIFIC INPUT FIELDS */
+.modal-content-chs input[type="text"],
+.modal-content-chs input[type="number"],
+.modal-content-chs input[type="file"],
+.modal-content-chs textarea {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Focus Styles for Input Fields in Modal */
+.modal-content-chs input[type="text"]:focus,
+.modal-content-chs input[type="number"]:focus,
+.modal-content-chs input[type="file"]:focus,
+.modal-content-chs textarea:focus {
+    border-color: #52B788;
+    box-shadow: 0 0 8px rgba(82, 183, 136, 0.6);
+    outline: none;
+}
+
+/* File Input Specific Styling */
+.modal-content-chs input[type="file"] {
+    padding: 10px 0;
+}
+
+/* Textarea Styling */
+.modal-content-chs textarea {
+    resize: vertical;
+    min-height: 80px;
+    max-height: 200px;
+    background-color: #f9f9f9;
+}
+
+/* Placeholder Styling for Modal Inputs */
+.modal-content-chs input[type="text"]::placeholder,
+.modal-content-chs input[type="number"]::placeholder,
+.modal-content-chs textarea::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Submit Button Styling */
+.modal-content-chs button[type="submit"] {
+    padding: 12px 20px;
+    background-color: #52B788;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content-chs button[type="submit"]:hover {
+    background-color: #246949;
+}
