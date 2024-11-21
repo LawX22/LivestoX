@@ -5,9 +5,10 @@ include('../../Backend/db/db_connect.php');
 // Fetch the post_id from the URL
 $post_id = isset($_GET['post_id']) ? (int)$_GET['post_id'] : 0;
 
+$user_id = $_SESSION['id'];
 // Query to get the specific livestock details
 $listing_query = "SELECT lp.post_id, lp.title, lp.description, lp.price, lp.quantity, lp.image_posts, lp.date_posted, 
-                  lp.livestock_type, lp.breed, lp.weight, lp.health_status, lp.location, u.first_name, u.last_name, u.profile_picture 
+                  lp.livestock_type, lp.breed, lp.weight, lp.health_status, lp.location, u.id, u.first_name, u.last_name, u.profile_picture 
                   FROM livestock_posts lp 
                   JOIN tbl_users u ON lp.farmer_id = u.id 
                   WHERE lp.post_id = ?";
@@ -87,14 +88,57 @@ $farmer_profile_picture = !empty($listing['profile_picture']) && file_exists('..
             <div class="chatbox-section">
                 <h3>Chat with Seller</h3>
                 <div class="chat-input-section">
-                    <input type="text" class="chat-input" placeholder="Type your message here...">
-                    <button class="send-button">Send</button>
+                    <input type="text" class="chat-input" id="chat-input-field" placeholder="Type your message here...">
+                    <button
+                        class="send-button"
+                        onclick="sendMessage(<?php echo $user_id ?>, <?php echo htmlspecialchars($listing['id']); ?>)"
+                        >Send</button>
                 </div>
             </div>
 
         </div>
     </div>
+    <script>
+        document.getElementById("chat-input-field").value = "Hello World";
 
+        function sendMessage(uid, id) {
+            if (uid === id ) {
+                window.location.href = '../../Frontend/Farmer/message';
+            } else {
+                const message = document.getElementById("chat-input-field").value;
+
+                if (!message.trim()) {
+                    alert("Please type a message.");
+                    return;
+                }
+
+                const data = {
+                    sender: uid,
+                    receiver: id,
+                    initial: message
+                };
+
+                fetch('../../Backend/chat/start_chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('Message sent successfully!');
+                    document.getElementById("chat-input-field").value = '';
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Error sending message.');
+                });
+            }
+        }
+
+    </script>
 </body>
 
 </html>
