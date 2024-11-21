@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
+    background-color: #52b78833;
 }
 
 .content-wrapper {
@@ -140,26 +141,33 @@ body {
     display: block;
 }
 
+.profile-info {
+    padding: 0;
+}
+
 .profile-info h1 {
     font-size: 2.2rem;
     font-weight: bold;
-    margin: 0;
+    margin: 0; /* Remove margin */
 }
 
 .info-and-rating {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 3px; /* Reduced gap to bring them even closer */
+    margin-top: -4px; /* Adjust margin to bring the section closer to the h1 */
 }
 
 .role {
     font-size: 1rem;
     color: gray;
+    margin: 0; /* Ensure there's no extra margin */
 }
 
 .rating {
     color: gold;
     font-size: 1.2rem;
+    margin: 0; /* Ensure there's no extra margin */
 }
 
 /* Right Side: Stats and Message Button */
