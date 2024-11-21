@@ -20,7 +20,18 @@
             <!-- Profile Header -->
             <header class="profile-header">
                 <div class="left-side">
-                    <img src="../../uploads/profile_pictures/lawrenz.png" alt="Profile Picture" class="profile-img">
+                    <div class="profile-picture">
+                        <img src="../../uploads/profile_pictures/lawrenz.png" alt="Profile Picture" class="profile-img">
+                        <div class="camera-icon" onclick="toggleDropdown(event)">
+                            <i class="fas fa-camera"></i> <!-- Camera Icon -->
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="#" id="update-profile-picture">Update Profile Picture</a>
+                            <a href="#" id="update-cover-picture">Update Cover Picture</a>
+                        </div>
+                    </div>
+
+
                     <div class="profile-info">
                         <h1>Lawrenz Xavier Carisusa</h1>
                         <div class="info-and-rating">
@@ -219,9 +230,9 @@
                             </div>
 
                         </div>
-                        
+
                     </div>
-                    
+
 
                     <!-- 
                     Livestock Forum Section
@@ -282,5 +293,23 @@
     </div>
     </div>
 </body>
+
+<script>
+    // Function to toggle dropdown visibility
+    function toggleDropdown(event) {
+        const dropdown = event.currentTarget.nextElementSibling; // Get the next sibling (the dropdown)
+        dropdown.classList.toggle('show');
+    }
+
+    // Close the dropdown if clicked outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.camera-icon') && !event.target.matches('.dropdown-content') && !event.target.closest('.profile-picture')) {
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(function(dropdown) {
+                dropdown.classList.remove('show');
+            });
+        }
+    };
+</script>
 
 </html>

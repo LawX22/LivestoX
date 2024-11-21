@@ -60,6 +60,12 @@ body {
     align-items: center;
 }
 
+/* Profile Image and Camera Icon */
+.profile-picture {
+    position: relative;
+    display: inline-block; /* To keep the camera icon aligned with the image */
+}
+
 .profile-img {
     width: 120px;
     height: 120px;
@@ -68,6 +74,70 @@ body {
     object-fit: cover;
     border: 3px solid #1e47ddc8;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+
+.camera-icon {
+    position: absolute;
+    bottom: 3px;  
+    right: -6px; 
+    transform: translate(-50%, -50%); /* Adjust to perfectly center the icon */
+    font-size: 24px;
+    color: white; 
+    background-color: rgba(62, 60, 60, 0.849); 
+    border-radius: 50%;
+    width: 40px; /* Adjust the size of the icon container */
+    height: 40px; /* Adjust the size of the icon container */
+    display: flex;
+    justify-content: center; /* Center icon horizontally */
+    align-items: center; /* Center icon vertically */
+    cursor: pointer;
+}
+
+.camera-icon i {
+    font-size: 18px; /* Adjust the size of the camera icon inside the button */
+    color: #fff;  /* Make the icon color white */
+    display: inline-block; /* Ensures the icon behaves as inline for centering */
+    vertical-align: middle; /* Centers the icon vertically */
+}
+
+/* Dropdown Menu */
+.dropdown-content {
+    margin-top: 50px;
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 0%;  /* Align the dropdown with the camera icon */
+    left: 95%; /* Position the dropdown to the right of the camera icon */
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+}
+
+/* Show the dropdown when the 'show' class is added */
+.dropdown-content.show {
+    display: block;
+}
+
+/* Style for the dropdown items */
+.dropdown-content a {
+    display: block;
+    padding: 8px 10px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show dropdown when toggled */
+.dropdown-content.show {
+    display: block;
 }
 
 .profile-info h1 {
