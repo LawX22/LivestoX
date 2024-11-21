@@ -77,13 +77,26 @@ createApp({
       });
     };
 
+    const acceptMessage = () => {
+      fetch(`../../Backend/chat/accept_message?uid=${encodeURIComponent(chat_id)}`)
+          .then(response => {
+              if (response.ok) {
+                  console.log('Message sent successfully!');
+              } else {
+                  console.error('Failed to send message:', response.status);
+              }
+          })
+          .catch(error => {
+              console.error('Error during fetch:', error);
+          });
+  }  
     onMounted(() => {
       fetchData();
     });
 
     return { 
       message, convo, fullname, profile_picture, current_user, 
-      sendMessage, handleFileUpload, image
+      sendMessage, handleFileUpload, acceptMessage, image
     };
   },
 }).mount("#direct-convo");
