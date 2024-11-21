@@ -45,7 +45,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LivestoX - Dashboard</title>
+    <title>LivestoX | Browse Livestock </title>
     <script type="module" src="../../js/vue/start-chat.js" async></script>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/farmer_browse.css">
