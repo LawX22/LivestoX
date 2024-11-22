@@ -90,6 +90,169 @@ body {
     background-color: #0056b3;
 }
 
+.contaioner.favorite_box{
+    border: 2px solid black;
+    display: block;
+}
+
+.listings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.listing-card {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.listing-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-details {
+    margin-top: 10px;
+}
+
+.animal-type {
+    font-size: 15px;
+    color: grey;
+}
+
+.card-info {
+    margin-bottom: 10px;
+    border-bottom: 3px solid rgba(128, 128, 128, 0.205);
+    padding-bottom: 12px;
+}
+
+.card-bottom-info {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-more-info {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.card-more-info i {
+    font-size: 18px;
+    color: #333;
+}
+
+.view-button {
+    display: flex;
+    align-items: center;
+}
+
+.view-button button {
+    padding: 10px 20px;
+    font-size: 12px;
+    background-color: #52b788;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-button button:hover {
+    background-color: #4c9c76;
+}
+
+/* ==========================
+   CARD HEADER & STYLING
+========================== */
+.card-header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.availability {
+    color: green;
+    font-size: 10px;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #52b78866;
+}
+
+.bookmark {
+    font-size: 21px;
+    margin-left: auto;
+}
+
+.post-date {
+    font-size: 13px;
+    color: grey;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+/* ==========================
+   BUTTONS (CARD HEADER)
+========================== */
+.card-header .chat-button, .card-header .details-button {
+    background-color: #52B788;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.actions {
+    border: 1px solid rgba(128, 128, 128, 0.547);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 5px 20px 12px 20px;
+    border-radius: 8px;
+}
+
+.actions .update-button, .actions .delete-button, .chat-button {
+    padding: 8px 12px;
+    margin-top: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.actions .update-button {
+    background-color: #3486ec; /* Green color for update */
+}
+.actions .delete-button {
+    background-color: #E63946; /* Red color for delete */
+}
+.actions .update-button:hover, .actions .delete-button:hover {
+    opacity: 0.8;
+}
+
+.chat-button {
+    background-color: #f0ab21;
+    margin-left: 10px;
+}
+
+
 @media screen and (max-width: 768px) {
     .overview-cards, .listing-cards, .insight-cards {
         grid-template-columns: 1fr;

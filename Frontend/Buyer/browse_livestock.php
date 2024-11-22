@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('../../Backend/db/db_connect.php');
+include('../../Backend/db/function.php'); 
 
 if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'buyer') {
     header("Location: ../../Frontend/login.php");
@@ -111,7 +112,16 @@ if (!$livestock_posts_result) {
                             <div class="card-header">
                                 <div class="rates">⭐ 5.0 (1.1k)</div>
                                 <div class="availability"> Available now </div>
-                                <div class="bookmark"> <i class="far fa-heart bookmark-icon"></i> </div>
+                                <div class="bookmark">
+                                    <form action="../../Backend/livestock_posts/add_fav.php" method="POST">
+                                        <input type="hidden" name="stock_id" value="<?php echo $row['post_id']; ?>">
+                                        <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
+
+                                        <button type="submit" name="add_fav" style="border:none; background:none">
+                                            <i class="far fa-heart bookmark-icon"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
 
                             <div class="post-date"><?php echo $formatted_date_time; ?></div>
