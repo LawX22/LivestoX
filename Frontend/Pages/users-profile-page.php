@@ -71,9 +71,18 @@ if (isset($_GET['user_id'])) {
                             <i class="fas fa-camera"></i>
                         </div>
                         <div class="dropdown-content">
-                            <a href="#" id="update-profile-picture">Update Profile Picture</a>
-                            <a href="#" id="update-cover-picture">Update Cover Picture</a>
+                            <form action="../../Backend/user-profile/update_picture.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="update_type" value="profile">
+                                <input type="file" name="picture" accept="image/*" required>
+                                <button type="submit">Update Profile Picture</button>
+                            </form>
+                            <form action="../../Backend/user-profile/update_picture.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="update_type" value="cover">
+                                <input type="file" name="picture" accept="image/*" required>
+                                <button type="submit">Update Cover Picture</button>
+                            </form>
                         </div>
+
                     </div>
 
 
