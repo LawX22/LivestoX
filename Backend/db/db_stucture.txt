@@ -1,0 +1,62 @@
+forum:
+    id
+    user_id
+    title
+    description
+    image
+    created_at
+
+livestock_posts:
+    post_id
+    farmer_id
+    title
+    description
+    livestock_type
+    breed
+    age
+    weight
+    health_status
+    location
+    price
+    quantity
+    image_posts
+    date_posted
+    updated_at
+    availability
+
+tbl_users:
+    id
+    user_type
+    first_name
+    last_name
+    username
+    phone
+    email
+    password
+    profile_picture
+
+livestock_auctions:
+    id 
+    start_time
+    end_time
+    starting_price
+    current_highest_bid
+    highest_bidder_id (do not use foreign key, use join instead in the query)
+    status (e.g., 'active', 'completed', 'cancelled')
+    farmer_id (do not use foreign key, use join instead in the query)
+    title
+    description
+    livestock_type
+    breed
+    age
+    weight
+    health_status
+    location
+    price
+    quantity
+    image_posts
+    date_posted
+    updated_at
+    availability
+
+
