@@ -1,3 +1,10 @@
+// Open specific Post Modal (Livestock or Auction)
+function openPostModal(postModalId) {
+    closeModal('createListingModal'); // Close the initial modal
+    openModal(postModalId); // Open the respective post modal
+}
+
+
 // Toggle the dropdown menu when the kebab icon is clicked
 function toggleDropdown(postId) {
     var dropdown = document.getElementById('dropdown-' + postId);
@@ -9,6 +16,7 @@ function toggleDropdown(postId) {
         dropdown.style.display = "block"; // Show the dropdown
     }
 }
+
 
 // Open Modal for editing the post
 function openUpdateModal(postId) {
