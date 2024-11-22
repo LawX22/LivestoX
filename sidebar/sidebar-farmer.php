@@ -1,6 +1,6 @@
 <!-- Sidebar Section -->
 <div class="sidebar">
-    <a href="../../Frontend/Pages/users-profile-page.php" class="profile-section-link">
+    <a href="../../Frontend/Pages/users-profile-page.php?user_id=<?php echo urlencode($user_id); ?>" class="profile-section-link">
         <div class="profile-section">
             <div class="profile-image">
                 <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Image">
@@ -11,6 +11,7 @@
             </div>
         </div>
     </a>
+
 
 
     <nav>
@@ -212,27 +213,26 @@
 <script src="../../js/livestock/open_modal.js"></script>
 <script>
     // Function to open the modal
-function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = "block";
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = "block";
+        }
     }
-}
 
-// Function to close the modal
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = "none";
+    // Function to close the modal
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = "none";
+        }
     }
-}
 
-// Close modal when clicking outside the modal content
-window.onclick = function(event) {
-    const modal = document.getElementById('livestockModal');
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-};
-
+    // Close modal when clicking outside the modal content
+    window.onclick = function(event) {
+        const modal = document.getElementById('livestockModal');
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
 </script>

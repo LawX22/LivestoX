@@ -1,3 +1,48 @@
+<?php
+session_start();
+include('../../Backend/db/db_connect.php');
+
+// Default profile picture
+$default_profile_picture = '../../Assets/default-profile.png';
+
+// Check if the connection is established
+if (!isset($con) || $con->connect_error) {
+    die("Database connection failed: " . ($con->connect_error ?? 'Unknown error'));
+}
+
+// Check if `user_id` is passed in the URL
+if (isset($_GET['user_id'])) {
+    $user_id = intval($_GET['user_id']); // Ensure it's an integer to prevent SQL injection
+
+    // Prepare and execute the query
+    $query = "SELECT profile_picture, first_name, last_name, user_type FROM tbl_users WHERE id = ?";
+    $stmt = $con->prepare($query);
+
+    if ($stmt) {
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            // Fetch user details
+            $user = $result->fetch_assoc();
+            $profile_image = !empty($user['profile_picture']) ? '../../uploads/profile_pictures/' . $user['profile_picture'] : $default_profile_picture;
+            $first_name = $user['first_name'];
+            $last_name = $user['last_name'];
+            $user_type = $user['user_type'];
+        } else {
+            die("User not found.");
+        }
+    } else {
+        die("Query preparation failed: " . $con->error);
+    }
+} else {
+    die("User ID not provided.");
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,9 +66,9 @@
             <header class="profile-header">
                 <div class="left-side">
                     <div class="profile-picture">
-                        <img src="../../uploads/profile_pictures/lawrenz.png" alt="Profile Picture" class="profile-img">
+                        <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Picture" class="profile-img">
                         <div class="camera-icon" onclick="toggleDropdown(event)">
-                            <i class="fas fa-camera"></i> <!-- Camera Icon -->
+                            <i class="fas fa-camera"></i>
                         </div>
                         <div class="dropdown-content">
                             <a href="#" id="update-profile-picture">Update Profile Picture</a>
@@ -33,12 +78,10 @@
 
 
                     <div class="profile-info">
-                        <h1>Lawrenz Xavier Carisusa</h1>
+                        <h1><?php echo htmlspecialchars($first_name . ' ' . $last_name); ?></h1>
                         <div class="info-and-rating">
-                            <p class="role">Farmer</p>
-                            <div class="rating">
-                                ★★★★★
-                            </div>
+                            <p class="role"><?php echo htmlspecialchars(ucfirst($user_type)); ?></p>
+                            <div class="rating">★★★★★</div>
                         </div>
                     </div>
                 </div>
@@ -234,56 +277,6 @@
                     </div>
 
 
-                    <!-- 
-                    Livestock Forum Section
-                    <div class="forum">
-                        <div class="forum-post">
-                            <p><strong>John Doe:</strong> How do I improve the health of my cattle in the rainy season? Any advice?</p>
-                            <a href="#">Reply</a>
-                        </div>
-                        <div class="forum-post">
-                            <p><strong>Jane Smith:</strong> Can anyone recommend a good breed of goat for milk production?</p>
-                            <a href="#">Reply</a>
-                        </div>
-                        <button class="more-forum">More Forum Posts</button>
-                    </div> -->
-
-                    <!-- Feedback and Ratings Section -->
-                    <!-- <div class="feedbacks-ratings">
-                        <h3>Buyer Feedback & Farmer Ratings</h3> -->
-
-                    <!-- Individual Feedback Cards -->
-                    <!-- <div class="feedback-card">
-                            <div class="rating">
-                                ★★★★☆
-                            </div>
-                            <p><strong>John Doe:</strong> "Great experience, the livestock was healthy and exactly as described. Highly recommend!"</p>
-                        </div>
-                        <div class="feedback-card">
-                            <div class="rating">
-                                ★★★★★
-                            </div>
-                            <p><strong>Jane Smith:</strong> "Reliable farmer, smooth transaction. I will definitely buy again!"</p>
-                        </div> -->
-
-                    <!-- Individual Rating Cards -->
-                    <!-- <div class="rating-card">
-                            <p><strong>Lawrenz Xavier Carisusa</strong></p>
-                            <div class="rating">
-                                ★★★★☆
-                            </div>
-                            <p>4.5/5 - 120 votes</p>
-                        </div>
-                        <div class="rating-card">
-                            <p><strong>John Doe</strong></p>
-                            <div class="rating">
-                                ★★★☆☆
-                            </div>
-                            <p>3.0/5 - 50 votes</p>
-                        </div> -->
-
-                    <!-- More Button -->
-                    <!-- <button class="more-btn">More Feedback & Ratings</button> -->
                 </div>
             </div>
 
