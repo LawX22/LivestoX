@@ -89,6 +89,7 @@ body {
 .create-listing:hover {
     background-color: #0056b3;
 }
+/* ============================= */
 
 .contaioner.favorite_box{
     border: 2px solid black;
@@ -99,9 +100,11 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+
 }
 
 .listing-card {
+    margin-top: 10px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 8px;

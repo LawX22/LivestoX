@@ -28,6 +28,7 @@ $livestock_posts_result = mysqli_query($con, $livestock_posts_query);
 
 
 
+
 // Check if profile picture exists and file exists on server
 if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . $profile_picture)) {
     $profile_image = '../../uploads/profile_pictures/' . $profile_picture;
@@ -118,7 +119,7 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                                                 <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
 
                                                 <button type="submit" name="add_fav" style="border:none; background:none">
-                                                    <i class="far fa-heart bookmark-icon"></i>
+                                                <i class="fa-solid fa-heart" style="color: #fa3200;"></i>
                                                 </button>
                                             </form>
                                         </div>

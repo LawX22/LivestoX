@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('../../Backend/db/db_connect.php');
-include('../../Backend/db/function.php'); 
+include('../../Backend/db/function.php');
 
 if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'buyer') {
     header("Location: ../../Frontend/login.php");
@@ -28,6 +28,9 @@ $livestock_posts_query = "SELECT lp.post_id, lp.title, lp.description, lp.price,
                         WHERE lp.availability = 'available' 
                         ORDER BY lp.date_posted DESC";
 $livestock_posts_result = mysqli_query($con, $livestock_posts_query);
+
+$fav = "SELECT * FROM favorite JOIN livestock_posts as lp ON favorite.stock_id = lp.post_id WHERE user_id = $user_id ";
+$fav_result = mysqli_query($con, $fav);
 
 if (!$livestock_posts_result) {
     die("Livestock posts query failed: " . mysqli_error($con));
@@ -114,12 +117,15 @@ if (!$livestock_posts_result) {
                                 <div class="availability"> Available now </div>
                                 <div class="bookmark">
                                     <form action="../../Backend/livestock_posts/add_fav.php" method="POST">
+
+
                                         <input type="hidden" name="stock_id" value="<?php echo $row['post_id']; ?>">
                                         <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
 
                                         <button type="submit" name="add_fav" style="border:none; background:none">
                                             <i class="far fa-heart bookmark-icon"></i>
                                         </button>
+      
                                     </form>
                                 </div>
                             </div>
@@ -165,10 +171,8 @@ if (!$livestock_posts_result) {
                         </div>
                 <?php
                     }
-                } else {
-                    echo '<p>No livestock posts available.</p>';
                 }
-                mysqli_free_result($livestock_posts_result);
+
                 ?>
             </div>
         </div>
