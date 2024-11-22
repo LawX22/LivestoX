@@ -173,7 +173,10 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../../js/filtering.js"></script>
-<script src="../../js/livestock/main.js"></script>
+
+<!-- open create modal -->
+<script src="../../js/livestock/main.js"></script> 
+<!-- open update modal -->
 <script src="../../js/livestock/open_modal.js"></script>
 
 </html>
