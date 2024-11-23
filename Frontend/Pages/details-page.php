@@ -2,6 +2,8 @@
 session_start();
 include('../../Backend/db/db_connect.php');
 
+$type_visit = isset($_GET['why_are_here']) ? $_GET['why_are_here'] : '';
+
 // Check if user is logged in and retrieve user_type
 if (isset($_SESSION['user_type'])) {
     $user_type = $_SESSION['user_type'];
@@ -49,6 +51,8 @@ $farmer_profile_picture = !empty($listing['profile_picture']) && file_exists('..
     : $default_image;
 
 // Determine back URL based on user type
+
+$back_to_me = "../../Frontend/Pages/users-profile-page.php";
 if ($user_type === 'farmer') {
     $back_url = "../../Frontend/Farmer/browse_livestock.php";
 } elseif ($user_type === 'buyer') {
@@ -74,11 +78,18 @@ if ($user_type === 'farmer') {
 
     <!-- Floating Back Icon -->
     <div class="floating-back-icon">
-        <a href="<?php echo $back_url; ?>">
-            <i class="fas fa-arrow-left"></i>
-        </a>
+        <?php if ($type_visit == "profile") { ?>
+            <a href="<?php echo $back_to_me . '?user_id=' . $user_id; ?>" aria-label="Back to Profile">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        <?php } else { ?>
+            <a href="<?php echo $back_url; ?>" aria-label="Go Back">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        <?php } ?>
     </div>
-    
+
+    </div>
     <div class="container">
         <!-- Left Side: Image -->
         <div class="left-side">
@@ -112,7 +123,8 @@ if ($user_type === 'farmer') {
             </div>
 
             <!-- Chatbox Section -->
-            <div class="chatbox-section">
+            <?php if($type_visit != "profile") { ?>
+                <div class="chatbox-section">
                 <h3>Chat with Seller</h3>
                 <div class="chat-input-section">
                     <input type="text" class="chat-input" id="chat-input-field" placeholder="Type your message here...">
@@ -121,6 +133,7 @@ if ($user_type === 'farmer') {
                         onclick="sendMessage(<?php echo $user_id ?>, <?php echo htmlspecialchars($listing['id']); ?>)">Send</button>
                 </div>
             </div>
+            <?php } ?>
 
         </div>
     </div>

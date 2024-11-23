@@ -219,7 +219,7 @@ if (isset($_GET['user_id'])) {
                                         <?= $row['weight'] ?> km
                                     </div>
                                     <div class="view-button">
-                                        <a href="../../Frontend/Pages/details-page.php?post_id=<?php echo $row['post_id']; ?>" class="view-button-link">
+                                        <a href="../../Frontend/Pages/details-page.php?post_id=<?php echo $row['post_id']; ?>&why_are_here=profile" class="view-button-link">
                                             <button type="button">VIEW</button>
                                         </a>
                                     </div>
