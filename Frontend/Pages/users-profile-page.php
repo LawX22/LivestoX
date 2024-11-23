@@ -166,6 +166,8 @@ if (isset($_GET['user_id'])) {
 
                     <!-- Livestock Post Section -->
                     <div class="listings">
+                    <?php include('../../Backend/livestock_posts/bring_it_alive.php'); ?>
+                    <?php foreach ($no_lives_matter as $row): ?>
                         <div class="listing-card">
                             <div class="card-header">
                                 <div class="rates">⭐ 5.0 (1.1k)</div>
@@ -185,37 +187,39 @@ if (isset($_GET['user_id'])) {
 
                             </div>
 
-                            <div class="post-date">October 1, 2024, 2:30 PM</div>
+                            <div class="post-date"><?= date('F j, Y, g:i A', strtotime($row['date_posted']))?></div>
 
                             <div class="listing-image">
-                                <img src="../../Assets/Livestock.jpg" alt="Livestock Image" class="livestock-img">
+                                <img src="<?= !empty($row['image_posts']) && file_exists('../../uploads/livestock_posts/' . $row['image_posts'])
+                            ? '../../uploads/livestock_posts/' . htmlspecialchars($row['image_posts'])
+                            : $default_image ?>" alt="Livestock Image" class="livestock-img">
                             </div>
 
                             <div class="card-details">
                                 <div class="card-info" id="declaration-of-chat">
-                                    <div class="animal-type">Cow</div>
+                                    <div class="animal-type"><?= $row['livestock_type'] ?></div>	
 
                                     <div class="card-bottom-info">
-                                        <div class="livestock-title"> <strong>Livestock Title</strong></div>
-                                        <div class="price"> <strong>₱10,000</strong> /Head</div>
+                                        <div class="livestock-title"> <strong><?= $row['title'] ?></strong></div>
+                                        <div class="price"> <strong>$<?= $row['price'] ?></strong> /Head</div>
                                     </div>
                                 </div>
 
                                 <div class="card-more-info">
                                     <div class="info-item">
                                         <i class="fas fa-box"></i> <!-- Icon for Quantity -->
-                                        10
+                                        <?= $row['quantity'] ?>
                                     </div>
                                     <div class="info-item">
                                         <i class="fas fa-paw"></i> <!-- Icon for Breed -->
-                                        Holstein
+                                        <?= $row['breed'] ?>
                                     </div>
                                     <div class="info-item">
                                         <i class="fas fa-weight-hanging"></i> <!-- Icon for Weight -->
-                                        500 kg
+                                        <?= $row['weight'] ?> km
                                     </div>
                                     <div class="view-button">
-                                        <a href="../../Frontend/Pages/details-page.php" class="view-button-link">
+                                        <a href="../../Frontend/Pages/details-page.php?post_id=<?php echo $row['post_id']; ?>" class="view-button-link">
                                             <button type="button">VIEW</button>
                                         </a>
                                     </div>
@@ -224,64 +228,8 @@ if (isset($_GET['user_id'])) {
                             </div>
 
                         </div>
-                        <div class="listing-card">
-                            <div class="card-header">
-                                <div class="rates">⭐ 5.0 (1.1k)</div>
-                                <div class="availability"> Available now </div>
-                                <div class="bookmark"> <i class="far fa-heart bookmark-icon"></i> </div>
-
-                                <!-- Only show for the user who posted the listing -->
-                                <div class="kebab-menu">
-                                    <button class="kebab-button" onclick="toggleDropdown()">
-                                        <span class="kebab-icon"><i class="fas fa-ellipsis-v"></i></span>
-                                    </button>
-                                    <div id="dropdown" class="dropdown-content">
-                                        <button class="update-button" onclick="openUpdateModal()">UPDATE</button>
-                                        <button class="delete-button" onclick="deleteListing()">DELETE</button>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="post-date">October 1, 2024, 2:30 PM</div>
-
-                            <div class="listing-image">
-                                <img src="../../Assets/Goat-Gang.jpg" alt="Livestock Image" class="livestock-img">
-                            </div>
-
-                            <div class="card-details">
-                                <div class="card-info" id="declaration-of-chat">
-                                    <div class="animal-type">Cow</div>
-
-                                    <div class="card-bottom-info">
-                                        <div class="livestock-title"> <strong>Livestock Title</strong></div>
-                                        <div class="price"> <strong>₱10,000</strong> /Head</div>
-                                    </div>
-                                </div>
-
-                                <div class="card-more-info">
-                                    <div class="info-item">
-                                        <i class="fas fa-box"></i> <!-- Icon for Quantity -->
-                                        10
-                                    </div>
-                                    <div class="info-item">
-                                        <i class="fas fa-paw"></i> <!-- Icon for Breed -->
-                                        Holstein
-                                    </div>
-                                    <div class="info-item">
-                                        <i class="fas fa-weight-hanging"></i> <!-- Icon for Weight -->
-                                        500 kg
-                                    </div>
-                                    <div class="view-button">
-                                        <a href="../../Frontend/Pages/details-page.php" class="view-button-link">
-                                            <button type="button">VIEW</button>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
+                        <?php endforeach; ?>
+                       
 
                     </div>
 
