@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    let eventSources = {};
+
     // Handle bid submission
     $('.bid-form').on('submit', function(e) {
         e.preventDefault();
@@ -7,7 +9,6 @@ $(document).ready(function() {
         const bidAmount = form.find('input[name="bid_amount"]').val();
         const submitButton = form.find('button[type="submit"]');
 
-        // Disable submit button
         submitButton.prop('disabled', true);
 
         $.ajax({
@@ -20,8 +21,16 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.status === 'success') {
+                    form.find('input[name="bid_amount"]').val('');
                     alert(response.message);
-                    location.reload(); // Refresh to show updated bid
+                    
+                    // Update the current bid display in the auction card
+                    const auctionCard = form.closest('.modal').prev('.auction-card');
+                    auctionCard.find('.current-bid').text('₱' + parseFloat(bidAmount).toFixed(2));
+                    
+                    // Update the minimum bid value
+                    const newMinBid = parseFloat(bidAmount) + 1;
+                    form.find('input[name="bid_amount"]').attr('min', newMinBid);
                 } else {
                     alert(response.message || 'Error placing bid');
                 }
@@ -35,26 +44,68 @@ $(document).ready(function() {
         });
     });
 
-    // Search functionality
-    $('#searchAuctions').on('input', function() {
-        const searchText = $(this).val().toLowerCase();
-        $('.auction-card').each(function() {
-            const title = $(this).find('.auction-title').text().toLowerCase();
-            const description = $(this).find('.auction-description').text().toLowerCase();
-            const farmerName = $(this).find('.farmer-name').text().toLowerCase();
-            
-            if (title.includes(searchText) || 
-                description.includes(searchText) || 
-                farmerName.includes(searchText)) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    });
+    // Initialize SSE connection for an auction
+    function initializeSSE(auctionId) {
+        if (eventSources[auctionId]) {
+            eventSources[auctionId].close();
+        }
 
-    // Load bid history when viewing bids
-    function loadBidHistory(auctionId) {
+        const evtSource = new EventSource(`../../Backend/livestock_auctions/get_bid_updates.php?auction_id=${auctionId}`);
+        eventSources[auctionId] = evtSource;
+
+        evtSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            if (data.error) {
+                console.error('SSE Error:', data.error);
+                return;
+            }
+
+            // Update bid history
+            const container = $(`#bidders-data-${auctionId}`);
+            const existingRows = container.find('.bidders-row').length;
+            
+            const newRow = `
+                <div class="bidders-row" data-bid-id="${data.id}">
+                    <div class="bidders-column">${existingRows + 1}</div>
+                    <div class="bidders-column">${data.bidder_name}</div>
+                    <div class="bidders-column">₱${data.amount}</div>
+                    <div class="bidders-column">${data.bid_time}</div>
+                </div>
+            `;
+
+            if (existingRows === 0) {
+                container.html(newRow);
+            } else {
+                container.prepend(newRow);
+                // Update all rank numbers
+                container.find('.bidders-row').each(function(index) {
+                    $(this).find('.bidders-column').first().text(index + 1);
+                });
+            }
+
+            // Update current bid display in auction card and modal
+            const currentBidElements = $(`.auction-card[data-auction-id="${auctionId}"] .current-bid, #modal${auctionId} .current-bid`);
+            currentBidElements.text(`₱${data.amount}`);
+
+            // Update minimum bid amount
+            const minBid = parseFloat(data.amount) + 1;
+            $(`#bid-amount-${auctionId}`).attr('min', minBid);
+        };
+
+        evtSource.onerror = function(error) {
+            console.error('SSE Error:', error);
+            evtSource.close();
+            delete eventSources[auctionId];
+        };
+    }
+
+    // Load initial bid history and start SSE when viewing bids
+    $('.view-bids-btn').on('click', function() {
+        const auctionId = $(this).closest('.modal-content')
+                                .find('.bid-form')
+                                .data('auction-id');
+        
+        // Load initial bid history
         $.ajax({
             type: 'GET',
             url: '../../Backend/livestock_auctions/get_bids.php',
@@ -67,7 +118,7 @@ $(document).ready(function() {
                 if (response.status === 'success' && response.bids.length > 0) {
                     response.bids.forEach((bid, index) => {
                         container.append(`
-                            <div class="bidders-row">
+                            <div class="bidders-row" data-bid-id="${bid.id}">
                                 <div class="bidders-column">${index + 1}</div>
                                 <div class="bidders-column">${bid.bidder_name}</div>
                                 <div class="bidders-column">₱${parseFloat(bid.amount).toFixed(2)}</div>
@@ -78,20 +129,26 @@ $(document).ready(function() {
                 } else {
                     container.html('<p class="no-bidders">No bids yet for this auction.</p>');
                 }
+
+                // Initialize SSE after loading initial data
+                initializeSSE(auctionId);
             },
             error: function() {
                 const container = $(`#bidders-data-${auctionId}`);
                 container.html('<p class="no-bidders">Error loading bid history.</p>');
             }
         });
-    }
+    });
 
-    // Load bid history when bid modal is opened
-    $('.view-bids-btn').on('click', function() {
-        const auctionId = $(this).closest('.modal-content')
-                                .find('.bid-form')
-                                .data('auction-id');
-        loadBidHistory(auctionId);
+    // Clean up SSE connections when closing modals
+    $('.close').on('click', function() {
+        const modalId = $(this).closest('.modal').attr('id');
+        const auctionId = modalId.replace('biddingModal', '');
+        
+        if (eventSources[auctionId]) {
+            eventSources[auctionId].close();
+            delete eventSources[auctionId];
+        }
     });
 
     // Handle saving auctions

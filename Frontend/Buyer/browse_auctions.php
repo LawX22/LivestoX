@@ -56,6 +56,7 @@ $auctionsResult = mysqli_query($con, $auctionsQuery);
     <link rel="stylesheet" href="../../css/sidebar.css">
     <link rel="stylesheet" href="../../css/auction.css">
     <link rel="stylesheet" href="../../css/modal.css">
+    <link rel="stylesheet" href="../../css/browse-auctions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -79,7 +80,7 @@ $auctionsResult = mysqli_query($con, $auctionsQuery);
             <!-- Auction Cards List -->
             <div class="auction-list">
                 <?php while ($auction = mysqli_fetch_assoc($auctionsResult)): ?>
-                    <div class="auction-card">
+                    <div class="auction-card" data-auction-id="<?php echo $auction['id']; ?>">
                         <div class="auction-image">
                             <img src="../../uploads/livestock_auctions/<?php echo htmlspecialchars($auction['image_posts']); ?>" alt="Livestock Image">
                         </div>
