@@ -1,0 +1,18 @@
+CREATE TABLE bid_history (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    auction_id INT NOT NULL,
+    bidder_id INT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    bid_time DATETIME NOT NULL,
+    INDEX (auction_id),
+    INDEX (bidder_id)
+);
+
+CREATE TABLE saved_auctions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    auction_id INT NOT NULL,
+    saved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_saved_auction (user_id, auction_id),
+    INDEX (user_id)
+);

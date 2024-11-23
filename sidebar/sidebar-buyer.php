@@ -29,6 +29,15 @@
                 </a>
             </li>
             <li>
+                <a href="browse_auctions.php" class="nav-button-link">
+                    <button class="nav-button
+                            <?php if ($page == 'browse_auctions') {
+                                echo 'active';
+                            } ?>" href="../Frontend/Buyer/browse_auctions.php">
+                        <i class="fas fa-gavel"></i> Browse Auctions</button>
+                </a>
+            </li>
+            <li>
                 <a href="message.php" class="nav-button-link">
                     <button class="nav-button
                             <?php if ($page == 'message') {

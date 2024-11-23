@@ -59,4 +59,19 @@ livestock_auctions:
     updated_at
     availability
 
+bid_history:
+    id
+    auction_id
+    bidder_id
+    amount
+    bid_time
+    INDEX (auction_id),
+    INDEX (bidder_id)
 
+saved_auctions:
+    id
+    user_id
+    auction_id
+    saved_at
+    UNIQUE KEY unique_saved_auction (user_id, auction_id),
+    INDEX (user_id)
