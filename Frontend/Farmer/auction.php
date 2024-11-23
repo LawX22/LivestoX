@@ -49,6 +49,7 @@ mysqli_stmt_close($stmt);
     <link rel="stylesheet" href="../../css/sidebar.css">
     <link rel="stylesheet" href="../../css/auction.css">
     <link rel="stylesheet" href="../../css/modal.css">
+    <link rel="stylesheet" href="../../css/browse-auctions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -74,7 +75,7 @@ mysqli_stmt_close($stmt);
             <!-- Auction Cards List -->
             <div class="auction-list">
                 <?php foreach ($auctions as $auction): ?>
-                    <div class="auction-card">
+                    <div class="auction-card" data-auction-id="<?php echo $auction['id']; ?>">
                         <div class="auction-image">
                             <img src="../../uploads/livestock_auctions/<?php echo htmlspecialchars($auction['image_posts']); ?>" alt="Livestock Image">
                         </div>
@@ -83,7 +84,7 @@ mysqli_stmt_close($stmt);
                             <p class="auction-description"><?php echo htmlspecialchars($auction['description']); ?></p>
                             <div class="bidding-info">
                                 <p>Starting Bid: <span class="opening-bid">₱<?php echo number_format($auction['starting_price'], 2); ?></span></p>
-                                <p>Current Bid: <span class="current-bid">₱<?php echo number_format($auction['current_highest_bid'], 2); ?></span></p>
+                                <p>Current Bid: <span class="current-bid">₱<?php echo number_format($auction['current_highest_bid'] ?: $auction['starting_price'], 2); ?></span></p>
                             </div>
                             <div class="time-remaining">
                                 <p>Status: <?php echo htmlspecialchars($auction['status']); ?></p>
@@ -120,7 +121,7 @@ mysqli_stmt_close($stmt);
                                     <p><strong>Age:</strong> <?php echo htmlspecialchars($auction['age']); ?></p>
                                     <p><strong>Weight:</strong> <?php echo htmlspecialchars($auction['weight']); ?> kg</p>
                                     <p><strong>Starting Bid:</strong> ₱<?php echo number_format($auction['starting_price'], 2); ?></p>
-                                    <p><strong>Current Bid:</strong> ₱<?php echo number_format($auction['current_highest_bid'], 2); ?></p>
+                                    <p><strong>Current Bid:</strong> ₱<?php echo number_format($auction['current_highest_bid'] ?: $auction['starting_price'], 2); ?></p>
                                     <p><strong>Auction Start:</strong> <?php echo date('F d, Y h:i A', strtotime($auction['start_time'])); ?></p>
                                     <p><strong>Auction End:</strong> <?php echo date('F d, Y h:i A', strtotime($auction['end_time'])); ?></p>
                                 </div>
@@ -147,8 +148,10 @@ mysqli_stmt_close($stmt);
                                     <div class="bidders-column">Bid Amount</div>
                                     <div class="bidders-column">Date & Time</div>
                                 </div>
-                                <!-- Placeholder for bidders -->
-                                <p class="no-bidders">No bids yet for this auction.</p>
+                                <div id="bidders-data-<?php echo $auction['id']; ?>" class="bidders-data">
+                                    <!-- Bid history will be loaded here via AJAX -->
+                                    <p class="no-bidders">Loading bids...</p>
+                                </div>
                             </div>
 
                             <button class="back-btn" onclick="goBackToDetails('modal<?php echo $auction['id']; ?>')">Back to Full Details</button>
@@ -224,8 +227,10 @@ mysqli_stmt_close($stmt);
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../js/auction/create-auction.js"></script>
     <script src="../../js/auction/modal.js"></script>
+    <script src="../../js/auction/bidding.js"></script>
     <script src="../../js/logout-confirmation.js"></script>
     <script src="../../js/auction/countdown.js"></script>
 </body>

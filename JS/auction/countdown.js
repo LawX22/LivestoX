@@ -4,6 +4,7 @@ function startCountdown() {
     countdownElements.forEach(element => {
         const endTime = new Date(element.dataset.endTime).getTime();
         const startTime = new Date(element.dataset.startTime).getTime();
+        let countdownInterval; // Declare the interval variable in the proper scope
         
         const updateCountdown = () => {
             const now = new Date().getTime();
@@ -34,7 +35,9 @@ function startCountdown() {
             // If auction has ended
             else {
                 element.textContent = 'Over';
-                clearInterval(countdownInterval);
+                if (countdownInterval) {
+                    clearInterval(countdownInterval);
+                }
             }
         };
         
@@ -42,7 +45,21 @@ function startCountdown() {
         updateCountdown();
         
         // Set up interval to update countdown
-        const countdownInterval = setInterval(updateCountdown, 1000);
+        countdownInterval = setInterval(updateCountdown, 1000);
+        
+        // Clean up interval when the element is removed from the DOM
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.removedNodes.forEach((node) => {
+                    if (node === element) {
+                        clearInterval(countdownInterval);
+                        observer.disconnect();
+                    }
+                });
+            });
+        });
+        
+        observer.observe(element.parentNode, { childList: true });
     });
 }
 
