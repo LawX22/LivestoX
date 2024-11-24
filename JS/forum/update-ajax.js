@@ -1,5 +1,3 @@
-// update-ajax.js
-
 document.addEventListener("DOMContentLoaded", function() {
     // Get modal elements
     var editModal = document.getElementById("editModal");
@@ -39,14 +37,40 @@ document.addEventListener("DOMContentLoaded", function() {
     // Form submission event listener for the "Save Changes" button
     var editForm = document.getElementById('editForm');
     editForm.addEventListener('submit', function(event) {
-        // Show confirmation dialog before saving changes
-        var saveConfirm = confirm("Are you sure you want to save these changes?");
-
-        if (saveConfirm) {
-            alert("Changes saved successfully!");
-        } else {
-            event.preventDefault();
-            alert("Changes not saved.");
-        }
+        event.preventDefault();
+        
+            var formData = new FormData(editForm);
+            fetch('../../Backend/forum/update_question.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: data.message,
+                        confirmButtonText: 'OK',
+                    }).then(() => {
+                        window.location.reload(); // Reload the page after success
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: data.message,
+                        confirmButtonText: 'OK',
+                    });
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: 'An error occurred. Please try again.',
+                    confirmButtonText: 'OK',
+                });
+            });
     });
 });

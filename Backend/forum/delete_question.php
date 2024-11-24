@@ -2,8 +2,14 @@
 session_start();
 include('../../Backend/db/db_connect.php');
 
+// Ensure the user is logged in
+if (!isset($_SESSION['id'])) {
+    echo json_encode(['status' => 'error', 'message' => 'You must be logged in to delete a post.']);
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get JSON input
+    // Get the JSON input
     $data = json_decode(file_get_contents('php://input'), true);
     $post_id = $data['post_id'];
 
@@ -16,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Ensure the post belongs to the current user (for security)
+    // Get the user ID from session
     $user_id = $_SESSION['id'];
 
     // Fetch the image filename from the post before deletion
@@ -40,14 +46,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($imageFilename)) {
             $imagePath = '../../uploads/forum_posts/' . $imageFilename;
             if (file_exists($imagePath)) {
-                unlink($imagePath);
+                if (unlink($imagePath)) {
+                    $response = array(
+                        'status' => 'success',
+                        'message' => 'Post and associated image deleted successfully.'
+                    );
+                } else {
+                    $response = array(
+                        'status' => 'error',
+                        'message' => 'Failed to delete image file.'
+                    );
+                }
+            } else {
+                $response = array(
+                    'status' => 'success',
+                    'message' => 'Post deleted successfully, but no image file found.'
+                );
             }
+        } else {
+            $response = array(
+                'status' => 'success',
+                'message' => 'Post deleted successfully, no image associated.'
+            );
         }
-
-        $response = array(
-            'status' => 'success',
-            'message' => 'Post and associated image deleted successfully.'
-        );
     } else {
         $response = array(
             'status' => 'error',

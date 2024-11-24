@@ -8,7 +8,7 @@ document.getElementById('questionForm').addEventListener('submit', function(even
     var formData = new FormData(form);
     submitButton.disabled = true;
 
-    fetch('http://localhost/LivestoX/Backend/forum/submit_question.php', {
+    fetch('../../Backend/forum/submit_question.php', {
         method: 'POST',
         body: formData
     })
@@ -16,34 +16,45 @@ document.getElementById('questionForm').addEventListener('submit', function(even
     .then(data => {
         submitButton.disabled = false;
 
-        toastr.options = {
-            "progressBar": true,
-            "closeButton": false,
-            "positionClass": "toast-top-right", // Customize position
-            "timeOut": "2000"
-        };
-
+        // Use SweetAlert for success or error
         if (data.status === 'success') {
-            toastr.success(data.message, 'Success');
-
-            setTimeout(function() {
-                window.location.reload();
-            }, 2000);
-            
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: data.message,
+                confirmButtonText: 'OK',
+            }).then(() => {
+                location.reload();
+            });
         } else {
-            toastr.error(data.message, 'Error');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.message,
+                confirmButtonText: 'OK',
+            }).then(() => {
+                // Auto-reload after 2 seconds
+                setTimeout(function() {
+                    window.location.reload();
+                }, 2000);
+            });
         }
     })
     .catch(error => {
         submitButton.disabled = false;
         console.error('Error:', error);
-        
-        toastr.options = {
-            "progressBar": true,
-            "closeButton": true,
-            "positionClass": "toast-top-right",
-            "timeOut": "4000"
-        };
-        toastr.error('An error occurred. Please try again.', 'Error');
+
+        // Use SweetAlert for catch block error
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'An error occurred. Please try again.',
+            confirmButtonText: 'OK',
+        }).then(() => {
+            // Auto-reload after 2 seconds in case of an error
+            setTimeout(function() {
+                window.location.reload();
+            }, 2000);
+        });
     });
 });
