@@ -172,11 +172,14 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="../../js/filtering.js"></script>
 
 <!-- open create modal -->
 <script src="../../js/livestock/main.js"></script> 
 <!-- open update modal -->
 <script src="../../js/livestock/open_modal.js"></script>
+<script src="../../js/livestock/add.js"></script>
 
 </html>

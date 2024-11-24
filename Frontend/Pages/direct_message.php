@@ -65,6 +65,10 @@
             font-size: 20px;
         }
 
+        .chat-header .calendar-icon i {
+            margin-left: 10px;
+        }
+
         .chat-convo {
             flex: 1;
             padding: 10px;
@@ -200,12 +204,143 @@
         .block-button:hover {
             background-color: #b02a37;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .close-btn {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .close-btn:hover {
+            color: #ff0000;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .submit-btn {
+            background-color: #52B788;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #40916c;
+        }
     </style>
 </head>
 
 <body>
+    <link rel="stylesheet" href="review-modal.css">
     <!-- Chat window -->
     <div id="direct-convo" class="chat-window">
+
+        <div
+            v-if="isModalOpen"
+            id="transactionInfoDetailsModal"
+            class="transaction-info-modal info"
+            @click="handleModalOutsideClick">
+            <div class="transaction-info-container info">
+                <div class="transaction-info-container-header info">
+                    <h3>End Transaction</h3>
+                    <!-- Close Button -->
+                    <span
+                        @click="closeModal"
+                        class="transaction-info-close-btn info"
+                        id="closeTransactionInfoDetailsModalBtn">
+                        &times;
+                    </span>
+                </div>
+                <div class="transaction-info-details-container info">
+                    <div class="transaction-info-details info">
+                        <div class="transaction-info-details-info-container info">
+                            <div class="transaction-info-transaction-details" id="modalTransactionDetails">
+                                <div class="container">
+                                    <h3 class="title">Rate this Freelancer</h3>
+                                    <div class="star-widget" id="reviewForm">
+                                        <div class="stars">
+                                            <input type="radio" name="rate" id="rate-5" value="5" />
+                                            <label for="rate-5" class="fas fa-star"></label>
+                                            <input type="radio" name="rate" id="rate-4" value="4" />
+                                            <label for="rate-4" class="fas fa-star"></label>
+                                            <input type="radio" name="rate" id="rate-3" value="3" />
+                                            <label for="rate-3" class="fas fa-star"></label>
+                                            <input type="radio" name="rate" id="rate-2" value="2" />
+                                            <label for="rate-2" class="fas fa-star"></label>
+                                            <input type="radio" name="rate" id="rate-1" value="1" />
+                                            <label for="rate-1" class="fas fa-star"></label>
+                                        </div>
+                                        <form @submit.prevent="submitReview">
+                                            <div class="textarea">
+                                                <textarea
+                                                    v-model="reviewText"
+                                                    cols="30"
+                                                    placeholder="Describe your experience..."></textarea>
+                                            </div>
+                                            <div class="btn">
+                                                <button type="submit" class="submit-review-button">
+                                                    Submit Review
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="chat-header">
             <div class="profile-info">
                 <img :src="'../../uploads/profile_pictures/' + profile_picture" alt="Profile Picture" class="main-profile-circle">
@@ -213,6 +348,35 @@
             </div>
             <div class="calendar-icon">
                 <i class="fas fa-calendar"></i>
+
+                <!-- <i class="fas fa-info-circle" title="Rate this User" @click="openModal" id="addReviewBtn"></i> -->
+                <i class="fas fa-info-circle" title="Rate this User" id="addReviewBtn"></i>
+
+            </div>
+        </div>
+        <!-- Modal Structure -->
+        <div id="rateUserModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModal">&times;</span>
+                <h2>Rate and Review User</h2>
+                <form id="rateUserForm">
+                    <div class="form-group">
+                        <label for="rating">Rating:</label>
+                        <select id="rating" name="rating" required>
+                            <option value="">Select a rating</option>
+                            <option value="1">1 - Poor</option>
+                            <option value="2">2 - Fair</option>
+                            <option value="3">3 - Good</option>
+                            <option value="4">4 - Very Good</option>
+                            <option value="5">5 - Excellent</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="review">Review:</label>
+                        <textarea id="review" name="review" rows="4" placeholder="Write your review here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Review</button>
+                </form>
             </div>
         </div>
 

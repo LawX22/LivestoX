@@ -11,27 +11,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    if ($updateType === 'profile' && isset($_FILES['picture'])) {
-        $targetDir = "../../uploads/profile_pictures/";
-        $fileName = time() . "_" . basename($_FILES['picture']['name']); // Adding timestamp for unique file name
+    if ($updateType === 'cover' && isset($_FILES['cover'])) {
+        $targetDir = "../../uploads/cover_photos/";
+        $fileName = time() . "_" . basename($_FILES['cover']['name']); // Adding timestamp for unique file name
         $targetFilePath = $targetDir . $fileName;
 
         // Check if the file is an image
-        $check = getimagesize($_FILES['picture']['tmp_name']);
+        $check = getimagesize($_FILES['cover']['tmp_name']);
         if ($check === false) {
             echo json_encode(['success' => false, 'message' => 'File is not an image.']);
             exit;
         }
 
         // Move the uploaded file
-        if (move_uploaded_file($_FILES['picture']['tmp_name'], $targetFilePath)) {
-            // Update the user's profile picture in the database
-            $sql = "UPDATE tbl_users SET profile_picture = ? WHERE id = ?";
+        if (move_uploaded_file($_FILES['cover']['tmp_name'], $targetFilePath)) {
+            // Update the user's cover photo in the database
+            $sql = "UPDATE tbl_users SET cover_photo = ? WHERE id = ?";
             $stmt = mysqli_prepare($con, $sql);
             if ($stmt) {
                 mysqli_stmt_bind_param($stmt, "si", $fileName, $userId);
                 if (mysqli_stmt_execute($stmt)) {
-                    echo json_encode(['success' => true, 'message' => 'Profile picture updated successfully.']);
+                    echo json_encode(['success' => true, 'message' => 'Cover photo updated successfully.']);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Database update failed.']);
                 }

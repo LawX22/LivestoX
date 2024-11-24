@@ -94,7 +94,7 @@
         <div class="modal-content-chs">
             <span class="close" onclick="closeModal('livestockModal')">&times;</span>
             <h2>Post Livestock</h2>
-            <form action="../../Backend/livestock_posts/add_post.php" method="POST" enctype="multipart/form-data">
+            <form id="livestockForm" enctype="multipart/form-data">
                 <label for="livestock-title">Title:</label>
                 <input type="text" id="livestock-title" name="title" placeholder="Enter Livestock Title" required>
 
@@ -103,7 +103,7 @@
 
                 <label for="livestock-type">Type:</label>
                 <select id="livestock-type" name="livestock_type" required>
-                    <option value="Other">Choose Livestock</option>
+                    <option value="">Choose Livestock</option>
                     <option value="COW">COW</option>
                     <option value="SHEEP">SHEEP</option>
                     <option value="GOAT">GOAT</option>
@@ -133,13 +133,14 @@
                 <label for="livestock-quantity">Quantity:</label>
                 <input type="number" id="livestock-quantity" name="quantity" value="1" min="1" required>
 
-                <label for="livestock-image">Upload Livestock Image :</label>
+                <label for="livestock-image">Upload Livestock Image:</label>
                 <input type="file" id="livestock-image" name="image_posts">
 
-                <button type="submit">Submit Livestock</button>
+                <button type="submit" id="submitLivestockButton">Submit Livestock</button>
             </form>
         </div>
     </div>
+
 
     <!-- Livestock Update Modal -->
     <div id="updateLivestockModal" class="modal-choose">

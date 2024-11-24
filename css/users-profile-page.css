@@ -720,3 +720,19 @@ textarea {
 .more-btn:hover, .more-forum:hover {
     background-color: #0056b3;
 } */
+
+.post-image {
+    border: 5px solid red;
+    margin-top: 20px; 
+    text-align: center; 
+    width: 40%; 
+    max-width: 500px; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+.livestock-img  {
+    width: 10px; 
+    height: auto; 
+    border-radius: 8px; 
+}   

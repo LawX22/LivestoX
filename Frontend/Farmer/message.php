@@ -127,4 +127,5 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
     </div>
 </body>
 <script src="../../js/logout-confirmation.js"></script>
+<script src="../../js/review-modal.js"></script>
 </html>

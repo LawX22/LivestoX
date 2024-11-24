@@ -6,6 +6,8 @@ createApp({
     let message = ref("");
     let image = ref("");
 
+    let open = ref(false);
+
     const urlParams = new URLSearchParams(window.location.search);
     const chat_id = urlParams.get("c");
     const fullname = urlParams.get("n");
@@ -77,6 +79,7 @@ createApp({
       });
     };
 
+
     const acceptMessage = () => {
       fetch(`../../Backend/chat/accept_message?uid=${encodeURIComponent(chat_id)}`)
           .then(response => {
@@ -96,7 +99,26 @@ createApp({
 
     return { 
       message, convo, fullname, profile_picture, current_user, 
-      sendMessage, handleFileUpload, acceptMessage, image
+      sendMessage, handleFileUpload, acceptMessage, image, open
     };
   },
+  
 }).mount("#direct-convo");
+
+
+// Modal functionality
+document.getElementById('addReviewBtn').addEventListener('click', function () {
+  document.getElementById('rateUserModal').style.display = 'flex';
+});
+
+document.getElementById('closeModal').addEventListener('click', function () {
+  document.getElementById('rateUserModal').style.display = 'none';
+});
+
+// Optional: Close the modal when clicking outside of it
+window.addEventListener('click', function (e) {
+  const modal = document.getElementById('rateUserModal');
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
