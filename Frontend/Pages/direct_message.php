@@ -172,6 +172,34 @@
         .chat-footer input[type="file"] {
             display: none;
         }
+
+        .accept-button {
+            background-color: #52b788;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .block-button {
+            background-color: #dc3545;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .accept-button:hover {
+            background-color: #408a63;
+        }
+
+        .block-button:hover {
+            background-color: #b02a37;
+        }
     </style>
 </head>
 
@@ -199,7 +227,11 @@
         </div>
 
         <div class="chat-footer-container">
-            <div class="chat-footer">
+            <div v-if="convo.length > 0 && convo[convo.length - 1].status === 'request'" class="chat-footer">
+                <button @click="acceptMessage" class="accept-button">Accept</button>
+                <button @click="blockUser" class="block-button">Block</button>
+            </div>
+            <div v-else class="chat-footer">
                 <input type="text" placeholder="Type something..." v-model="message" @keyup.enter="sendMessage">
                 <label for="upload-image">
                     <i class="fas fa-paperclip"></i>
