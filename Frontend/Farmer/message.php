@@ -2,7 +2,7 @@
 session_start();
 include('../../Backend/db/db_connect.php');
 
-// Redirect if the user is not logged in or is not a buyer
+// Redirect if the user is not logged in or is not a farmer
 if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
     header("Location: ../../Frontend/login.php");
     exit();
@@ -47,7 +47,6 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LivestoX - Message Page</title>
-    <script type="module" src="../../js/vue/farmer-messages.js" async></script>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
     <link rel="stylesheet" href="../../css/message.css">
@@ -63,8 +62,6 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
       margin: 0;
       padding: 0;
       display: flex;
-      border: 2px solid red;
-      border-radius: 8px;
     }
 
     iframe {
@@ -75,7 +72,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
   </style>
 </head>
 <body>
-    <div id="farmer" class="container">
+    <div class="container">
         <?php 
             $page = 'message';
             include('../../sidebar/sidebar-farmer.php');
@@ -100,7 +97,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                         </div>
                     <div class="chats">
                     <ul>
-                    <?php include('../../Backend/chat/get_chat.php'); ?>
+                        <?php include('../../Backend/chat/get_chat.php'); ?>
                         <?php foreach ($chats as $row): ?>
                         <a href="../Pages/direct_message?c=<?= $row['gochat_id'] ?>&m=<?php echo $user_id ?>&s=<?= $row['status'] ?>&p=<?= $row['profile_picture'] ?>&n=<?= $row['full_name'] ?>" target="main-content">
                             <li>
@@ -116,13 +113,15 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                     </ul>
                     </div>
                 </div>
+                
                 <!-- Chat window -->
                 <div class="iframe-container">
-                <iframe :src="conversations.length > 0 ? '../Pages/direct_message?c=' + conversations[0].gochat_id : ''" 
-                        name="main-content" 
-                        frameborder="0">
-                </iframe>
+                    <iframe :src="conversations.length > 0 ? '../Pages/direct_message?c=' + conversations[0].gochat_id : ''" 
+                            name="main-content" 
+                            frameborder="0">
+                    </iframe>
                 </div>
+                
             </div>
         </div>
     </div>
