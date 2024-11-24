@@ -4,14 +4,14 @@ include('../../Backend/db/db_connect.php');
 
 // Check if user is logged in
 if (!isset($_SESSION['id'])) {
-    header('HTTP/1.1 401 Unauthorized'); // Send an unauthorized header
-    exit(); // Terminate the script
+    http_response_code(401); // Unauthorized
+    echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
+    exit();
 }
 
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve the form inputs
-    $post_id = $_POST['post_id']; // The ID of the post to update
+    $post_id = $_POST['post_id'];
     $title = $_POST['title'];
     $description = $_POST['description'];
     $livestock_type = $_POST['livestock_type'];
@@ -22,11 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $location = $_POST['location'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
-    $image = $_FILES['image_posts']; // For the image upload
+    $image = $_FILES['image_posts'];
 
-    $farmer_id = $_SESSION['id']; // Get the logged-in user's ID
+    $farmer_id = $_SESSION['id'];
 
-    // Verify that the post exists and belongs to the logged-in user
+    // Verify the post
     $query = "SELECT farmer_id, image_posts FROM livestock_posts WHERE post_id = ?";
     $stmt = mysqli_prepare($con, $query);
     mysqli_stmt_bind_param($stmt, 'i', $post_id);
@@ -36,61 +36,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_stmt_close($stmt);
 
     if (!$owner_id || $owner_id != $farmer_id) {
-        // User does not have permission to update this post
-        header('HTTP/1.1 401 Unauthorized'); // Send an unauthorized header
-        exit(); // Terminate the script
+        http_response_code(403); // Forbidden
+        echo json_encode(['status' => 'error', 'message' => 'Unauthorized update']);
+        exit();
     }
 
-    // Handle file upload if present
-    $imageName = null; // Initialize the image name
+    $imageName = null;
     if ($image['error'] === UPLOAD_ERR_OK) {
         $target_dir = "../../uploads/livestock_posts/";
         $imageName = basename($image['name']);
         $target_file = $target_dir . $imageName;
 
-        // Move the uploaded file to the target directory
         if (move_uploaded_file($image['tmp_name'], $target_file)) {
-            // If an image is successfully uploaded, delete the old image
             if ($old_image) {
                 $old_image_path = $target_dir . $old_image;
                 if (file_exists($old_image_path)) {
-                    unlink($old_image_path); // Delete the old image file
+                    unlink($old_image_path);
                 }
             }
         } else {
-            // Handle file upload failure
-            $imageName = null; // Reset imageName to null if upload fails
+            $imageName = null; // Reset imageName if upload fails
         }
     }
 
-    // Update the post in the database
     if ($imageName === null) {
-        // If no new image was uploaded, keep the old image
         $stmt = mysqli_prepare($con, "UPDATE livestock_posts SET title = ?, description = ?, livestock_type = ?, breed = ?, age = ?, weight = ?, health_status = ?, location = ?, price = ?, quantity = ? WHERE post_id = ?");
         mysqli_stmt_bind_param($stmt, 'ssssssssssd', $title, $description, $livestock_type, $breed, $age, $weight, $health_status, $location, $price, $quantity, $post_id);
     } else {
-        // If a new image was uploaded, update with the new image name
         $updateQuery = "UPDATE livestock_posts SET title = ?, description = ?, livestock_type = ?, breed = ?, age = ?, weight = ?, health_status = ?, location = ?, price = ?, quantity = ?, image_posts = ? WHERE post_id = ?";
         $stmt = mysqli_prepare($con, $updateQuery);
         mysqli_stmt_bind_param($stmt, 'sssssssssssd', $title, $description, $livestock_type, $breed, $age, $weight, $health_status, $location, $price, $quantity, $imageName, $post_id);
     }
 
-    // Execute the update statement
     if ($stmt->execute()) {
-        // Redirect after successful update
-        header('Location: ../../Frontend/Farmer/browse_livestock.php'); 
-        exit(); // Ensure no further code is executed
+        echo json_encode(['status' => 'success', 'message' => 'Livestock updated successfully']);
     } else {
-        // Log the error if the update fails
-        echo "Error executing query: " . mysqli_error($con);
-        exit(); // Terminate the script on error
+        http_response_code(500); // Internal Server Error
+        echo json_encode(['status' => 'error', 'message' => 'Failed to update livestock']);
     }
 
-    // Close the statement and connection
     $stmt->close();
     $con->close();
 } else {
-    header('HTTP/1.1 405 Method Not Allowed'); // Send an error header for wrong method
-    exit(); // Terminate the script
+    http_response_code(405); // Method Not Allowed
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
 }
 ?>

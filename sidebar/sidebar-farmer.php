@@ -191,7 +191,7 @@
                 <label for="update-livestock-image">Upload New Livestock Image (optional):</label>
                 <input type="file" id="update-livestock-image" name="image_posts">
 
-                <button type="submit">Update Livestock</button>
+                <button type="submit" id="updateLivestockButton">Update Livestock</button>
             </form>
         </div>
     </div>
