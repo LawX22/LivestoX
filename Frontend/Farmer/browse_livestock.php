@@ -99,22 +99,23 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
                                 <div class="availability"> Available now </div>
                                 <div class="bookmark"> <i class="far fa-heart bookmark-icon"></i> </div>
 
-                                    <?php
-                                    // Inside your listings loop
-                                    if ($user_id == $row['farmer_id']) { // Only show for the farmer who posted the listing
-                                    ?>
-                                        <div class="kebab-menu">
-                                            <button class="kebab-button" onclick="toggleDropdown(<?php echo $row['post_id']; ?>)">
-                                            <span class="kebab-icon"><i class="fas fa-ellipsis-v"></i></span> 
-                                            </button>
-                                            <div id="dropdown-<?php echo $row['post_id']; ?>" class="dropdown-content">
-                                                <button class="update-button" onclick="openUpdateModal(<?php echo $row['post_id']; ?>)">UPDATE</button>
-                                                <button class="delete-button" onclick="deleteListing(<?php echo $row['post_id']; ?>)">DELETE</button>
-                                            </div>
+                                <?php
+                                // Inside your listings loop
+                                if ($user_id == $row['farmer_id']) { // Only show for the farmer who posted the listing
+                                ?>
+                                    <div class="kebab-menu">
+                                        <button class="kebab-button" onclick="toggleDropdown(<?php echo $row['post_id']; ?>)">
+                                            <span class="kebab-icon"><i class="fas fa-ellipsis-v"></i></span>
+                                        </button>
+                                        <div id="dropdown-<?php echo $row['post_id']; ?>" class="dropdown-content">
+                                            <button class="update-button" onclick="openUpdateModal(<?php echo $row['post_id']; ?>)">UPDATE</button>
+                                            <!-- Inside your PHP loop -->
+                                            <button class="delete-button" onclick="deleteListing(<?php echo $row['post_id']; ?>)">DELETE</button>
                                         </div>
-                                    <?php
-                                    }
-                                    ?>
+                                    </div>
+                                <?php
+                                }
+                                ?>
 
                             </div>
 
@@ -175,9 +176,10 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="../../js/filtering.js"></script>
-<script src="../../js/livestock/main.js"></script> 
+<script src="../../js/livestock/main.js"></script>
 <script src="../../js/livestock/open_modal.js"></script>
 <script src="../../js/livestock/add.js"></script>
 <script src="../../js/livestock/update.js"></script>
+<script src="../../js/livestock/delete.js"></script>
 
 </html>

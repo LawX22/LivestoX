@@ -1,6 +1,9 @@
 <?php
 include('../../Backend/db/db_connect.php');
 
+// Prepare the response array
+$response = array('status' => 'error', 'message' => 'An unexpected error occurred.');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_id'])) {
     $post_id = $_POST['post_id'];
 
@@ -25,11 +28,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_id'])) {
     mysqli_stmt_bind_param($stmt, 'i', $post_id);
 
     if (mysqli_stmt_execute($stmt)) {
-        echo "Listing and associated photo deleted successfully.";
+        $response['status'] = 'success';
+        $response['message'] = 'Listing and associated photo deleted successfully.';
     } else {
-        echo "Error deleting listing.";
+        $response['message'] = 'Error deleting listing.';
     }
 
     mysqli_stmt_close($stmt);
 }
+
+header('Content-Type: application/json');
+echo json_encode($response);  // Return the response as JSON
 ?>
