@@ -204,9 +204,7 @@
     </div>
 
     <div class="logout">
-        <a href="../../Backend/login/logout.php" id="logout-link">
-            <button type="button" class="logout-button" onclick="confirmLogout(event)">LOG OUT</button>
-        </a>
+        <button type="button" class="logout-button" id="logout-button">LOG OUT</button>
     </div>
 </div>
 

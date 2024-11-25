@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../../Backend/db/db_connect.php'); 
+include('../../Backend/db/db_connect.php');
 
 if (!isset($_SESSION['id']) || $_SESSION['user_type'] != 'farmer') {
     header("Location: ../../Frontend/login.php");
@@ -28,6 +28,7 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,11 +42,12 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
-        <?php 
-            $page = 'seller_dashboard';
-            include('../../sidebar/sidebar-farmer.php');
+        <?php
+        $page = 'seller_dashboard';
+        include('../../sidebar/sidebar-farmer.php');
         ?>
         <div class="main-content">
             <header>
@@ -83,7 +85,7 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                     <h2>Your Livestock Listings</h2>
                     <div class="listing-cards">
                         <div class="card">
-                            <i class="fas fa-paw"></i> 
+                            <i class="fas fa-paw"></i>
                             <div>
                                 <h3>12</h3>
                                 <p>All Livestock Listings</p>
@@ -119,7 +121,7 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                         </div>
                     </div>
                     <div class="action-buttons">
-                        <button class="create-listing">Create new listing</button> 
+                        <button class="create-listing">Create new listing</button>
                     </div>
                 </div>
 
@@ -142,7 +144,7 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
                             </div>
                         </div>
                         <div class="card">
-                            <i class="fas fa-user-friends"></i> 
+                            <i class="fas fa-user-friends"></i>
                             <div>
                                 <h3>10</h3>
                                 <p>Forum Activity</p>
@@ -155,5 +157,8 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
     </div>
 </body>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../../js/logout-confirmation.js"></script>
+
 </html>

@@ -212,5 +212,6 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../../js/logout-confirmation.js"></script>
 </body>
 </html>
