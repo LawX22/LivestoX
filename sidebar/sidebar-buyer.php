@@ -74,10 +74,10 @@
     </div>
 
     <div class="logout">
-        <a href="../../Backend/login/logout.php" id="logout-link">
-            <button type="button" class="logout-button" onclick="confirmLogout(event)">LOG OUT</button>
-        </a>
+        <button type="button" class="logout-button" id="logout-button">LOG OUT</button>
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../../js/logout-confirmation.js"></script>
