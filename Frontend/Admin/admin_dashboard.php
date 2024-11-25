@@ -86,15 +86,15 @@ if (!$user_result) {
 
                 <!-- Reports Section -->
                 <div class="dashboard-section">
-                    <h2>Reports</h2>
-                    <div class="report-cards">
+                    <h2>User Account Reports</h2>
+                    <!-- <div class="report-cards">
                         <div class="card">
                             <i class="fas fa-file-alt"></i>
                             <div>
                                 <h3>8</h3>
-                                <p>Open Reports</p>
+                                <p>User Account Reports</p>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="card">
                             <i class="fas fa-exclamation-circle"></i>
                             <div>
@@ -110,6 +110,8 @@ if (!$user_result) {
     </div>
 </body>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../../js/logout-confirmation.js"></script>
 
 </html>
