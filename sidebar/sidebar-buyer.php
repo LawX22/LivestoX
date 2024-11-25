@@ -21,7 +21,7 @@
                         <i class="fas fa-globe"></i> Browse Livestock</button>
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="auction.php" class="nav-button-link">
                     <button class="nav-button
                             <?php if ($page == 'auction') {
@@ -29,7 +29,7 @@
                             } ?>" href="../Frontend/Buyer/auction.php">
                         <i class="fas fa-gavel"></i> Auction Livestock</button>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="browse_auctions.php" class="nav-button-link">
                     <button class="nav-button

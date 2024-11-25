@@ -385,8 +385,9 @@
             <div v-for="conversation in convo" :key="conversation.message_id" class="chat-message" :class="String(conversation.user_id) === String(current_user) ? 'right' : 'left'">
                 <p>
                     {{ conversation.content }}
-                    {{ conversation.created }}
+
                 </p>
+                <!-- {{ conversation.created }} -->
                 <img v-if="conversation.image_url && conversation.image_url !== ''" :src="'../../uploads/livestock_posts/' + conversation.image_url" alt="Image">
             </div>
         </div>
