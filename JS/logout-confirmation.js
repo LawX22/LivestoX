@@ -22,7 +22,7 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Logged Out',
-                                text: 'Redirecting to login page...',
+                                text: 'Redirecting to Landing page...',
                                 timer: 2000,
                                 showConfirmButton: false,
                             }).then(() => {

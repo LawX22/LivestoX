@@ -5,7 +5,7 @@ session_destroy();
 
 $response = [
     "status" => "success",
-    "redirect_url" => "../../Frontend/login.php",
+    "redirect_url" => "../../Frontend/landingpage.php",
 ];
 
 echo json_encode($response);
