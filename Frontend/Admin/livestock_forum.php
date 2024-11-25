@@ -205,6 +205,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                 </div>
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                 <script src="../../js/logout-confirmation.js"></script>
                 <script src="../../js/forum/forum-modal.js"></script>
                 <script src="../../js/forum/submit-ajax.js"></script>

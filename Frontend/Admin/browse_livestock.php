@@ -178,6 +178,8 @@ if (!$livestock_posts_result) {
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../../js/logout-confirmation.js"></script>
 <script src="../../js/filtering.js"></script>
 <script src="../../js/livestock/main.js"></script>
 
