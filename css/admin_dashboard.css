@@ -18,7 +18,9 @@ body {
 }
 
 .dashboard-section {
-    margin-bottom: 10px;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
 }
 
 .dashboard-section h2 {
@@ -76,7 +78,7 @@ body {
 
 /* Scrollable Table Container */
 .table-container {
-    max-height: 400px; /* Adjust the height as needed */
+    max-height: 500px; /* Adjust the height as needed */
     overflow-y: auto;
     border: 2px solid #52B788;
     border-radius: 8px;

@@ -19,13 +19,21 @@
                         </a>
                     </li>
                     <li>
+                        <a href="user_management.php" class="nav-button-link">
+                            <button class="nav-button
+                                <?php if ($page == 'user_management.php') {echo 'active';} ?>" href="../Frontend/Admin/user_management.php">
+                                <i class="fas fa-globe"></i> User Management
+                            </button>
+                        </a>
+                    </li>
+                    <!-- <li>
                         <a href="reports.php" class="nav-button-link">
                             <button class="nav-button
                                 <?php if ($page == 'reports') {echo 'active';} ?>" href="../Frontend/Admin/reports.php">
                                 <i class="fas fa-globe"></i> Reports
                             </button>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="browse_livestock.php" class="nav-button-link">
                             <button class="nav-button

@@ -29,6 +29,7 @@ if (!$user_result) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,46 +61,7 @@ if (!$user_result) {
             </header> -->
 
             <div class="dashboard-content">
-                <!-- User Management Section -->
-                <div class="dashboard-section">
-                    <h2>User Management</h2>
-                    <div class="table-container">
-                        <table class="user-management-table">
-                            <thead>
-                                <tr>
-                                    <th>Profile Picture</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>User Type</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php while ($user = mysqli_fetch_assoc($user_result)) {
-                                    $user_profile_picture = !empty($user['profile_picture']) && file_exists('../../uploads/profile_pictures/' . $user['profile_picture'])
-                                        ? '../../uploads/profile_pictures/' . $user['profile_picture']
-                                        : $default_profile_picture;
-                                ?>
-                                    <tr>
-                                        <td><img src="<?php echo htmlspecialchars($user_profile_picture); ?>" alt="Profile Picture" class="profile-img"></td>
-                                        <td><?php echo htmlspecialchars($user['first_name']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['last_name']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['email']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['phone']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['user_type']); ?></td>
-                                        <td>
-                                            <button class="action-btn view-btn">View</button>
-                                            <!-- <button class="action-btn edit-btn">Edit</button>
-                                            <button class="action-btn delete-btn">Delete</button> -->
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                
 
                 <!-- Livestock Listings Section -->
                 <div class="dashboard-section">
