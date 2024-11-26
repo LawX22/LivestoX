@@ -47,7 +47,7 @@ mysqli_stmt_close($stmt);
     <title>LivestoX - Auction Page</title>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
-    <link rel="stylesheet" href="../../css/auction.css">
+    <link rel="stylesheet" href="../../css/farmer/auction.css">
     <link rel="stylesheet" href="../../css/modal.css">
     <link rel="stylesheet" href="../../css/browse-auctions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

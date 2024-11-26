@@ -344,3 +344,11 @@ header {
     bottom: 20px; 
     right: 20px;
 }
+
+
+.bidders-row{
+    background: #eeeeee;
+    border-radius: 3rem;
+    margin: 0.5rem;
+    display: flex;
+}

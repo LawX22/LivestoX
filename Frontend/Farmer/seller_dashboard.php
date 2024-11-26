@@ -35,7 +35,7 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
     <title>LivestoX - Seller Dashboard</title>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
-    <link rel="stylesheet" href="../../css/seller_dashboard.css">
+    <link rel="stylesheet" href="../../css/farmer/seller_dashboard.css">
     <link rel="stylesheet" href="../../css/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
