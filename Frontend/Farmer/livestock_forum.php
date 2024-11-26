@@ -65,12 +65,6 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
             include('../../sidebar/sidebar-farmer.php');
         ?>
         <div class="main-content">
-            <header>
-                <div class="livestock-logo">
-                    <img src="../../Assets/livestock-logo.png" alt="Livestock Logo" class="livestock-img">
-                    <div class="logo-name">LivestoX</div>
-                </div>
-            </header>
             <div class="open-forum">
                 <h2>Q&A - Livestock Forum for Farmers and Buyers</h2>
                 <!-- Ask a Question Button -->

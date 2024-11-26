@@ -50,12 +50,7 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
         include('../../sidebar/sidebar-farmer.php');
         ?>
         <div class="main-content">
-            <header>
-                <div class="livestock-logo">
-                    <img src="../../Assets/livestock-logo.png" alt="Livestock Logo" class="livestock-img">
-                    <div class="logo-name">LivestoX</div>
-                </div>
-            </header>
+
 
             <div class="dashboard-content">
                 <!-- Overview Section -->
