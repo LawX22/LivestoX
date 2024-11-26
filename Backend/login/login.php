@@ -1,43 +1,62 @@
 <?php
 session_start();
-include("../db/function.php");
+include("../db/db_connect.php");
+header('Content-Type: application/json'); // Set content type to JSON
 
-if (isset($_POST['submit'])) {
-    include("../db/db_connect.php");
+// Check if the form is submitted via POST
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    $username = $con->real_escape_string($_POST['username']);
-    $password = $con->real_escape_string($_POST['password']);
-    $sql = "SELECT * FROM tbl_users WHERE username = '$username'";
-    $query = $con->query($sql);
+    // Prepare and bind the query to check for the user by username
+    $stmt = $con->prepare("SELECT * FROM tbl_users WHERE username = ?");
+    $stmt->bind_param("s", $username); // "s" means string
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    // Check if any user exists with the entered username
-    if ($query->num_rows === 0) {
-        $_SESSION['status'] = "Account does not exist. Please sign up first.";
-        header('Location: ../../Frontend/login.php');
+    // Check if the user exists
+    if ($result->num_rows === 0) {
+        // User doesn't exist
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Account does not exist. Please sign up first.'
+        ]);
         exit();
     } else {
-        $sql = "SELECT * FROM tbl_users WHERE username = '$username' AND password = '$password'";
-        $query = $con->query($sql);
-        $row = $query->fetch_assoc();
+        // User exists, now check if password matches
+        $row = $result->fetch_assoc();
 
-        // Check if username and password match
-        if ($query->num_rows != 0) {
+        // Direct password comparison (no hashing, as per your request)
+        if ($password === $row['password']) {
+            // Password matches, start the session
             $_SESSION['id'] = $row['id'];
             $_SESSION['user_type'] = $row['user_type'];
 
-            if ($row['user_type'] == "farmer") {
-                header("Location: ../../Frontend/Farmer/browse_livestock.php");
-            } else if ($row['user_type'] == "buyer") {
-                header("Location: ../../Frontend/Buyer/browse_livestock.php");
-            } else if ($row['user_type'] == "admin") {
-                header("Location: ../../Frontend/Admin/admin_dashboard.php");
+            // Determine where to redirect based on user type
+            $redirect_url = '';
+            if ($row['user_type'] == 'farmer') {
+                $redirect_url = '../../Livestox/Frontend/Farmer/browse_livestock.php';
+            } elseif ($row['user_type'] == 'buyer') {
+                $redirect_url = '../../Livestox/Frontend/Buyer/browse_livestock.php';
+            } elseif ($row['user_type'] == 'admin') {
+                $redirect_url = '../../Livestox/Frontend/Admin/admin_dashboard.php';
             }
+
+            // Return success response with the redirect URL
+            echo json_encode([
+                'status' => 'success',
+                'redirect_url' => $redirect_url
+            ]);
             exit();
         } else {
-            $_SESSION['status'] = "Incorrect Password";
-            header('Location: ../../Frontend/login.php');
+            // Incorrect password
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Incorrect password. Please try again.'
+            ]);
             exit();
         }
     }
 }
+
 ?>
