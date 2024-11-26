@@ -1,4 +1,8 @@
 <div class="sidebar">
+<div class="livestock-logo">
+            <img src="../../Assets/LivestoX_Logo.png" alt="Livestock Logo" class="livestock-img">
+
+        </div>
     <a href="../../Frontend/Pages/users-profile-page.php?user_id=<?php echo urlencode($user_id); ?>" class="profile-section-link">
         <div class="profile-section">
             <div class="profile-image">

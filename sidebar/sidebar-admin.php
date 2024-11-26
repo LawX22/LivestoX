@@ -1,4 +1,8 @@
 <div class="sidebar">
+<div class="livestock-logo">
+            <img src="../../Assets/LivestoX_Logo.png" alt="Livestock Logo" class="livestock-img">
+
+        </div>
     <div class="profile-section">
         <div class="profile-image">
             <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Image">

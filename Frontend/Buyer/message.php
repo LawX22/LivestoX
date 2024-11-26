@@ -43,6 +43,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,34 +56,39 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-    .iframe-container {
-      width: 100%;
-      max-height: 100vh;
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
+        .iframe-container {
+            width: 100%;
+            max-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
 
-    iframe {
-      width: 100%;
-      max-height: 100%;
-      border: none;
-    }
-  </style>
+        iframe {
+            width: 100%;
+            max-height: 100%;
+            border: none;
+        }
+
+        a {
+            color: inherit;
+            /* Inherit the color from the parent, or set a custom color */
+            text-decoration: none;
+            /* Remove the underline */
+            cursor: pointer;
+            /* Optional: Change the cursor to a pointer */
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
-        <?php 
-            $page = 'message';
-            include('../../sidebar/sidebar-buyer.php');
+        <?php
+        $page = 'message';
+        include('../../sidebar/sidebar-buyer.php');
         ?>
         <div class="main-content">
-            <header>
-                <div class="livestock-logo">
-                    <img src="../../Assets/livestock-logo.png" alt="Livestock Logo" class="livestock-img">
-                    <div class="logo-name">LivestoX</div>
-                </div>
-            </header>
+
             <div class="chat-container">
                 <!-- Left section with users and search bar -->
                 <div class="chat-list">
@@ -91,39 +97,40 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
                     </div>
                     <!-- Search bar for users -->
                     <div class="search-bar">
-                            <input type="text" placeholder="Search for users...">
-                            <button class="search-button"><i class="fas fa-search"></i></button>
-                        </div>
+                        <input type="text" placeholder="Search for users...">
+                        <button class="search-button"><i class="fas fa-search"></i></button>
+                    </div>
                     <div class="chats">
-                    <ul>
-                        <?php include('../../Backend/chat/get_chat.php'); ?>
-                        <?php foreach ($chats as $row): ?>
-                        <a href="../Pages/direct_message?c=<?= $row['gochat_id'] ?>&m=<?php echo $user_id ?>&s=<?= $row['status'] ?>&p=<?= $row['profile_picture'] ?>&n=<?= $row['full_name'] ?>" target="main-content">
-                            <li>
-                                <img src="../../uploads/profile_pictures/<?= $row['profile_picture'] ?>" alt="?" class="profile-circle">
-                                <div class="chat-preview">
-                                    <span class="user-name"><?= $row['full_name'] ?></span>
-                                    <span class="last-message">Last message here...</span>
-                                </div>
-                            </li>
-                        </a>
-                        <?php endforeach; ?>
-                        <!-- Repeat for other users -->
-                    </ul>
+                        <ul>
+                            <?php include('../../Backend/chat/get_chat.php'); ?>
+                            <?php foreach ($chats as $row): ?>
+                                <a href="../Pages/direct_message?c=<?= $row['gochat_id'] ?>&m=<?php echo $user_id ?>&s=<?= $row['status'] ?>&p=<?= $row['profile_picture'] ?>&n=<?= $row['full_name'] ?>" target="main-content">
+                                    <li>
+                                        <img src="../../uploads/profile_pictures/<?= $row['profile_picture'] ?>" alt="?" class="profile-circle">
+                                        <div class="chat-preview">
+                                            <span class="user-name"><?= $row['full_name'] ?></span>
+                                            <span class="last-message">Last message here...</span>
+                                        </div>
+                                    </li>
+                                </a>
+                            <?php endforeach; ?>
+                            <!-- Repeat for other users -->
+                        </ul>
                     </div>
                 </div>
-                
+
                 <!-- Chat window -->
                 <div class="iframe-container">
-                    <iframe :src="conversations.length > 0 ? '../Pages/direct_message?c=' + conversations[0].gochat_id : ''" 
-                            name="main-content" 
-                            frameborder="0">
+                    <iframe :src="conversations.length > 0 ? '../Pages/direct_message?c=' + conversations[0].gochat_id : ''"
+                        name="main-content"
+                        frameborder="0">
                     </iframe>
                 </div>
-                
+
             </div>
         </div>
     </div>
 </body>
 <script src="../../js/logout-confirmation.js"></script>
+
 </html>

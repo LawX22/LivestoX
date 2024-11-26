@@ -70,6 +70,15 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
             max-height: 100%;
             border: none;
         }
+
+        a {
+            color: inherit;
+            /* Inherit the color from the parent, or set a custom color */
+            text-decoration: none;
+            /* Remove the underline */
+            cursor: pointer;
+            /* Optional: Change the cursor to a pointer */
+        }
     </style>
 </head>
 
