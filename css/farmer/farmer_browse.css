@@ -384,3 +384,21 @@ header {
 .dropdown-content.show {
     animation: dropdownFadeIn 0.3s ease-in-out;
 }
+
+/* CREATE LISTING BUTTON */
+
+.create-listing-button {
+    display: block;
+    width: 25%;
+    padding: 10px;
+    background-color: #52B788;
+    color: #ffffff;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.create-listing-button:hover {
+    background-color: #333;
+}
