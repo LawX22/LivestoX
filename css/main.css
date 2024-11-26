@@ -15,29 +15,13 @@ body {
     background-color: #f5f5f5;
 }
 
-header {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
 .livestock-logo {
     display: flex;
-}
-
-.logo-name {
-    display: flex;
-    align-items: center;
-    margin-left: 8px;
-    font-size: 27px;
-    font-weight: bold;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 img {
-    height: 50px;
-    width: 50px;
+    height: 120px;
+    width: 120px;
 }

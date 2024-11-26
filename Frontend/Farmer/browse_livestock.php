@@ -32,7 +32,7 @@ if (!empty($profile_picture) && file_exists('../../uploads/profile_pictures/' . 
 $listings_query = "SELECT lp.*, u.id, u.first_name, u.last_name 
     FROM livestock_posts lp 
     JOIN tbl_users u ON lp.farmer_id = u.id 
-    ORDER BY lp.date_posted DESC"; // Order by date_posted in descending order
+    ORDER BY lp.date_posted DESC "; // LIMIT 1 // Order by date_posted in descending order
 $listings_stmt = mysqli_prepare($con, $listings_query);
 mysqli_stmt_execute($listings_stmt);
 $listings_result = mysqli_stmt_get_result($listings_stmt);
@@ -62,10 +62,7 @@ $listings_result = mysqli_stmt_get_result($listings_stmt);
         ?>
         <div class="main-content">
             <header>
-                <div class="livestock-logo">
-                    <img src="../../Assets/livestock-logo.png" alt="Livestock Logo" class="livestock-img">
-                    <div class="logo-name">LivestoX</div>
-                </div>
+                
 
                 <div class="search">
                     <i class="fas fa-filter" onclick="showFilterPopup()"></i>

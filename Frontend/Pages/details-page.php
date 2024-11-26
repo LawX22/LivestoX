@@ -99,7 +99,7 @@ if ($user_type === 'farmer') {
         <!-- Right Side: Details and Seller Info -->
         <div class="right-side">
             <h2><?php echo htmlspecialchars($listing['title']); ?></h2>
-            <p class="price">PHP <?php echo htmlspecialchars($listing['price']); ?></p>
+            <p class="price"  >PHP <?php echo htmlspecialchars($listing['price']); ?></p>
             <p class="listing-time">Listed on <?php echo $formatted_date_time; ?></p>
 
             <!-- About the Livestock -->
