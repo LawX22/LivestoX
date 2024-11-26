@@ -24,7 +24,7 @@
         }
 
         .chat-window {
-            width: 400px;
+            width: 100%;
             max-width: 100%;
             height: 80vh;
             background-color: #fff;
@@ -74,6 +74,7 @@
             padding: 10px;
             overflow-y: auto;
             background-color: #f8f9fa;
+            border: 1px solid #333;
         }
 
         .start-info {
