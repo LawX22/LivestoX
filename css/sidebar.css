@@ -12,8 +12,14 @@
 .profile-section {
     display: flex;
     align-items: center;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     padding: 5px;
+}
+
+.profile-section:hover {
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #d1dbd693;
 }
 
 .profile-image img {
