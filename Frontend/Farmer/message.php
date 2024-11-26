@@ -50,7 +50,7 @@ $posts = mysqli_fetch_all($postResult, MYSQLI_ASSOC);
     <title>LivestoX - Message Page</title>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/sidebar.css">
-    <link rel="stylesheet" href="../../css/message.css">
+    <link rel="stylesheet" href="../../css/farmer/farmer_message.css">
     <link rel="stylesheet" href="../../css/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

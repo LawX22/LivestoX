@@ -1,0 +1,286 @@
+body {
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.open-forum {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.open-forum h2 {
+    margin-bottom: 20px;
+}
+
+.ask-question-btn {
+    background-color: #52B788;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.forum-post {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.forum-post:last-child {
+    border-bottom: none;
+}
+
+.forum-post.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.forum-post .post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative; /* For positioning the dropdown menu */
+}
+
+.forum-post .post-header .profile-info {
+    display: flex;
+    align-items: center;
+    flex: 1; /* Takes up remaining space */
+}
+
+.forum-post .post-header .profile-info .profile-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #52B788;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.profile-info {
+   gap: 10px;
+}
+
+.forum-post .post-header .profile-info .name {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.forum-post .post-header .profile-info .user-type {
+    color: #fff;
+     /* Background color to make it stand out */
+    border-radius: 10px; /* Rounded corners */
+    padding: 4px 8px; /* Padding for better spacing */
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase; /* Capitalize text */
+    margin-top: 2px; /* Space between name and user type */
+}
+
+.forum-post .post-header .date {
+    color: #aaa;
+    margin-left: 8px;
+}
+
+.forum-post .post-header .meatball-menu {
+    position: absolute; /* Positioned at the end of the post header */
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    cursor: pointer;
+}
+
+.forum-post .post-header .meatball-menu i {
+    font-size: 18px;
+    color: #333;
+}
+
+.forum-post .post-header .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.forum-post .post-header .dropdown-item {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+.forum-post .post-header .dropdown-item:hover {
+    background-color: #f4f4f4;
+}
+
+.forum-post .post-header .meatball-menu:hover .dropdown-menu {
+    display: block;
+}
+
+.forum-post .post-content {
+    margin-bottom: 10px;
+}
+
+.forum-post .post-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.forum-post .post-actions .likes,
+.forum-post .post-actions .dislikes,
+.forum-post .post-actions .comments {
+    display: flex;
+    align-items: center;
+    color: #aaa;
+    font-size: 16px;
+}
+
+.forum-post .post-actions .likes i,
+.forum-post .post-actions .dislikes i,
+.forum-post .post-actions .comments i {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+/* Modal container */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-height: 90vh; /* Ensure the modal doesn't overflow the viewport */
+    overflow-y: auto; /* Scroll inside the modal if content exceeds max-height */
+}
+
+/* Close button */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    background-color: #52B788;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:disabled {
+    background-color: #ccc; 
+    cursor: not-allowed; 
+}
+
+.post-image {
+    border: 5px solid red;
+    margin-top: 20px; 
+    text-align: center; 
+    width: 40%; 
+    max-width: 500px; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+.post-image img {
+    width: 100%; 
+    height: auto; 
+    border-radius: 8px; 
+}
+
